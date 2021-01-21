@@ -56,6 +56,8 @@ function RegistrarProducto(props) {
 	const [ valueSelect, setValueSelect ] = useState();
 	const [ valueSelectSubCat, setValueSelectSubCat ] = useState();
 
+	const [ temporadasBD, setTemporadasBD ] = useState([]);
+
 	const styles = reactCSS({
 		default: {
 			color: {
@@ -125,6 +127,7 @@ function RegistrarProducto(props) {
 			setCurrent(0);
 			setDisabledFormProductos(false);
 			obtenerCategorias();
+			obtenerTemporadasBD();
 		},
 		[ reload, form ]
 	);
@@ -228,6 +231,7 @@ function RegistrarProducto(props) {
 		formData.append('categoria', select);
 		formData.append('tipoCategoria', tipoCategoria);
 		formData.append('subCategoria', subCategoria);
+		formData.append('temporada', temporada);
 		formData.append('genero', genero);
 		formData.append('color', datos.color);
 		formData.append('colorHex', color);
@@ -335,6 +339,31 @@ function RegistrarProducto(props) {
 				}
 			});
 	}
+	async function obtenerTemporadasBD() {
+		setLoadingCombo(true);
+		await clienteAxios
+			.get(`/productos/agrupar/temporadas`)
+			.then((res) => {
+				setLoadingCombo(false);
+				setTemporadasBD(res.data);
+			})
+			.catch((err) => {
+				setLoadingCombo(false);
+				if (err.response) {
+					notification.error({
+						message: 'Error',
+						description: err.response.data.message,
+						duration: 2
+					});
+				} else {
+					notification.error({
+						message: 'Error de conexion',
+						description: 'Al parecer no se a podido conectar al servidor.',
+						duration: 2
+					});
+				}
+			});
+	}
 
 	const addItemCategoria = () => {
 		setCategoriasDefault([ ...categoriasDefault, item ]);
@@ -370,6 +399,33 @@ function RegistrarProducto(props) {
 		} else {
 			setButtonCat(true);
 		}
+	};
+
+	/* temporadas */
+	const [ temporada, setTemporada ] = useState();
+	const [ valueSelectTemporada, setValueSelectTemporada ] = useState()
+	const [ temporadaDefault, setTemporadaDefault ] = useState([]);
+
+	const onSelectTemporada = (value) => {
+		setTemporada(value);
+		setValueSelectTemporada(value);
+		form.setFieldsValue({ temporada: value });
+	};
+
+	const onTemporadaChange = (e) => {
+		if (e.target.value.length !== 0) {
+			setItem(e.target.value.capitalize());
+			setButtonCat(false);
+		} else {
+			setButtonCat(true);
+		}
+	};
+
+	const addItemTemporada = () => {
+		setTemporadaDefault([ ...temporadaDefault, item ]);
+		setValueSelectTemporada(item);
+		setTemporada(item);
+		form.setFieldsValue({ temporada: item });
 	};
 
 	////CONTENIDO DE LOS PASOS
@@ -474,6 +530,46 @@ function RegistrarProducto(props) {
 												<Option />
 											) : (
 												subCategoriasBD.map((item) => {
+													if (item._id === null) {
+														return null;
+													} else {
+														return <Option key={item._id}>{item._id}</Option>;
+													}
+												})
+											)}
+										</Select>
+									</Form.Item>
+								</Form.Item>
+								<Form.Item label="Temporada" onChange={datosForm}>
+									<Form.Item name="temporada">
+										<Select
+											disabled={loadingCombo}
+											loading={loadingCombo}
+											value={valueSelectTemporada}
+											style={{ width: 250 }}
+											placeholder="Seleciona una temporada"
+											onChange={onSelectTemporada}
+											dropdownRender={(menu) => (
+												<div>
+													{menu}
+													<Divider style={{ margin: '4px 0' }} />
+													<div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
+														<Input
+															style={{ flex: 'auto' }}
+															onChange={onTemporadaChange}
+														/>
+														<Button disabled={buttonCat} onClick={addItemTemporada}>
+															<PlusOutlined style={{ fontSize: 20 }} /> Nueva
+														</Button>
+													</div>
+												</div>
+											)}
+										>
+											{temporadaDefault.map((item) => <Option key={item}>{item}</Option>)}
+											{temporadasBD.length === 0 ? (
+												<Option />
+											) : (
+												temporadasBD.map((item) => {
 													if (item._id === null) {
 														return null;
 													} else {
