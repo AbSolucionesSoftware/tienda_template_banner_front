@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Layout, Menu } from 'antd';
+import {  Divider, Layout, Menu } from 'antd';
 import { withRouter } from 'react-router-dom';
 import './categorias.scss';
 import './preloading.scss';
@@ -13,7 +13,7 @@ const Categorias = (props) => {
 	const [ categorias, setCategorias ] = useState([]);
 	const [ generos, setGeneros ] = useState([{_id: 'Todos'}]);
 /* 	const [ loading, setLoading ] = useState(false); */
-	const { loading, setLoading } = useContext(MenuContext);
+	// const { loading, setLoading } = useContext(MenuContext);
 
 	const [ categoriaSeleccionada, setCategoriaSeleccionada, ] = useState('');
 	const [ subcategoriaSeleccionada, setSubcategoriaSeleccionada, ] = useState('');
@@ -25,7 +25,7 @@ const Categorias = (props) => {
 	}, []);
 
 	async function obtenerCategorias() {
-		setLoading(true);
+		// setLoading(true);
 		await clienteAxios
 			.get('/productos/filtrosNavbar', {
 				headers: {
@@ -33,12 +33,12 @@ const Categorias = (props) => {
 				}
 			})
 			.then((res) => {
-				setLoading(false);
+				// setLoading(false);
 				setCategorias(res.data);
 				window.scrollTo(0, 0);
 			})
 			.catch((res) => {
-				setLoading(false);
+				// setLoading(false);
 			});
 	}
 
@@ -87,6 +87,7 @@ const Categorias = (props) => {
 					);
 				})}
 			</SubMenu>
+			// 
 		);
 	});
 
@@ -125,6 +126,8 @@ const Categorias = (props) => {
 				{generos.length !== 0 ? (
 					<SubMenu title="Género" className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat">
 						{categorias_generos}
+					
+
 					</SubMenu>
 				) : (
 					<Menu.Item className="d-none" />

@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Layout, Menu, Button, Input, Drawer, Badge, Avatar, Spin } from 'antd';
+import { Layout, Menu, Button, Input, Drawer, Badge, Avatar, Spin, Divider } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import './navegacion.scss';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { MenuOutlined, ShoppingCartOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
+import { SearchOutlined, MenuOutlined, ShoppingOutlined , SettingOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import jwt_decode from 'jwt-decode';
 import clienteAxios from '../../config/axios';
 import RightMenu from './RightMenu';
 import { MenuContext } from '../../context/carritoContext';
 import aws from '../../config/aws';
+import './navegacion.scss';
+import Categorias from '../../components/Categorias/Categorias';
+
 
 const { Search } = Input;
 const { Header } = Layout;
@@ -20,6 +23,7 @@ const Navegacion = (props) => {
 	const { active, setActive } = useContext(MenuContext);
 	const { loading, setLoading } = useContext(MenuContext);
 	const [ visible, setVisible ] = useState(false);
+	const [ busqueda, setBusqueda] = useState("")
 	const token = localStorage.getItem('token');
 	var decoded = Jwt(token);
 
@@ -107,40 +111,21 @@ const Navegacion = (props) => {
 		);
 	}
 
+	function valor(e) {
+		setBusqueda(e.target.value);
+	}
+
 	return (
-		<Layout className="layout navbar-menu-general a0">
-			<Header className="navbar-menu-general a1">
-				<div className="menuCon navbar-menu-general a2">
-					<div className="top-menu row a3">
-						<div className="col-lg-4 row-logo-search">
-							<div className="row row-logo-search-2">
-								{!tienda.imagenLogo ? (
-									<div className="d-none" />
-								) : (
-									<div className="col-lg-4">
-										<Link to="/">
-											<div className="contenedor-logo">
-												<img
-													className="imagen-logo-principal"
-													alt="logotipo-tienda"
-													src={aws + tienda.imagenLogo}
-												/>
-											</div>
-										</Link>
-									</div>
-								)}
-								<div className="col-lg-8">
-									<Search
-										placeholder="¿Qué estás buscando?"
-										onSearch={(value) => props.history.push(`/searching/${value}`)}
-										className="search-navbar"
-									/>
-								</div>
-							</div>
-						</div>
-						<div className="col-lg-8 nav-menu-enlaces a4 ">
+		<div>
+		<Layout className="layout navbar-menu-general a00">
+			<Header className=" a1">
+				<div className="menuCon  a2">
+					<div className="top-menu row a3 container-prin">
+						
+						
+						<div className="col-lg-12 container-pages a4">
 							<Menu
-								className="float-right navbar-menu-general a5"
+								className="float-right nav-font-pages a5"
 								/* theme="light" */
 								mode="horizontal"
 								defaultSelectedKeys={[ window.location.pathname ]}
@@ -150,10 +135,12 @@ const Navegacion = (props) => {
 									<div className="centrar-nav" >Inicio</div>
 									<Link to="/" />
 								</Menu.Item>
+								<Divider type="vertical" />
 								<Menu.Item className="nav-font-color nav-border-color a6" key="/productos">
 									<div className="centrar-nav" >Productos</div>
 									<Link to="/productos" />
 								</Menu.Item>
+								<Divider type="vertical" />
 								{ofertas.length ? (
 									<Menu.Item className="nav-font-color nav-border-color a6" key="/ofertas">
 										<div className="centrar-nav" >Ofertas</div>
@@ -162,10 +149,12 @@ const Navegacion = (props) => {
 								) : (
 									<Menu.Item className="d-none" />
 								)}
+								<Divider type="vertical" />
 								<Menu.Item className="nav-font-color nav-border-color a6" key="/blog">
 									<div className="centrar-nav" >Blog</div>
 									<Link to="/blog" />
 								</Menu.Item>
+								<Divider type="vertical" />
 								{tienda.length === 0 ? (
 									<Menu.Item className="d-none" />
 								) : (
@@ -174,10 +163,65 @@ const Navegacion = (props) => {
 										<Link to="/quienes_somos" />
 									</Menu.Item>
 								)}
+							</Menu>
+						</div>
+					</div>
+				</div>
+			</Header>
+		</Layout>
+		
+		{/* DIVISOR PARA EL INPUT  */}
+
+		<Layout className="layout  a0">
+			<Header className=" a1">
+				<div className="menuCon  a2">
+					<div className="top-menu row a3">
+						<div className="col-lg-9 row-logo-search">
+							<div className="row row-logo-search-2 ">
+									{!tienda.imagenLogo ? (
+										<div className="d-none" />
+									) : (
+										<div className="col-lg-3">
+											<Link to="/">
+												<div className="contenedor-logo">
+													<img
+														className="imagen-logo-principal"
+														alt="logotipo-tienda"
+														src={aws + tienda.imagenLogo}
+													/>
+												</div>
+											</Link>
+										</div>
+									)}
+								<div className="col-lg-8 row input-search">
+									<Input
+										onChange={valor}
+										className="input-search border-color-search"
+									/>
+									
+									<Button
+										onClick={(value) => props.history.push(`/searching/${busqueda}`)}
+										className="boton-search border-color-search"
+									>
+										<SearchOutlined style={{fontSize: 25}}/>
+									</Button>
+									
+								</div>
+							</div>
+						</div>
+						{/* INICIO DE AVATAR, TU CARRITO Y ENTRAR  */}
+						<div className="col-lg-3 a4 container-pages">
+							<Menu
+								className="float-right navbar-menu-sesion a50"
+								/* theme="light" */
+								mode="horizontal"
+								defaultSelectedKeys={[ window.location.pathname ]}
+								inlineIndent={0}
+							>
 								{!decoded || decoded.rol === true ? (
 									<Menu.Item className="d-none" />
 								) : (
-									<Menu.Item className="nav-font-color nav-border-color a6" key="/pedidos">
+									<Menu.Item className="nav-font-color-sesion a6" key="/pedidos">
 										<div className="centrar-nav" >Mis compras</div>
 										<Link to="/pedidos" />
 									</Menu.Item>
@@ -185,10 +229,10 @@ const Navegacion = (props) => {
 								{!decoded || decoded.rol === true ? (
 									<Menu.Item className="d-none" />
 								) : (
-									<Menu.Item className="nav-font-color nav-border-color a6" key="/shopping_cart">
+									<Menu.Item className="nav-font-color-sesion a6" key="/shopping_cart">
 										<div className="centrar-nav" >
 											<Badge count={carrito}>
-												<ShoppingCartOutlined style={{ fontSize: 25 }} />
+												<ShoppingOutlined style={{ fontSize: 25 }} />
 												<Link to="/shopping_cart" />
 											</Badge>
 										</div>
@@ -196,7 +240,7 @@ const Navegacion = (props) => {
 								)}
 								{token && decoded['rol'] === false ? (
 									<SubMenu
-										className="nav-font-color a6"
+										className="nav-font-color-sesion a6"
 										icon={
 											!decoded.imagen && !decoded.imagenFireBase ? (
 												<Avatar size="large" style={{ backgroundColor: '#87d068' }}>
@@ -209,7 +253,7 @@ const Navegacion = (props) => {
 											)
 										}
 									>
-										<Menu.Item className="">
+										<Menu.Item className="nav-font-color-sesion">
 											<SettingOutlined />Mi cuenta<Link to="/perfiles" />
 										</Menu.Item>
 										<Menu.Item>
@@ -263,10 +307,9 @@ const Navegacion = (props) => {
 								) : (
 									<Menu.Item className="d-none" />
 								)}
-
 								{token === '' || token === null ? (
-									<Menu.Item className="nav-font-color nav-border-color a6">
-										<div className="centrar-nav" >Entrar</div>
+									<Menu.Item className="nav-font-color-sesion nav-border-color a6">
+										<div className="centrar-nav" ><UserOutlined style={{fontSize: 27}}/></div>
 										<Link to="/entrar" />
 									</Menu.Item>
 								) : (
@@ -274,6 +317,8 @@ const Navegacion = (props) => {
 								)}
 							</Menu>
 						</div>
+						{/* FIN DE AVATAR, TU CARRITO Y ENTRAR  */}
+
 					</div>
 					<div className="top-menu-responsive">
 						<Button type="link" className="barsMenu" onClick={showDrawer}>
@@ -290,7 +335,7 @@ const Navegacion = (props) => {
 							<div className="mx-4">
 								<Badge count={carrito}>
 									<Link to="/shopping_cart">
-										<ShoppingCartOutlined className="menu-responsivo-icon" style={{ fontSize: 28 }} />
+										<ShoppingOutlined className="menu-responsivo-icon" style={{ fontSize: 28 }} />
 									</Link>
 								</Badge>
 							</div>
@@ -323,6 +368,20 @@ const Navegacion = (props) => {
 				</div>
 			</Header>
 		</Layout>
+
+		{/* <Layout className="layout navbar-menu-general a00">
+			<Header className="navbar-menu-general a1">
+				<div className="menuCon navbar-menu-general a2">
+					<div className="top-menu row a3 container-prin">
+						<div className="col-lg-12 containe-categorias">
+							<Categorias />
+						</div>
+					</div>
+				</div>
+			</Header>
+		</Layout> */}
+
+		</div>
 	);
 };
 

@@ -5,8 +5,8 @@ import { notification, Result } from 'antd';
 // import queryString from 'query-string';
 
 import '../Productos/productos.scss';
-import './bannerPromocion.scss'
-import ComponentProductos from '../Productos/componente_productos';
+import './BannerLargo/bannerPromocion.scss'
+// import ComponentProductos from '../Productos/componente_productos';
 import CardSecundaria from '../Productos/Card_Secundaria/card_secundaria';
 
 import Spin from '../../../components/Spin';

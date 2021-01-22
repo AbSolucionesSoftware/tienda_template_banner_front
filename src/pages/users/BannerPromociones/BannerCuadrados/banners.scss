@@ -1,0 +1,28 @@
+.container-banner-doble{
+    height: 500px; 
+    width: 500px;
+    
+}
+.imagen-doble{
+    max-width: 100%;
+    max-height: 100%;
+}
+.container-banner-triple{
+    height: 530px;
+    width: 360px;
+}
+.imagen-triple{
+    height: 100%;
+    width: 100%;
+}
+
+@media(max-width: 768px){
+    .container-banner-doble{
+        height: 300px; 
+        width: 300px;
+       
+    }
+    .size-col{
+        min-width: 10px;
+    }
+}
