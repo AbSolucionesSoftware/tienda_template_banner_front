@@ -119,7 +119,7 @@ const Navegacion = (props) => {
 		<div>
 		<Layout className="layout navbar-menu-general a00">
 			<Header className=" a1">
-				<div className="menuCon  a2">
+				<div className="menuCon a2">
 					<div className="top-menu row a3 container-prin">
 						
 						
@@ -216,10 +216,10 @@ const Navegacion = (props) => {
 								/* theme="light" */
 								mode="horizontal"
 								defaultSelectedKeys={[ window.location.pathname ]}
-								inlineIndent={0}
+								inlineindent={0}
 							>
 								{!decoded || decoded.rol === true ? (
-									<Menu.Item className="d-none" />
+									<Menu.Item key="" className="d-none" />
 								) : (
 									<Menu.Item className="nav-font-color-sesion a6" key="/pedidos">
 										<div className="centrar-nav" >Mis compras</div>
@@ -227,7 +227,7 @@ const Navegacion = (props) => {
 									</Menu.Item>
 								)}
 								{!decoded || decoded.rol === true ? (
-									<Menu.Item className="d-none" />
+									<Menu.Item key="" className="d-none" />
 								) : (
 									<Menu.Item className="nav-font-color-sesion a6" key="/shopping_cart">
 										<div className="centrar-nav" >
@@ -253,7 +253,7 @@ const Navegacion = (props) => {
 											)
 										}
 									>
-										<Menu.Item className="nav-font-color-sesion">
+										<Menu.Item key="" className="nav-font-color-sesion">
 											<SettingOutlined />Mi cuenta<Link to="/perfiles" />
 										</Menu.Item>
 										<Menu.Item>
@@ -286,10 +286,10 @@ const Navegacion = (props) => {
 											)
 										}
 									>
-										<Menu.Item className=" a6">
+										<Menu.Item key="" className=" a6">
 											<SettingOutlined />Panel de administrador<Link to="/admin" />
 										</Menu.Item>
-										<Menu.Item className=" a6">
+										<Menu.Item key="" className=" a6">
 											<div
 												className="text-danger centrar-nav"
 												onClick={() => {
@@ -305,15 +305,15 @@ const Navegacion = (props) => {
 										</Menu.Item>
 									</SubMenu>
 								) : (
-									<Menu.Item className="d-none" />
+									<Menu.Item key="" className="d-none" />
 								)}
 								{token === '' || token === null ? (
-									<Menu.Item className="nav-font-color-sesion nav-border-color a6">
+									<Menu.Item key="" className="nav-font-color-sesion nav-border-color a6">
 										<div className="centrar-nav" ><UserOutlined style={{fontSize: 27}}/></div>
 										<Link to="/entrar" />
 									</Menu.Item>
 								) : (
-									<Menu.Item className="d-none" />
+									<Menu.Item key="" className="d-none" />
 								)}
 							</Menu>
 						</div>

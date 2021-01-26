@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-import {Link, withRouter } from 'react-router-dom';
+import {withRouter } from 'react-router-dom';
 import clienteAxios from '../../../config/axios';
 
+import Banner_Orientacion from './BannerOrientacion/banner_orientacion'
 import Banner_Largo from './BannerLargo/BannerLargo';
 import Banner_Doble from './BannerCuadrados/bannerDoble';
-import Banner_Orientacion from './BannerOrientacion/bannerOrientacion';
+import Banner_Triple from './BannerCuadrados/bannerTriple';
 // import aws from '../../../../config/aws';
 
-function Banners_Promocionales(props) {
+function Banners_Promocionales() {
 
     const [ banners, setBanners ] = useState([]);
 
@@ -17,34 +18,43 @@ function Banners_Promocionales(props) {
 			await clienteAxios
 				.get('/banner/')
 				.then((res) => {
-                    setBanners(res.data);
-                    console.log(res.data);
+					setBanners(res.data);
+					// console.log(res.data);
 				})
                 .catch((res) => {});
 		};
 		obtenerBanner();
-    }, []);
+	}, []);
+	
+	console.log(banners);
 
 
     const render = banners.map((banner) => {
+		
 		if (banner.estilo === 1) {
-			
-			return <Banner_Largo banner={banner} />
+
+			return <Banner_Largo key={banner} banner={banner} />
 
 		}else if(banner.estilo === 2){
 
-			
+			return <Banner_Orientacion key={banner} banner={banner} />
 
-		}else if(banner.estilo > 2){
+		}else if(banner.estilo === 3){
 
-			return <Banner_Doble banner={banner}/>
+			return <Banner_Doble  key={banner} banner={banner}/>
+
+		}else if(banner.estilo === 4){
+
+			return <Banner_Triple  key={banner} banner={banner}/>
 
 		}
 	});
 
     return (
         <div className="container-fluid">
+
 			{render}
+
         </div>
     )
 }

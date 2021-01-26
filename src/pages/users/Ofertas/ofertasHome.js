@@ -19,7 +19,7 @@ function OfertasHome(props) {
 	async function obtenerProductos() {
 		setLoading(true);
 		await clienteAxios
-			.get(`/productos?limit=${5}&page=${1}`)
+			.get(`/productos?limit=${6}&page=${1}`)
 			.then((res) => {
 				setProductos(res.data.posts.docs);
 				setLoading(false);

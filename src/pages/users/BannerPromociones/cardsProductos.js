@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import clienteAxios from '../../../config/axios';
 import { notification, Result } from 'antd';
-// import Pagination from '../../../components/Pagination/pagination';
-// import queryString from 'query-string';
-
-import '../Productos/productos.scss';
-import './BannerLargo/bannerPromocion.scss'
-// import ComponentProductos from '../Productos/componente_productos';
-import CardSecundaria from '../Productos/Card_Secundaria/card_secundaria';
-
 import Spin from '../../../components/Spin';
 
+import '../Productos/productos.scss';
+import CardSecundaria from '../Productos/Card_Secundaria/card_secundaria';
+import Imagen_Banner from './BannerOrientacion/imagenBanner'
+import bannerDoble from './BannerCuadrados/bannerDoble';
+
+// import Pagination from '../../../components/Pagination/pagination';
+// import queryString from 'query-string';
+// import ComponentProductos from '../Productos/componente_productos';
 /* const gridStyle = { width: '100%', padding: 0, marginBottom: '1.5rem' }; */
 
+
 function CardsProductos(props) {
-    const {categoria} = props;
+    const {tipo, orientacion, banner} = props;
 	//const { location, history } = props.propiedades;
 	//const { page = 1 } = queryString.parse(location.search);
 	const [ productosPaginacion, setProductosPaginacion ] = useState([]);
@@ -26,7 +27,7 @@ function CardsProductos(props) {
         async function obtenerProductos(limit, page) {
             setLoading(true);
             await clienteAxios
-                .get(`/productos/filter?categoria=${categoria}`)
+                .get(`/productos/filter?${tipo.categoria ? `categoria=${tipo.categoria}` : `temporada=${tipo.temporada}`}`)
                 .then((res) => {
                     setProductos(res.data.posts);
                     setProductosPaginacion(res.data.posts);
@@ -50,15 +51,28 @@ function CardsProductos(props) {
         }
 
        obtenerProductos()
-    }, [categoria])
+    }, [tipo])
 
 
 	const render = productos.map((productos, index) => {
-		if(index <= 5){
-			return (
-				<CardSecundaria key={productos._id} productos={productos} />
-			)
-		}	
+		if(orientacion > 0){
+			if(orientacion === 1 && index === 0 ){
+				return <Imagen_Banner imagen={banner.imagenBanner} link={banner.tipo} />
+			}else if(orientacion === 2 && index === 2){
+				return <Imagen_Banner imagen={banner.imagenBanner}	link={banner.tipo}/>
+			}else if(orientacion === 3 && index === 4){
+				return <Imagen_Banner imagen={banner.imagenBanner} link={banner.tipo}/>
+			}else if(index <= 4){
+				return <CardSecundaria key={productos._id} productos={productos} />
+			}
+		}else{
+			if(index <= 5){
+				return (
+					<CardSecundaria key={productos._id} productos={productos} />
+				)
+			}
+		}
+
 	});
 
 	return (

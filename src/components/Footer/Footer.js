@@ -11,7 +11,6 @@ import {FacebookFilled, InstagramFilled,
         } from '@ant-design/icons';
 import './footer.scss';
 import '../../scss/variables.scss'
-// import SubMenu from 'antd/lib/menu/SubMenu';
 
 const { Footer } = Layout;
 
@@ -97,12 +96,16 @@ const FooterPage = (props) => {
     const categorias_foot = categorias.map((categoria, index) => {
         if(index <= 14){
             return (
-                <Link 
-                    style={{color: 'black'}}
-                    to={(`/categorias/${categoria.categoria}`)}
-                >
-                    {categoria.categoria}
-                </Link>
+                    <Button 
+                        type="link"
+                        style={{color: 'black'}}
+                        key={categoria.categoria}
+                    >
+                        <Link to={(`/categorias/${categoria.categoria}`)}> 
+                            {categoria.categoria}
+                        </Link>
+                    </Button>
+              
             )
         }
     });
@@ -165,7 +168,7 @@ const FooterPage = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-6 mt-lg-4 d-none d-lg-block ">
+                        <div className="col-lg-6 mt-lg-4 d-none d-lg-block">
                             <p style={{fontWeight: "bold"}}>Encuéntralo más rápido</p>
                             <div style={{columnCount: 2}}>
                                 <div className="col-lg-12 mt-lg-2 d-flex">

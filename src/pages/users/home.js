@@ -29,8 +29,8 @@ export default function Home(props) {
 					</div>
 				</div>
 			</div> */}
-			<Ofertas />
-			{/* <Banners_Promocionales/> */}
+			{/* <Ofertas /> */}
+			<Banners_Promocionales />
 			{/* <ConsultaProductos propiedades={props} /> */}
             <Datos_tienda />
 		</div>
