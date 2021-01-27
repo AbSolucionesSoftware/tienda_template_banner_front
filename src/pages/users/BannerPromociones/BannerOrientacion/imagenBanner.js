@@ -8,14 +8,15 @@ export default function Imagen_Banner(props) {
     const {imagen, link} = props;
 
         return(
-            <div className="container-image">
+            <div className="container-imagenes">
                 <Link to={`/searching/${link.categoria || link.temporada}`}>
+                    <div className="container-image">
                     <img
                         className="image-orientancion"
                         src={aws + imagen}
-                        // "https://www.flexi.com.mx/medias/20210111-SEGUNDAS-SNEAKERS.jpg?context=bWFzdGVyfHJvb3R8Mzg4ODl8aW1hZ2UvanBlZ3xoMjkvaGU2Lzk2MDg2NDQyNjM5NjYvMjAyMTAxMTEtU0VHVU5EQVMtU05FQUtFUlMuanBnfGJhYjQ0ZTYyNDhlNTM5ZmFkOWI0ZDYxNDRhZmEwODUxZjQ1ZGUwOWQ0MjNhZmIyMzEwYmZlODIyMDg5OTlhN2Q"
                         alt="Imgen publicitaria"
                     />
+                    </div>
                 </Link>
             </div>
         );

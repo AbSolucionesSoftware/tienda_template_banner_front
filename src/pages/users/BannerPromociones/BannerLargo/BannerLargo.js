@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 //import {useSpring, animated} from 'react-spring'
 
 import './bannerPromocion.scss'
@@ -24,7 +24,7 @@ const BgElement = Element.BgElement;
     
     const render = banner.banners.map((banner) => {
         return (
-            <div className="mt-5 cont-principal">
+            <div key={banner._id} className="mt-5 cont-principal">
                 {banner.mostrarTitulo !== false ? (
                     <TweenOne key="demo" animation={{ y: 30, opacity: 0, type: 'from', delay: 800 }}>
                         <h1 className="mt-5 tit-banner">{banner.tipo.categoria || banner.tipo.temporada}</h1>

@@ -9,7 +9,7 @@ export default function Banner_Orientacion(props) {
     const {banner} = props;
 
 
-    const render = banner.banners.map((subBanner) => <CardsProductos tipo={subBanner.tipo} orientacion={subBanner.orientacion} banner={subBanner}/>)
+    const render = banner.banners.map((subBanner) => <CardsProductos key={subBanner._id} tipo={subBanner.tipo} orientacion={subBanner.orientacion} banner={subBanner}/>)
 
     return ( 
         <div className="mt-5">

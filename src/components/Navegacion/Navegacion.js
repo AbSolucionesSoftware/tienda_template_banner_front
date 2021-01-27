@@ -121,26 +121,23 @@ const Navegacion = (props) => {
 			<Header className=" a1">
 				<div className="menuCon a2">
 					<div className="top-menu row a3 container-prin">
-						
-						
 						<div className="col-lg-12 container-pages a4">
 							<Menu
 								className="float-right nav-font-pages a5"
 								/* theme="light" */
 								mode="horizontal"
 								defaultSelectedKeys={[ window.location.pathname ]}
-								inlineIndent={0}
+								inlineindent={0}
 							>
 								<Menu.Item className="nav-font-color nav-border-color a6" key="/">
 									<div className="centrar-nav" >Inicio</div>
 									<Link to="/" />
+									
 								</Menu.Item>
-								<Divider type="vertical" />
 								<Menu.Item className="nav-font-color nav-border-color a6" key="/productos">
 									<div className="centrar-nav" >Productos</div>
 									<Link to="/productos" />
 								</Menu.Item>
-								<Divider type="vertical" />
 								{ofertas.length ? (
 									<Menu.Item className="nav-font-color nav-border-color a6" key="/ofertas">
 										<div className="centrar-nav" >Ofertas</div>
@@ -149,12 +146,10 @@ const Navegacion = (props) => {
 								) : (
 									<Menu.Item className="d-none" />
 								)}
-								<Divider type="vertical" />
 								<Menu.Item className="nav-font-color nav-border-color a6" key="/blog">
 									<div className="centrar-nav" >Blog</div>
 									<Link to="/blog" />
 								</Menu.Item>
-								<Divider type="vertical" />
 								{tienda.length === 0 ? (
 									<Menu.Item className="d-none" />
 								) : (

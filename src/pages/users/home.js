@@ -3,9 +3,13 @@ import React from 'react';
 import Carousel from './Carusel_ofertas/carousel';
 /* import ConsultaProductos from './Productos/consulta_productos'; */
 import Ofertas from './Ofertas/ofertasHome';
+import BannerInformativo from './Datos_tienda/banner_informativo'
 import Banners_Promocionales from './BannerPromociones/consultaBanners';
-import Banner_Doble from './BannerPromociones/BannerCuadrados/bannerDoble'
-import Datos_tienda from './Datos_tienda/datos_tienda'
+import Datos_tienda from './Datos_tienda/datos_tienda';
+import OfertasIzquierda from './Ofertas/OfertasHome/ofertasIzquierda';
+import OfertasDerecha from './Ofertas/OfertasHome/ofertasDerecha';
+import OfertasCentro from './Ofertas/OfertasHome/ofertasCentro';
+
 import './home.scss'
 
 export default function Home(props) {
@@ -33,6 +37,10 @@ export default function Home(props) {
 			<Banners_Promocionales />
 			{/* <ConsultaProductos propiedades={props} /> */}
             <Datos_tienda />
+			<OfertasIzquierda />
+			<OfertasDerecha />
+			<OfertasCentro />
+			<BannerInformativo />
 		</div>
 	);
 }

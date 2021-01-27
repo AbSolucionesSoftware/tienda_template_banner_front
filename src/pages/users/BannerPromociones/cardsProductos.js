@@ -6,7 +6,6 @@ import Spin from '../../../components/Spin';
 import '../Productos/productos.scss';
 import CardSecundaria from '../Productos/Card_Secundaria/card_secundaria';
 import Imagen_Banner from './BannerOrientacion/imagenBanner'
-import bannerDoble from './BannerCuadrados/bannerDoble';
 
 // import Pagination from '../../../components/Pagination/pagination';
 // import queryString from 'query-string';
@@ -57,11 +56,11 @@ function CardsProductos(props) {
 	const render = productos.map((productos, index) => {
 		if(orientacion > 0){
 			if(orientacion === 1 && index === 0 ){
-				return <Imagen_Banner imagen={banner.imagenBanner} link={banner.tipo} />
+				return <Imagen_Banner key={banner} imagen={banner.imagenBanner} link={banner.tipo} />
 			}else if(orientacion === 2 && index === 2){
-				return <Imagen_Banner imagen={banner.imagenBanner}	link={banner.tipo}/>
+				return <Imagen_Banner key={banner} imagen={banner.imagenBanner}	link={banner.tipo}/>
 			}else if(orientacion === 3 && index === 4){
-				return <Imagen_Banner imagen={banner.imagenBanner} link={banner.tipo}/>
+				return <Imagen_Banner key={banner} imagen={banner.imagenBanner} link={banner.tipo}/>
 			}else if(index <= 4){
 				return <CardSecundaria key={productos._id} productos={productos} />
 			}
@@ -72,8 +71,30 @@ function CardsProductos(props) {
 				)
 			}
 		}
+		
 
 	});
+	// const render = productos.map((productos, index) => {
+	// 	if(orientacion > 0){
+	// 		if(orientacion === 1 && index === 0 ){
+	// 			return <Imagen_Banner imagen={banner.imagenBanner} link={banner.tipo} />
+	// 		}else if(orientacion === 2 && index === 2){
+	// 			return <Imagen_Banner imagen={banner.imagenBanner}	link={banner.tipo}/>
+	// 		}else if(orientacion === 3 && index === 4){
+	// 			return <Imagen_Banner imagen={banner.imagenBanner} link={banner.tipo}/>
+	// 		}else if(index <= 4){
+	// 			return <CardSecundaria key={productos._id} productos={productos} />
+	// 		}
+	// 	}else{
+	// 		if(index <= 5){
+	// 			return (
+	// 				<CardSecundaria key={productos._id} productos={productos} />
+	// 			)
+	// 		}
+	// 	}
+		
+
+	// });
 
 	return (
 		<Spin spinning={loading}>

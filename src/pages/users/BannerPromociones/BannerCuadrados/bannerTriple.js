@@ -9,7 +9,7 @@ function Banner_Triple(props) {
 
     const render = banner.banners.map((banner) => {
         return(
-            <div className="col-lg-4 mt-4">
+            <div key={banner._id} className="col-lg-4 mt-4 container-imagenes">
                 <div className="container-banner-triple">
                     <Link to={`/searching/${banner.tipo.categoria || banner.tipo.temporada}`}>
                         <img

@@ -1,6 +1,14 @@
+.container-imagenes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .container-image{
     height: 280px; 
     width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .image-orientancion{
     max-width: 100%;

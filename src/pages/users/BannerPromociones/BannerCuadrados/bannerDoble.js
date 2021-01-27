@@ -5,11 +5,12 @@ import aws from '../../../../config/aws';
 import './banners.scss'
 
 function Banner_Doble(props) {
+
     const { banner } = props;
     
     const render = banner.banners.map((banner) => {
         return(
-            <div className="col-lg-6 mt-4">
+            <div key={banner._id} className="col-lg-6 mt-4 container-imagenes">
                 <div className="container-banner-doble">
                     <Link to={`/searching/${banner.tipo.categoria || banner.tipo.temporada}`}>
                         <img

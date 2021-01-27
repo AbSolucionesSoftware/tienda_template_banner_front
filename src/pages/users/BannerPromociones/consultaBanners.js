@@ -19,33 +19,31 @@ function Banners_Promocionales() {
 				.get('/banner/')
 				.then((res) => {
 					setBanners(res.data);
-					// console.log(res.data);
 				})
                 .catch((res) => {});
 		};
 		obtenerBanner();
 	}, []);
 	
-	console.log(banners);
 
 
     const render = banners.map((banner) => {
 		
 		if (banner.estilo === 1) {
 
-			return <Banner_Largo key={banner} banner={banner} />
+			return <Banner_Largo key={banner._id} banner={banner} />
 
 		}else if(banner.estilo === 2){
 
-			return <Banner_Orientacion key={banner} banner={banner} />
+			return <Banner_Orientacion key={banner._id} banner={banner} />
 
 		}else if(banner.estilo === 3){
 
-			return <Banner_Doble  key={banner} banner={banner}/>
+			return <Banner_Doble key={banner._id}  banner={banner}/>
 
 		}else if(banner.estilo === 4){
 
-			return <Banner_Triple  key={banner} banner={banner}/>
+			return <Banner_Triple key={banner._id}  banner={banner}/>
 
 		}
 	});
