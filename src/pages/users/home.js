@@ -4,7 +4,8 @@ import Carousel from './Carusel_ofertas/carousel';
 /* import ConsultaProductos from './Productos/consulta_productos'; */
 import Ofertas from './Ofertas/ofertasHome';
 import BannerInformativo from './Datos_tienda/banner_informativo'
-import Banners_Promocionales from './BannerPromociones/consultaBanners';
+import Consulta_Banners from './BannerPromociones/consultaBanners';
+import Banner_Promocionales from './BannerPromociones/bannerPromocionales';
 import Datos_tienda from './Datos_tienda/datos_tienda';
 import OfertasIzquierda from './Ofertas/OfertasHome/ofertasIzquierda';
 import OfertasDerecha from './Ofertas/OfertasHome/ofertasDerecha';
@@ -34,7 +35,7 @@ export default function Home(props) {
 				</div>
 			</div> */}
 			{/* <Ofertas /> */}
-			<Banners_Promocionales />
+			<Consulta_Banners/>
 			{/* <ConsultaProductos propiedades={props} /> */}
             <Datos_tienda />
 			{/* <OfertasIzquierda /> */}
