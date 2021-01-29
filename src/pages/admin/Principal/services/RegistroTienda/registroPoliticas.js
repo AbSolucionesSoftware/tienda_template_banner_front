@@ -6,14 +6,16 @@ import clienteAxios from '../../../../../config/axios';
 import jwt_decode from 'jwt-decode';
 
 export default function Registro_Politicas(props) {
-	const {setCurrent, current, setDatosNegocio} = props;
+	const {setCurrent, current} = props;
 
 	const {next} = props;
-	const { datosNegocio, setReloadInfo } = props;
 	const token = localStorage.getItem('token');
 
 	const [ disabled, setDisabled ] = useState(false);
 	const [datos, setDatos] = useState({});
+	const [datosNegocio, setDatosNegocio] = useState({});
+	const [ reloadInfo, setReloadInfo ] = useState(false);
+
 	const [ control, setControl ] = useState(false);
 	const [ form ] = Form.useForm();
 	const [ loading, setLoading ] = useState(false);
@@ -23,6 +25,44 @@ export default function Registro_Politicas(props) {
 	const monstrarInformacionBlog = (e) => {
 		form.setFieldsValue(e);
 	  };
+
+
+	function peticionDatosTienda() {
+		setLoading(true);
+		clienteAxios
+			.get(`/tienda/`)
+			.then((res) => {
+				setLoading(false);
+				setDatosNegocio(res.data[0]);
+				console.log(res.data[0]);
+			})
+			.catch((err) => {
+				setLoading(false);
+				setDatosNegocio({});
+				if (err.response) {
+					notification.error({
+						message: 'Error',
+						description: err.response.data.message,
+						duration: 2
+					});
+				} else {
+					notification.error({
+						message: 'Error de conexion',
+						description: 'Al parecer no se a podido conectar al servidor.',
+						duration: 2
+					});
+				}
+			});
+	}
+
+	useEffect(
+		() => {
+			peticionDatosTienda();
+			setReloadInfo(false);
+		},
+		[ reloadInfo ]
+	);
+
 
 	useEffect(() => {
 		

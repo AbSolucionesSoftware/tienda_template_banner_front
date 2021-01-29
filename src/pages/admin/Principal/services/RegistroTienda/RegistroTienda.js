@@ -29,10 +29,11 @@ export default function RegistroTienda(props) {
   const { drawnerClose } = props;
   const [current, setCurrent] = props.steps;
 
-  const {setDatosNegocio, datosNegocio, token, /* setLoading, */ setReloadInfo } = props;
+  const {setDatosNegocio, datosNegocio, token, } = props;
 
   const [datos, setDatos] = useState({});
   const [control, setControl] = useState(false);
+
   const [form] = Form.useForm();
   const { Step } = Steps;
   const [upload, setUpload] = useState(false);
@@ -49,6 +50,7 @@ export default function RegistroTienda(props) {
 
   const next = () => {
     setCurrent(current + 1);
+
   };
 
   const prev = () => {
@@ -56,8 +58,8 @@ export default function RegistroTienda(props) {
   };
 
   useEffect(() => {
-   
     if (datosNegocio !== undefined) {
+      console.log(datosNegocio);
       setImagen(datosNegocio.imagenLogo);
       if (datosNegocio.ubicacion[0].lat === "undefined") {
         datosNegocio.ubicacion[0].lat = "";
@@ -84,7 +86,6 @@ export default function RegistroTienda(props) {
         estado: datosNegocio.direccion[0].estado,
         lat: datosNegocio.ubicacion[0].lat,
         lng: datosNegocio.ubicacion[0].lng,
-        // politicas: datosNegocio.politicas,
         imagenCorp: datosNegocio.imagenCorp,
         linkFace: datosNegocio.linkFace,
         linkInsta: datosNegocio.linkInsta,
@@ -100,13 +101,11 @@ export default function RegistroTienda(props) {
         estado: datosNegocio.direccion[0].estado,
         lat: datosNegocio.ubicacion[0].lat,
         lng: datosNegocio.ubicacion[0].lng,
-        // politicas: datosNegocio.politicas,
         imagenCorp: datosNegocio.imagenCorp,
         linkFace: datosNegocio.linkFace,
         linkInsta: datosNegocio.linkInsta,
         linkTweeter: datosNegocio.linkTweeter,
       });
-      setDatosNegocio(datosNegocio);
       setControl(true);
     } else {
       setDatos({});
@@ -188,7 +187,7 @@ export default function RegistroTienda(props) {
               Authorization: `bearer ${token}`,
             },
           })
-          .then((res) => {          
+          .then((res) => {
             setLoading(false);
             setCurrent(current + 1);
             next();
@@ -227,7 +226,6 @@ export default function RegistroTienda(props) {
         })
         .then((res) => {
           setLoading(false);
-          // setDatosNegocio(datos);
           setCurrent(current + 1);
           next();
           notification.success({
@@ -263,7 +261,7 @@ export default function RegistroTienda(props) {
             <Form
               onFinish={SendForm}
               form={form}
-              onFinishFailed={onError}
+              // onFinishFailed={onError}
             >
               <div className="row">
                 <div className="col-12">
@@ -625,8 +623,6 @@ export default function RegistroTienda(props) {
       content: (
         <div>
           <Registro_Politicas
-            setDatosNegocio={setDatosNegocio}
-            datosNegocio={datosNegocio}
             setCurrent={setCurrent}
             current={current}
           />
@@ -638,7 +634,6 @@ export default function RegistroTienda(props) {
       content: (
         <div>
           <PoliticasEnvio
-            datosNegocio={datosNegocio}
             setCurrent={setCurrent}
             current={current}
           />

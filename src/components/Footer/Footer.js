@@ -50,7 +50,6 @@ const FooterPage = (props) => {
                     setImagenCorp(res.data[0].imagenCorp)
                     setTienda(res.data[0])
                     setDireccion(res.data[0].direccion[0])
-                    setPoliticas(res.data[0].politicas)
                     setTelefono(res.data[0].telefono)
                     if(res.data[0].linkFace !== 'undefined' && res.data[0].linkFace !== ''){
                         setFace(res.data[0].linkFace);
@@ -118,12 +117,16 @@ const FooterPage = (props) => {
                 <div end="xs" id="foot">  
                     <div className="row footer-font-color">
                         <div className="col-lg-4  d-sm-text-center">
-                            {tienda.imagenLogo !== '' ? 
-                            <img
-                                className="logotipo"
-                                alt="imagen de base"
-                                src={aws+tienda.imagenLogo}
-                            />
+                            {tienda.imagenLogo !== '' ?
+                            <div className="contenedor-logo">
+                                <div className="logos"> 
+                                    <img
+                                        className="logotipo"
+                                        alt="imagen de base"
+                                        src={aws+tienda.imagenLogo}
+                                    />
+                                </div>
+                            </div>
                             : ""}
                             {/* <h6>{tienda.nombre !== '' ? tienda.nombre : ""}</h6> */}
                             <div className="row mt-3">
@@ -186,13 +189,45 @@ const FooterPage = (props) => {
                                 </Link>
                             ): ""}
 
-                            {politicas !== '' ? (
-                                <Link  to="/politicas">
+                            {tienda.politicas !== '' ? (
+                                <a href="/politicas#envios">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Aviso de Privacidad
                                     </Button>
+                                </a>
+                            ): ""}
+                            {tienda.politicasDescuentos !== '' ? (
+                                <Link href="/politicos#privacidad">
+                                    {/* <a href="/#descuento"> */}
+                                        <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                            Politicicas de Descuento
+                                        </Button>
+                                    {/* </a> */}
                                 </Link>
                             ): ""}
+                            {tienda.politicasDevoluciones !== '' ? (
+                                <a href="/politicas/">
+                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                       Politicas de Devolucion
+                                    </Button>
+                                </a>
+                            ): ""}
+                            {tienda.politicasVentas !== '' ? (
+                                <a href="politicas#ventas">
+                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                        Politicas de Ventas
+                                    </Button>
+                                </a>
+                            ): ""}
+                            {tienda.politicasEnvios !== '' ? (
+                                <a href="politicas#envios">
+                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                        Politica de Envios
+                                    </Button>
+                                </a>
+                            ): ""}
+
+
                             {token && decoded['rol'] === false ? (
                             <Link  to="/perfiles">
                                 <Button className="footer-font-color" id="is" type="link" style={Style} ><SettingOutlined className="footer-font-color"/>
