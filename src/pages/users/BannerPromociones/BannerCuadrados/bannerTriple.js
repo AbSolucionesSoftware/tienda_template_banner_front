@@ -5,7 +5,7 @@ import aws from '../../../../config/aws';
 import './banners.scss'
 
 function Banner_Triple(props) {
-    const { banner } = props;
+    const { banner, imagenLocal } = props;
 
     const render = banner.banners.map((banner) => {
         return(
@@ -14,7 +14,7 @@ function Banner_Triple(props) {
                     <Link to={`/searching/${banner.tipo.categoria || banner.tipo.temporada}`}>
                         <img
                             className="imagen-triple"
-                            src={aws + banner.imagenBanner}
+                            src={imagenLocal ? banner.imagenBanner : aws + banner.imagenBanner}
                             alt="Imgen publicitaria"
                         />
                     </Link>

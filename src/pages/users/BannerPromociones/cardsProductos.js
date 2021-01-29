@@ -13,8 +13,7 @@ import Imagen_Banner from './BannerOrientacion/imagenBanner'
 /* const gridStyle = { width: '100%', padding: 0, marginBottom: '1.5rem' }; */
 
 
-function CardsProductos(props) {
-    const {tipo, orientacion, banner} = props;
+function CardsProductos({tipo, orientacion, banner, imagenLocal}) {
 	//const { location, history } = props.propiedades;
 	//const { page = 1 } = queryString.parse(location.search);
 	const [ productosPaginacion, setProductosPaginacion ] = useState([]);
@@ -56,18 +55,18 @@ function CardsProductos(props) {
 	const render = productos.map((productos, index) => {
 		if(orientacion > 0){
 			if(orientacion === 1 && index === 0 ){
-				return <Imagen_Banner key={banner} imagen={banner.imagenBanner} link={banner.tipo} />
+				return <Imagen_Banner key={index} imagen={banner.imagenBanner} link={banner.tipo} imagenLocal={imagenLocal} />
 			}else if(orientacion === 2 && index === 2){
-				return <Imagen_Banner key={banner} imagen={banner.imagenBanner}	link={banner.tipo}/>
+				return <Imagen_Banner key={index} imagen={banner.imagenBanner}	link={banner.tipo} imagenLocal={imagenLocal}/>
 			}else if(orientacion === 3 && index === 4){
-				return <Imagen_Banner key={banner} imagen={banner.imagenBanner} link={banner.tipo}/>
+				return <Imagen_Banner key={index} imagen={banner.imagenBanner} link={banner.tipo} imagenLocal={imagenLocal}/>
 			}else if(index <= 4){
-				return <CardSecundaria key={productos._id} productos={productos} />
+				return <CardSecundaria key={index} productos={productos} imagenLocal={imagenLocal} />
 			}
 		}else{
 			if(index <= 5){
 				return (
-					<CardSecundaria key={productos._id} productos={productos} />
+					<CardSecundaria key={index} productos={productos} />
 				)
 			}
 		}

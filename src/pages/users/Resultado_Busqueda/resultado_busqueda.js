@@ -15,7 +15,7 @@ function ResultadoBusqueda(props) {
 				setLoading(true);
 				await clienteAxios
 					.get(
-						`/productos/search?nombre=${url}&categoria=${url}&subcategoria=${url}&genero=${url}&color=${url}`
+						`/productos/search?nombre=${url}&categoria=${url}&subcategoria=${url}&genero=${url}&color=${url}&temporada=${url}`
 					)
 					.then((res) => {
 						setProductos(res.data.posts);

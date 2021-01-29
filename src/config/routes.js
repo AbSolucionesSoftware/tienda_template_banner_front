@@ -14,6 +14,7 @@ import Carousel from '../pages/admin/Carousel/carousel'
 import Publicidad from '../pages/admin/Publicidad/publicidad'
 import BlogAdmin from '../pages/admin/Blog/blog'
 import Clientes from '../pages/admin/Clientes/clientes'
+import RegistroPublicidad from '../pages/admin/Publicidad/services/registro'
 
 //Users pages
 import Home from '../pages/users/home'
@@ -110,6 +111,11 @@ const routes = [
 			{
 				path: '/admin/clientes',
 				component: Clientes,
+				exact: true
+			},
+			{
+				path: '/admin/banner/:accion/:idBanner',
+				component: RegistroPublicidad,
 				exact: true
 			},
 			{
