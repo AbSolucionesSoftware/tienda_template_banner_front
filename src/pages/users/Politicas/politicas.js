@@ -72,7 +72,7 @@ function Politicas() {
                 }
                 {
                   politicas.politicasDescuentos !== "" ? (
-                    <div key="descuento" className="m-5">
+                    <div id="descuento" className="m-5">
                         <h1 className="text-center mt-4">Politicas de Descuentos</h1>
                         <h3 className="text-center mt-4">
                             Para poder brindarte una mayor experiencia de compra, te invitamos a leer nuestras politicas de  Descuentos
@@ -101,8 +101,8 @@ function Politicas() {
                 {
                   politicas.politicasEnvios !== "" ? (
                     <div id="envios" className="m-5">
-                        <h1  id="envios" className="text-center mt-4">Politicas de Envios</h1>
-                        <h3  id="envios" className="text-center mt-4">
+                        <h1 className="text-center mt-4">Politicas de Envios</h1>
+                        <h3 className="text-center mt-4">
                             Para poder brindarte una mayor experiencia de compra, te invitamos a leer nuestras politicas de  Envios
                         </h3>
                         

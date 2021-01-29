@@ -191,39 +191,39 @@ const FooterPage = (props) => {
                             ): ""}
 
                             {tienda.politicas !== '' ? (
-                                <HashLink to="/politicas#devolucion">
+                                <HashLink to="/politicas#privacidad">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Aviso de Privacidad
                                     </Button>
                                 </HashLink>
                             ): ""}
                             {tienda.politicasDescuentos !== '' ? (
-                                <Link to="/politicas/">
+                                <HashLink to="/politicas#descuento">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Politicas Descuentos
                                     </Button>
-                                </Link>
+                                </HashLink>
                             ): ""}
                             {tienda.politicasDevoluciones !== '' ? (
-                                <Link to="/politicas/">
+                                <HashLink to="/politicas#devolucion">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                        Politicas de Devolucion
                                     </Button>
-                                </Link>
+                                </HashLink>
                             ): ""}
                             {tienda.politicasVentas !== '' ? (
-                                <Link to="/politicas/">
+                                <HashLink to="/politicas#ventas">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Politicas de Ventas
                                     </Button>
-                                </Link>
+                                </HashLink>
                             ): ""}
                             {tienda.politicasEnvios !== '' ? (
-                                <Link to="/politicas/">
+                                <HashLink to="/politicas#envios">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Politica de Envios
                                     </Button>
-                                </Link>
+                                </HashLink>
                             ): ""}
 
 
