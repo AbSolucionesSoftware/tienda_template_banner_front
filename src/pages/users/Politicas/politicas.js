@@ -100,9 +100,9 @@ function Politicas() {
                 }
                 {
                   politicas.politicasEnvios !== "" ? (
-                    <div name="envios" className="m-5">
-                        <h1 className="text-center mt-4">Politicas de Envios</h1>
-                        <h3 className="text-center mt-4">
+                    <div id="envios" className="m-5">
+                        <h1  id="envios" className="text-center mt-4">Politicas de Envios</h1>
+                        <h3  id="envios" className="text-center mt-4">
                             Para poder brindarte una mayor experiencia de compra, te invitamos a leer nuestras politicas de  Envios
                         </h3>
                         

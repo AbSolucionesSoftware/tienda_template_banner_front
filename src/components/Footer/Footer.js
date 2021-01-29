@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import clienteAxios from '../../config/axios';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import {  Button,  Layout} from 'antd';
 import aws from '../../config/aws';
 import jwt_decode from 'jwt-decode';
@@ -190,41 +191,39 @@ const FooterPage = (props) => {
                             ): ""}
 
                             {tienda.politicas !== '' ? (
-                                <a href="/politicas#envios">
+                                <HashLink to="/politicas#devolucion">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Aviso de Privacidad
                                     </Button>
-                                </a>
+                                </HashLink>
                             ): ""}
                             {tienda.politicasDescuentos !== '' ? (
-                                <Link href="/politicos#privacidad">
-                                    {/* <a href="/#descuento"> */}
-                                        <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
-                                            Politicicas de Descuento
-                                        </Button>
-                                    {/* </a> */}
+                                <Link to="/politicas/">
+                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                        Politicas Descuentos
+                                    </Button>
                                 </Link>
                             ): ""}
                             {tienda.politicasDevoluciones !== '' ? (
-                                <a href="/politicas/">
+                                <Link to="/politicas/">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                        Politicas de Devolucion
                                     </Button>
-                                </a>
+                                </Link>
                             ): ""}
                             {tienda.politicasVentas !== '' ? (
-                                <a href="politicas#ventas">
+                                <Link to="/politicas/">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Politicas de Ventas
                                     </Button>
-                                </a>
+                                </Link>
                             ): ""}
                             {tienda.politicasEnvios !== '' ? (
-                                <a href="politicas#envios">
+                                <Link to="/politicas/">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Politica de Envios
                                     </Button>
-                                </a>
+                                </Link>
                             ): ""}
 
 
