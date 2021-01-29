@@ -91,7 +91,7 @@ function Inventario(props) {
 			setLoading(true);
 			await clienteAxios
 				.get(
-					`/productos/search/admin?codigo=${busqueda}&nombre=${busqueda}&categoria=${busqueda}&subcategoria=${busqueda}&genero=${busqueda}&color=${busqueda}`
+					`/productos/search/admin?codigo=${busqueda}&nombre=${busqueda}&categoria=${busqueda}&subcategoria=${busqueda}&genero=${busqueda}&color=${busqueda}&temporada=${busqueda}`
 				)
 				.then((res) => {
 					const otros = res.data.posts.filter((element) => element.tipoCategoria === tipoCategoria);
