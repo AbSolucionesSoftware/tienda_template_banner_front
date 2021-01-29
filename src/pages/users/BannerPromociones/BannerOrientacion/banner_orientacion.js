@@ -1,19 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-import {withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Imagen_Banner from './imagenBanner';
-import CardsProductos from '../cardsProductos'
+import CardsProductos from '../cardsProductos';
 
-export default function Banner_Orientacion(props) {
-    
-    const {banner} = props;
+export default function Banner_Orientacion({ banner, imagenLocal }) {
+	const render = banner.banners.map((subBanner, index) => (
+		<CardsProductos key={index} tipo={subBanner.tipo} orientacion={subBanner.orientacion} banner={subBanner} imagenLocal={imagenLocal} />
+	));
 
-
-    const render = banner.banners.map((subBanner) => <CardsProductos key={subBanner._id} tipo={subBanner.tipo} orientacion={subBanner.orientacion} banner={subBanner}/>)
-
-    return ( 
-        <div className="mt-5">
-            {render}
-        </div>
-    )
+	return <div className="mt-5">{render}</div>;
 }

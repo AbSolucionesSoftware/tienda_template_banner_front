@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import {withRouter } from 'react-router-dom';
 import clienteAxios from '../../../config/axios';
+import Banner_Promocionales from './bannerPromocionales';
 
-import Banner_Orientacion from './BannerOrientacion/banner_orientacion'
-import Banner_Largo from './BannerLargo/BannerLargo';
-import Banner_Doble from './BannerCuadrados/bannerDoble';
-import Banner_Triple from './BannerCuadrados/bannerTriple';
+
 // import aws from '../../../../config/aws';
 
-function Banners_Promocionales() {
+function Consulta_Banners(props) {
 
     const [ banners, setBanners ] = useState([]);
 
@@ -26,36 +24,14 @@ function Banners_Promocionales() {
 	}, []);
 	
 
-
-    const render = banners.map((banner) => {
-		
-		if (banner.estilo === 1) {
-
-			return <Banner_Largo key={banner._id} banner={banner} />
-
-		}else if(banner.estilo === 2){
-
-			return <Banner_Orientacion key={banner._id} banner={banner} />
-
-		}else if(banner.estilo === 3){
-
-			return <Banner_Doble key={banner._id}  banner={banner}/>
-
-		}else if(banner.estilo === 4){
-
-			return <Banner_Triple key={banner._id}  banner={banner}/>
-
-		}
-	});
+    
 
     return (
         <div className="container-fluid">
-
-			{render}
-
+			 <Banner_Promocionales banner={banners}/>
         </div>
     )
 }
 
-export default withRouter(Banners_Promocionales);
+export default withRouter(Consulta_Banners);
 
