@@ -22,7 +22,9 @@ export default function PreviewBanner({ datos, estilo, previewImage }) {
 	return (
 		<div className="mt-5">
 			<div>
-				<h1>Preview del banner</h1>
+				{estilo < 3 ? (
+                    <h1>Preview del banner</h1>
+                ) : null}
 			</div>
 			<Divider />
 			{estilo < 3 ? (

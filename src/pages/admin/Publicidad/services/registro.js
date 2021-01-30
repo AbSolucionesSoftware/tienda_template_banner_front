@@ -107,13 +107,8 @@ export default function RegistroPublicidad(props) {
 	};
 
 	const selectTipo = (tipo) => {
-		if (bannerSeleccionado.banner.estilo < 3) {
-			setDatos({ ...datos, tipo: tipo });
-			setDisabledCheck(false);
-		} else {
-			setDatos({ ...datos, tipo: tipo });
-			setDisabledCheck(true);
-		}
+		setDatos({ ...datos, tipo: tipo });
+		setDisabledCheck(false);
 	};
 
 	const obtenerOrientacion = (orientacion) => {
@@ -292,9 +287,9 @@ export default function RegistroPublicidad(props) {
 				if (banners.tipo.length === 0) {
 					form.resetFields([ 'tipo' ]);
 				} else {
-					if (banner.estilo < 3) {
-						setDisabledCheck(false);
-					}
+					
+					setDisabledCheck(false);
+					
 					if (banners.tipo.categoria) {
 						form.setFieldsValue({
 							tipo: [ 'categoria', banners.tipo.categoria ]
@@ -458,71 +453,46 @@ export default function RegistroPublicidad(props) {
 				{bannerRender.banner.estilo > 2 ? (
 					<div>
 						<div className="d-flex justify-content-center mb-3">
-							<h4><b>Selecciona un banner</b></h4>
+							<h4>
+								<b>Selecciona un banner</b>
+							</h4>
 						</div>
 						<div className="text-center d-flex justify-content-around pb-3 mb-3 border-bottom">
-						{bannerRender.banners.length !== 0 ? (
-							bannerRender.banners.map((res, index) => {
-								return (
-									<Fragment key={index}>
-										<div>
-											<h6>
-												<b>Imagen {index + 1}</b>
-											</h6>
-											<div
-												className=" contenedor-imagen-estilo-registro estilo-hover2"
-												onClick={() => {
-													setDisabledReg3(index + 1);
-													llenarCampos(bannerRender.banner, res);
-												}}
-												style={
-													disabledReg3 === index + 1 ? { border: '1px solid #1890FF' } : null
-												}
-											>
-												<img
-													alt="estilos banners"
-													src={aws + res.imagenBanner}
-													className="imagen-estilo-registro"
-												/>
-											</div>
-										</div>
-										{bannerRender.banners.length === 1 && bannerRender.banner.estilo === 3 ? (
+							{bannerRender.banners.length !== 0 ? (
+								bannerRender.banners.map((res, index) => {
+									return (
+										<Fragment key={index}>
 											<div>
 												<h6>
-													<b>Imagen 2</b>
+													<b>Imagen {index + 1}</b>
 												</h6>
 												<div
 													className=" contenedor-imagen-estilo-registro estilo-hover2"
 													onClick={() => {
-														setDisabledReg3(index + 2);
-														limpiarCampos();
-														setBannerSeleccionado({
-															banner: bannerRender.banner,
-															banners: []
-														});
+														setDisabledReg3(index + 1);
+														setDisabledCheck(false);
+														llenarCampos(bannerRender.banner, res);
 													}}
 													style={
-														disabledReg3 === index + 2 ? (
+														disabledReg3 === index + 1 ? (
 															{ border: '1px solid #1890FF' }
 														) : null
 													}
 												>
 													<img
 														alt="estilos banners"
-														src={ImagenEspecial2}
+														src={aws + res.imagenBanner}
 														className="imagen-estilo-registro"
 													/>
 												</div>
 											</div>
-										) : null}
-										{bannerRender.banners.length === 1 && bannerRender.banner.estilo === 4 ? (
-											<Fragment>
+											{bannerRender.banners.length === 1 && bannerRender.banner.estilo === 3 ? (
 												<div>
 													<h6>
 														<b>Imagen 2</b>
 													</h6>
 													<div
-														className="contenedor-imagen-estilo-registro estilo-hover2"
+														className=" contenedor-imagen-estilo-registro estilo-hover2"
 														onClick={() => {
 															setDisabledReg3(index + 2);
 															limpiarCampos();
@@ -530,6 +500,7 @@ export default function RegistroPublicidad(props) {
 																banner: bannerRender.banner,
 																banners: []
 															});
+															setDisabledCheck(false);
 														}}
 														style={
 															disabledReg3 === index + 2 ? (
@@ -544,6 +515,70 @@ export default function RegistroPublicidad(props) {
 														/>
 													</div>
 												</div>
+											) : null}
+											{bannerRender.banners.length === 1 && bannerRender.banner.estilo === 4 ? (
+												<Fragment>
+													<div>
+														<h6>
+															<b>Imagen 2</b>
+														</h6>
+														<div
+															className="contenedor-imagen-estilo-registro estilo-hover2"
+															onClick={() => {
+																setDisabledReg3(index + 2);
+																limpiarCampos();
+																setBannerSeleccionado({
+																	banner: bannerRender.banner,
+																	banners: []
+																});
+																setDisabledCheck(false);
+															}}
+															style={
+																disabledReg3 === index + 2 ? (
+																	{ border: '1px solid #1890FF' }
+																) : null
+															}
+														>
+															<img
+																alt="estilos banners"
+																src={ImagenEspecial2}
+																className="imagen-estilo-registro"
+															/>
+														</div>
+													</div>
+													<div>
+														<h6>
+															<b>Imagen 3</b>
+														</h6>
+														<div
+															className=" contenedor-imagen-estilo-registro estilo-hover2"
+															onClick={() => {
+																setDisabledReg3(index + 3);
+																limpiarCampos();
+																setBannerSeleccionado({
+																	banner: bannerRender.banner,
+																	banners: []
+																});
+																setDisabledCheck(false);
+															}}
+															style={
+																disabledReg3 === index + 3 ? (
+																	{ border: '1px solid #1890FF' }
+																) : null
+															}
+														>
+															<img
+																alt="estilos banners"
+																src={ImagenEspecial3}
+																className="imagen-estilo-registro"
+															/>
+														</div>
+													</div>
+												</Fragment>
+											) : null}
+											{index > 0 &&
+											bannerRender.banners.length === 2 &&
+											bannerRender.banner.estilo === 4 ? (
 												<div>
 													<h6>
 														<b>Imagen 3</b>
@@ -557,6 +592,7 @@ export default function RegistroPublicidad(props) {
 																banner: bannerRender.banner,
 																banners: []
 															});
+															setDisabledCheck(false);
 														}}
 														style={
 															disabledReg3 === index + 3 ? (
@@ -571,74 +607,43 @@ export default function RegistroPublicidad(props) {
 														/>
 													</div>
 												</div>
-											</Fragment>
-										) : null}
-										{index > 0 &&
-										bannerRender.banners.length === 2 &&
-										bannerRender.banner.estilo === 4 ? (
-											<div>
-												<h6>
-													<b>Imagen 3</b>
-												</h6>
-												<div
-													className=" contenedor-imagen-estilo-registro estilo-hover2"
-													onClick={() => {
-														setDisabledReg3(index + 3);
-														limpiarCampos();
-														setBannerSeleccionado({
-															banner: bannerRender.banner,
-															banners: []
-														});
-													}}
-													style={
-														disabledReg3 === index + 3 ? (
-															{ border: '1px solid #1890FF' }
-														) : null
-													}
-												>
-													<img
-														alt="estilos banners"
-														src={ImagenEspecial3}
-														className="imagen-estilo-registro"
-													/>
-												</div>
-											</div>
-										) : null}
-									</Fragment>
-								);
-							})
-						) : (
-							elementos.map((res, index) => {
-								return (
-									<div
-										key={index}
-										className=" contenedor-imagen-estilo-registro estilo-hover2"
-										onClick={() => {
-											setDisabledReg3(index + 1);
-										}}
-										style={disabledReg3 === index + 1 ? { border: '1px solid #1890FF' } : null}
-									>
-										<h6 className=" position-absolute">
-											<b>Imagen {index + 1}</b>
-										</h6>
-										<img
-											alt="estilos banners"
-											src={
-												index + 1 === 1 ? (
-													ImagenEspecial1
-												) : index + 1 === 2 ? (
-													ImagenEspecial2
-												) : (
-													ImagenEspecial3
-												)
-											}
-											className="imagen-estilo-registro"
-										/>
-									</div>
-								);
-							})
-						)}
-					</div>
+											) : null}
+										</Fragment>
+									);
+								})
+							) : (
+								elementos.map((res, index) => {
+									return (
+										<div
+											key={index}
+											className=" contenedor-imagen-estilo-registro estilo-hover2"
+											onClick={() => {
+												setDisabledReg3(index + 1);
+												setDisabledCheck(false);
+											}}
+											style={disabledReg3 === index + 1 ? { border: '1px solid #1890FF' } : null}
+										>
+											<h6 className=" position-absolute">
+												<b>Imagen {index + 1}</b>
+											</h6>
+											<img
+												alt="estilos banners"
+												src={
+													index + 1 === 1 ? (
+														ImagenEspecial1
+													) : index + 1 === 2 ? (
+														ImagenEspecial2
+													) : (
+														ImagenEspecial3
+													)
+												}
+												className="imagen-estilo-registro"
+											/>
+										</div>
+									);
+								})
+							)}
+						</div>
 					</div>
 				) : null}
 				<div className="d-flex justify-content-center">
@@ -646,7 +651,7 @@ export default function RegistroPublicidad(props) {
 						<Form form={form} hideRequiredMark onFinish={enviarDatos} id="MyForm">
 							<div className="row ">
 								<div className="col-lg-6">
-									<Form.Item label="Tipo" labelCol={{ span: 3 }}>
+									<Form.Item label="Tipo de producto" labelCol={{ span: 8 }}>
 										<Form.Item name="tipo">
 											<Cascader
 												options={options}
@@ -676,7 +681,6 @@ export default function RegistroPublicidad(props) {
 										</Form.Item>
 										{bannerRender.banner.estilo === 1 ? (
 											<Alert
-												style={{maxHeight: 105}}
 												info
 												message={
 													<p>
@@ -688,7 +692,6 @@ export default function RegistroPublicidad(props) {
 										) : bannerRender.banner.estilo === 2 ? (
 											<Alert
 												info
-												style={{maxHeight: 105}}
 												message={
 													<p>
 														Tamaño recomendado para esta imagen es: <b>alto=280px</b>,{' '}
@@ -699,7 +702,6 @@ export default function RegistroPublicidad(props) {
 										) : bannerRender.banner.estilo === 3 ? (
 											<Alert
 												info
-												style={{maxHeight: 105}}
 												message={
 													<p>
 														Tamaño recomendado para esta imagen es: <b>alto=560px</b>,{' '}
@@ -710,7 +712,6 @@ export default function RegistroPublicidad(props) {
 										) : (
 											<Alert
 												info
-												style={{maxHeight: 105}}
 												message={
 													<p>
 														Tamaño recomendado para esta imagen es: <b>alto=530px</b>,{' '}
@@ -721,19 +722,19 @@ export default function RegistroPublicidad(props) {
 										)}
 									</Form.Item>
 								</div>
-								<div className="col-lg-6 d-flex">
+								<div className="col-lg-5">
 									<div>
-										<div className="my-3">
+										<div className="my-4">
 											<Checkbox
 												name="vincular"
 												checked={datos.vincular}
 												onChange={obtenerChecks}
 												disabled={disabledCheck}
 											>
-												Vincular Categoria
+												Vincular banner
 											</Checkbox>
 										</div>
-										<div className="my-3">
+										<div className="my-4">
 											<Checkbox
 												name="mostrarProductos"
 												checked={
@@ -752,24 +753,46 @@ export default function RegistroPublicidad(props) {
 													) : bannerRender.banner.estilo === 2 ? (
 														true
 													) : (
-														disabledCheck
+														bannerRender.banner.estilo > 2 ? true : disabledCheck
 													)
 												}
 											>
 												Mostrar Productos
 											</Checkbox>
 										</div>
-										<div className="my-3">
+										<div className="my-4">
 											<Checkbox
 												name="mostrarTitulo"
 												checked={datos.mostrarTitulo}
 												onChange={obtenerChecks}
-												disabled={disabledCheck}
+												disabled={disabledCheck ? disabledCheck : bannerRender.banner.estilo > 2 ? true : disabledCheck}
 											>
 												Mostrar Titulo
 											</Checkbox>
 										</div>
-										<div className="d-flex justify-content-center">
+									</div>
+									<div className="d-flex justify-content-around">
+										<Button
+											type="primary"
+											size="large"
+											ghost
+											onClick={() => props.history.push('/admin/publicidad')}
+										>
+											Cerrar
+										</Button>
+										<Button
+											type="primary"
+											ghost
+											size="large"
+											onClick={() => publicarBanner(!bannerRender.banner.publicado)}
+											style={
+												bannerRender.banner.publicado ? (
+													{ color: '#5cb85c', borderColor: '#5cb85c' }
+												) : null
+											}
+										>
+											{bannerRender.banner.publicado ? 'Publicado' : 'Publicar'}
+										</Button>
 										<Button
 											htmlType="submit"
 											type="primary"
@@ -779,7 +802,6 @@ export default function RegistroPublicidad(props) {
 										>
 											Guardar
 										</Button>
-									</div>
 									</div>
 								</div>
 							</div>
@@ -792,22 +814,6 @@ export default function RegistroPublicidad(props) {
 				</Modal>
 				<PreviewBanner datos={datos} estilo={bannerRender.banner.estilo} previewImage={previewImage} />
 			</Spin>
-			<div className="float-button">
-				<Space>
-					<Button type="primary" size="large" ghost onClick={() => props.history.push('/admin/publicidad')}>
-						Cerrar
-					</Button>
-					<Button
-						type="primary"
-						ghost
-						size="large"
-						onClick={() => publicarBanner(!bannerRender.banner.publicado)}
-						style={bannerRender.banner.publicado ? { color: '#5cb85c', borderColor: '#5cb85c' } : null}
-					>
-						{bannerRender.banner.publicado ? 'Publicado' : 'Publicar'}
-					</Button>
-				</Space>
-			</div>
 		</div>
 	);
 }
