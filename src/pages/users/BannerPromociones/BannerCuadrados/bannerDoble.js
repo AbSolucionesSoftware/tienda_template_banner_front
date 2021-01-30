@@ -6,7 +6,7 @@ import './banners.scss'
 
 function Banner_Doble(props) {
 
-    const { banner } = props;
+    const { banner, imagenLocal } = props;
     
     const render = banner.banners.map((banner) => {
         return(
@@ -15,7 +15,7 @@ function Banner_Doble(props) {
                     <Link to={`/searching/${banner.tipo.categoria || banner.tipo.temporada}`}>
                         <img
                             className="imagen-doble" 
-                            src={aws + banner.imagenBanner}
+                            src={imagenLocal ? banner.imagenBanner : aws + banner.imagenBanner}
                             alt="Imgen publicitaria"
                         />
                     </Link>

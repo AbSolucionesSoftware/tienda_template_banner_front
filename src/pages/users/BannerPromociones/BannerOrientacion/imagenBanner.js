@@ -5,7 +5,7 @@ import aws from '../../../../config/aws';
 
 export default function Imagen_Banner(props) {
     
-    const {imagen, link} = props;
+    const {imagen, link, imagenLocal } = props;
 
         return(
             <div className="container-imagenes">
@@ -13,7 +13,7 @@ export default function Imagen_Banner(props) {
                     <div className="container-image">
                     <img
                         className="image-orientancion"
-                        src={aws + imagen}
+                        src={imagenLocal ? imagen : aws + imagen}
                         alt="Imgen publicitaria"
                     />
                     </div>

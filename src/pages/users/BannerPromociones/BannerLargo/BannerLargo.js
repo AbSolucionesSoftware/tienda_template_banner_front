@@ -15,16 +15,16 @@ const BgElement = Element.BgElement;
 
 
  function Banner_Largo(props) {
-    const {banner} = props;
-   
+    const {banner, imagenLocal } = props;
 
     /* const handleSelect = (selectedIndex, e) => {
 		setIndex(selectedIndex);
     }; */
     
-    const render = banner.banners.map((banner) => {
+    const render = banner.banners.map((banner, index) => {
+        console.log(banner);
         return (
-            <div key={banner._id} className="mt-5 cont-principal">
+            <div key={index} className="mt-5 cont-principal">
                 {banner.mostrarTitulo !== false ? (
                     <TweenOne key="demo" animation={{ y: 30, opacity: 0, type: 'from', delay: 800 }}>
                         <h1 className="mt-5 tit-banner">{banner.tipo.categoria || banner.tipo.temporada}</h1>
@@ -46,7 +46,7 @@ const BgElement = Element.BgElement;
                               className="bg banner-prom mx-auto"
                               alt="img-oferta"
                               style={{
-                                  backgroundImage: `url(${aws + banner.imagenBanner})`,
+                                  backgroundImage: imagenLocal ? `url(${banner.imagenBanner})` : `url(${aws + banner.imagenBanner})`,
                                   cursor: 'pointer'
                               }}
                           >
@@ -61,7 +61,7 @@ const BgElement = Element.BgElement;
                 <div>
                     {banner.mostrarProductos !== false ? (
                         <div className="mx-auto div-cards">
-                            <CardsProductos className="mx-auto" tipo={banner.tipo} />
+                            <CardsProductos className="mx-auto" tipo={banner.tipo} banner={banner} />
                             <div className="d-flex justify-content-center">
                                 <Link to={`/searching/${banner.tipo.categoria || banner.tipo.temporada}`} style={{ fontSize: 18 }}>
                                     Ver todos los productos
