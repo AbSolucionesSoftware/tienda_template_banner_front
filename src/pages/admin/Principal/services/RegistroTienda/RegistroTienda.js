@@ -19,6 +19,7 @@ import {
 import { Editor } from "@tinymce/tinymce-react";
 import clienteAxios from "../../../../../config/axios";
 import PoliticasEnvio from "./politicas_envio";
+import Registro_Politicas from "./registroPoliticas";
 import Cobertura_envio from "./cobertura_envios";
 import aws from "../../../../../config/aws";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,13 +29,13 @@ export default function RegistroTienda(props) {
   const { drawnerClose } = props;
   const [current, setCurrent] = props.steps;
 
-  const { datosNegocio, token, /* setLoading, */ setReloadInfo } = props;
+  const {setDatosNegocio, datosNegocio, token, } = props;
 
   const [datos, setDatos] = useState({});
   const [control, setControl] = useState(false);
+
   const [form] = Form.useForm();
   const { Step } = Steps;
-
   const [upload, setUpload] = useState(false);
   //Variables que guardan las imagenes
   const [files, setFiles] = useState([]);
@@ -49,6 +50,7 @@ export default function RegistroTienda(props) {
 
   const next = () => {
     setCurrent(current + 1);
+
   };
 
   const prev = () => {
@@ -57,6 +59,7 @@ export default function RegistroTienda(props) {
 
   useEffect(() => {
     if (datosNegocio !== undefined) {
+      console.log(datosNegocio);
       setImagen(datosNegocio.imagenLogo);
       if (datosNegocio.ubicacion[0].lat === "undefined") {
         datosNegocio.ubicacion[0].lat = "";
@@ -83,7 +86,6 @@ export default function RegistroTienda(props) {
         estado: datosNegocio.direccion[0].estado,
         lat: datosNegocio.ubicacion[0].lat,
         lng: datosNegocio.ubicacion[0].lng,
-        politicas: datosNegocio.politicas,
         imagenCorp: datosNegocio.imagenCorp,
         linkFace: datosNegocio.linkFace,
         linkInsta: datosNegocio.linkInsta,
@@ -99,7 +101,6 @@ export default function RegistroTienda(props) {
         estado: datosNegocio.direccion[0].estado,
         lat: datosNegocio.ubicacion[0].lat,
         lng: datosNegocio.ubicacion[0].lng,
-        politicas: datosNegocio.politicas,
         imagenCorp: datosNegocio.imagenCorp,
         linkFace: datosNegocio.linkFace,
         linkInsta: datosNegocio.linkInsta,
@@ -112,9 +113,9 @@ export default function RegistroTienda(props) {
     }
   }, [datosNegocio]);
 
-  const capturarPoliticasEditor = (content, editor) => {
-    setDatos({ ...datos, politicas: content });
-  };
+  // const capturarPoliticasEditor = (content, editor) => {
+  //   setDatos({ ...datos, politicas: content });
+  // };
 
   const capturarImagenCorpEditor = (content, editor) => {
     setDatos({ ...datos, imagenCorp: content });
@@ -159,7 +160,7 @@ export default function RegistroTienda(props) {
     formData.append("estado", datos.estado);
     formData.append("lat", datos.lat);
     formData.append("lng", datos.lng);
-    formData.append("politicas", datos.politicas);
+    // formData.append("politicas", datos.politicas);
     formData.append("imagenCorp", datos.imagenCorp);
     formData.append("linkFace", datos.linkFace);
     formData.append("linkInsta", datos.linkInsta);
@@ -168,10 +169,13 @@ export default function RegistroTienda(props) {
     setLoading(true);
 
     if (control === false) {
+
       if (files.length === 0) {
+        setLoading(false);
         notification.info({
           message: "Ups, algo salio mal",
           description: "La imagen es obligatoria",
+
         });
       } else {
         setLoading(true);
@@ -185,8 +189,6 @@ export default function RegistroTienda(props) {
           })
           .then((res) => {
             setLoading(false);
-            // setReloadInfo(true);
-            // drawnerClose();
             setCurrent(current + 1);
             next();
             notification.success({
@@ -195,7 +197,6 @@ export default function RegistroTienda(props) {
             });
           })
           .catch((err) => {
-            setLoading(false);
             if (err.response) {
               notification.error({
                 message: "Error",
@@ -225,8 +226,6 @@ export default function RegistroTienda(props) {
         })
         .then((res) => {
           setLoading(false);
-          // setReloadInfo(true);
-          // drawnerClose();
           setCurrent(current + 1);
           next();
           notification.success({
@@ -257,13 +256,12 @@ export default function RegistroTienda(props) {
     {
       title: "Datos de la Tienda",
       content: (
-        //setCurrent={setCurrent} current={current}
-        <div className="" /* setCurrent={setCurrent} current={current} */>
+        <div className="" >
           <Spin size="large" spinning={loading}>
             <Form
               onFinish={SendForm}
               form={form}
-              onFinishFailed={onError}
+              // onFinishFailed={onError}
             >
               <div className="row">
                 <div className="col-12">
@@ -565,39 +563,7 @@ export default function RegistroTienda(props) {
                 </div>
               </div>
 
-              <div className="row">
-                <Divider>Información de Políticas de la empresa</Divider>
-                <div className="col-12">
-                  <Form.Item className="m-2" valuePropName="Editor">
-                    <Form.Item
-                      rules={[
-                        {
-                          required: true,
-                          message: "Politicas de privacidad obligatorias",
-                        },
-                      ]}
-                      noStyle
-                      name="politicas"
-                    >
-                      <Editor
-                        disabled={false}
-                        init={{
-                          height: 450,
-                          menubar: true,
-                          plugins: [
-                            "advlist autolink lists link image charmap print preview anchor",
-                            "searchreplace visualblocks code fullscreen",
-                            "insertdatetime media table paste code help wordcount",
-                          ],
-                          toolbar:
-                            "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
-                        }}
-                        onEditorChange={capturarPoliticasEditor}
-                      />
-                    </Form.Item>
-                  </Form.Item>
-                </div>
-              </div>
+              
               <div className="row">
                 <Divider>Imagen corporativa</Divider>
                 <div className="col-12">
@@ -653,11 +619,21 @@ export default function RegistroTienda(props) {
       ),
     },
     {
-      title: "Politicas de Envio",
+      title: "Politicas de Empresa",
+      content: (
+        <div>
+          <Registro_Politicas
+            setCurrent={setCurrent}
+            current={current}
+          />
+        </div>
+      ),
+    },
+    {
+      title: "Costos de Envio",
       content: (
         <div>
           <PoliticasEnvio
-            datosNegocio={datosNegocio}
             setCurrent={setCurrent}
             current={current}
           />
@@ -678,7 +654,7 @@ export default function RegistroTienda(props) {
     <div>
       <Steps current={current}>
         {steps.map((item) => (
-          <Step key={item.title} title={item.title} />
+          <Step key={item.title} title={item.title} status={item.status}/>
         ))}
       </Steps>
 
@@ -696,6 +672,7 @@ export default function RegistroTienda(props) {
           </Button>
         )}
       </div> */}
+
     </div>
   );
 }

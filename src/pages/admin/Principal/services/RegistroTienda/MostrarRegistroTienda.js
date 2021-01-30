@@ -184,7 +184,7 @@ function MostrarRegistroTienda(props) {
 								Anterior
 							</Button>
 						)}
-						{current < 2 && (
+						{current < 3 && (
 							<Button className="mx-1" type="primary" onClick={() => next()}>
 								Siguiente
 							</Button>
@@ -197,9 +197,10 @@ function MostrarRegistroTienda(props) {
 			>
 				<RegistroTienda
 					datosNegocio={datosNegocio}
+					setDatosNegocio={setDatosNegocio}
 					token={token}
 					setLoading={setLoading}
-					steps={[current,setCurrent]}
+					steps={[current, setCurrent]}
 					// setReloadInfo={setReloadInfo}
 					// drawnerClose={drawnerClose}
 				/>

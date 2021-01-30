@@ -189,7 +189,7 @@ const routes = [
 				exact: true
 			},
 			{
-				path: '/politicas',
+				path: '/politicas/',
 				component: Politicas,
 				exact: true
 			},
