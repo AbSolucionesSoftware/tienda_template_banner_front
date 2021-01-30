@@ -22,6 +22,7 @@ const BgElement = Element.BgElement;
     }; */
     
     const render = banner.banners.map((banner, index) => {
+        console.log(banner);
         return (
             <div key={index} className="mt-5 cont-principal">
                 {banner.mostrarTitulo !== false ? (
@@ -60,7 +61,7 @@ const BgElement = Element.BgElement;
                 <div>
                     {banner.mostrarProductos !== false ? (
                         <div className="mx-auto div-cards">
-                            <CardsProductos className="mx-auto" tipo={banner.tipo} />
+                            <CardsProductos className="mx-auto" tipo={banner.tipo} banner={banner} />
                             <div className="d-flex justify-content-center">
                                 <Link to={`/searching/${banner.tipo.categoria || banner.tipo.temporada}`} style={{ fontSize: 18 }}>
                                     Ver todos los productos

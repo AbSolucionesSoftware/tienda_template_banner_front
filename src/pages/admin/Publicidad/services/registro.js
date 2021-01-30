@@ -37,7 +37,7 @@ export default function RegistroPublicidad(props) {
 	const [ datos, setDatos ] = useState({
 		tipo: '',
 		vincular: false,
-		mostrarProductos: false,
+		mostrarProductos: bannerRender.banner.estilo === 2 ? true : false,
 		mostrarTitulo: false,
 		imagenBanner: '',
 		orientacion: 2
@@ -60,7 +60,7 @@ export default function RegistroPublicidad(props) {
 		setDatos({
 			tipo: '',
 			vincular: false,
-			mostrarProductos: false,
+			mostrarProductos: bannerRender.banner.estilo === 2 ? true : false,
 			mostrarTitulo: false,
 			imagenBanner: '',
 			orientacion: 2
@@ -222,6 +222,7 @@ export default function RegistroPublicidad(props) {
 								duration: 2
 							});
 							setReload(!reload);
+							limpiarCampos();
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
 							}
@@ -245,6 +246,7 @@ export default function RegistroPublicidad(props) {
 								duration: 2
 							});
 							setReload(!reload);
+							limpiarCampos();
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
 							}
@@ -454,7 +456,11 @@ export default function RegistroPublicidad(props) {
 					</div>
 				) : null}
 				{bannerRender.banner.estilo > 2 ? (
-					<div className="text-center d-flex justify-content-around pb-3 mb-3 border-bottom">
+					<div>
+						<div className="d-flex justify-content-center mb-3">
+							<h4><b>Selecciona un banner</b></h4>
+						</div>
+						<div className="text-center d-flex justify-content-around pb-3 mb-3 border-bottom">
 						{bannerRender.banners.length !== 0 ? (
 							bannerRender.banners.map((res, index) => {
 								return (
@@ -633,11 +639,12 @@ export default function RegistroPublicidad(props) {
 							})
 						)}
 					</div>
+					</div>
 				) : null}
 				<div className="d-flex justify-content-center">
 					<div className="">
 						<Form form={form} hideRequiredMark onFinish={enviarDatos} id="MyForm">
-							<div className="row">
+							<div className="row ">
 								<div className="col-lg-6">
 									<Form.Item label="Tipo" labelCol={{ span: 3 }}>
 										<Form.Item name="tipo">
@@ -669,6 +676,7 @@ export default function RegistroPublicidad(props) {
 										</Form.Item>
 										{bannerRender.banner.estilo === 1 ? (
 											<Alert
+												style={{maxHeight: 105}}
 												info
 												message={
 													<p>
@@ -680,6 +688,7 @@ export default function RegistroPublicidad(props) {
 										) : bannerRender.banner.estilo === 2 ? (
 											<Alert
 												info
+												style={{maxHeight: 105}}
 												message={
 													<p>
 														Tamaño recomendado para esta imagen es: <b>alto=280px</b>,{' '}
@@ -690,6 +699,7 @@ export default function RegistroPublicidad(props) {
 										) : bannerRender.banner.estilo === 3 ? (
 											<Alert
 												info
+												style={{maxHeight: 105}}
 												message={
 													<p>
 														Tamaño recomendado para esta imagen es: <b>alto=560px</b>,{' '}
@@ -700,6 +710,7 @@ export default function RegistroPublicidad(props) {
 										) : (
 											<Alert
 												info
+												style={{maxHeight: 105}}
 												message={
 													<p>
 														Tamaño recomendado para esta imagen es: <b>alto=530px</b>,{' '}
@@ -710,9 +721,9 @@ export default function RegistroPublicidad(props) {
 										)}
 									</Form.Item>
 								</div>
-								<div className="col-lg-6 d-flex align-items-center">
+								<div className="col-lg-6 d-flex">
 									<div>
-										<div className="my-4">
+										<div className="my-3">
 											<Checkbox
 												name="vincular"
 												checked={datos.vincular}
@@ -722,17 +733,33 @@ export default function RegistroPublicidad(props) {
 												Vincular Categoria
 											</Checkbox>
 										</div>
-										<div className="my-4">
+										<div className="my-3">
 											<Checkbox
 												name="mostrarProductos"
-												checked={datos.mostrarProductos}
+												checked={
+													datos.mostrarProductos ? (
+														datos.mostrarProductos
+													) : bannerRender.banner.estilo === 2 ? (
+														true
+													) : (
+														datos.mostrarProductos
+													)
+												}
 												onChange={obtenerChecks}
-												disabled={disabledCheck}
+												disabled={
+													disabledCheck ? (
+														disabledCheck
+													) : bannerRender.banner.estilo === 2 ? (
+														true
+													) : (
+														disabledCheck
+													)
+												}
 											>
 												Mostrar Productos
 											</Checkbox>
 										</div>
-										<div className="my-4">
+										<div className="my-3">
 											<Checkbox
 												name="mostrarTitulo"
 												checked={datos.mostrarTitulo}
@@ -742,6 +769,17 @@ export default function RegistroPublicidad(props) {
 												Mostrar Titulo
 											</Checkbox>
 										</div>
+										<div className="d-flex justify-content-center">
+										<Button
+											htmlType="submit"
+											type="primary"
+											disabled={disabled}
+											size="large"
+											form="MyForm"
+										>
+											Guardar
+										</Button>
+									</div>
 									</div>
 								</div>
 							</div>
@@ -752,11 +790,7 @@ export default function RegistroPublicidad(props) {
 				<Modal forceRender visible={openPreview} title={previewTitle} footer={null} onCancel={handleCancel}>
 					<img alt="example" style={{ width: '100%' }} src={previewImage} />
 				</Modal>
-				<PreviewBanner
-					datos={datos}
-					estilo={bannerRender.banner.estilo}
-					previewImage={previewImage}
-				/>
+				<PreviewBanner datos={datos} estilo={bannerRender.banner.estilo} previewImage={previewImage} />
 			</Spin>
 			<div className="float-button">
 				<Space>
@@ -771,9 +805,6 @@ export default function RegistroPublicidad(props) {
 						style={bannerRender.banner.publicado ? { color: '#5cb85c', borderColor: '#5cb85c' } : null}
 					>
 						{bannerRender.banner.publicado ? 'Publicado' : 'Publicar'}
-					</Button>
-					<Button htmlType="submit" type="primary" disabled={disabled} size="large" form="MyForm">
-						Guardar
 					</Button>
 				</Space>
 			</div>
