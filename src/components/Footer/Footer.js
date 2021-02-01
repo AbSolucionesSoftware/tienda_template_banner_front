@@ -118,7 +118,7 @@ const FooterPage = (props) => {
                 <div end="xs" id="foot">  
                     <div className="row footer-font-color">
                         <div className="col-lg-4  d-sm-text-center">
-                            {tienda.imagenLogo !== '' ?
+                            {tienda.imagenLogo !== '' && tienda.imagenLogo ?
                             <div className="contenedor-logo">
                                 <div className="logos"> 
                                     <img
@@ -130,6 +130,7 @@ const FooterPage = (props) => {
                             </div>
                             : ""}
                             {/* <h6>{tienda.nombre !== '' ? tienda.nombre : ""}</h6> */}
+                            {telefono !== '' && telefono ? 
                             <div className="row mt-3">
                                 <PhoneOutlined className="mt-1" style={{fontSize: 55, marginLeft: 5}} />
                                 <div className="px-3 mt-2">
@@ -137,15 +138,20 @@ const FooterPage = (props) => {
                                     {telefono !== '' ? (<h1 style={{fontSize: 20}}>{telefono} </h1>): ""}
                                 </div>
                             </div>
+                            : ""}
+
                             <div className="mt-3">
+
                                 {accion ? (<p style={{fontWeight: "bold"}}>Datos de contacto:</p>):""}
-                                {direccion.calle_numero !== '' ? (
+                                {direccion.calle_numero !== '' && direccion.calle_numero ? (
                                     <div>
                                         <p>{direccion.calle_numero}, Col. {direccion.colonia}, </p>
                                         <p>{direccion.ciudad}, {direccion.estado}</p>
                                     </div>
                                 ) : ""}
+
                                 <div className="mt-3">
+
                                 {face !== '' ? 
                                     (
                                     <a href={face} target="_blank" rel="noopener noreferrer">
@@ -190,35 +196,35 @@ const FooterPage = (props) => {
                                 </Link>
                             ): ""}
 
-                            {tienda.politicas !== '' ? (
+                            {tienda.politicas !== '' && tienda.politicas ? (
                                 <HashLink to="/politicas#privacidad">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Aviso de Privacidad
                                     </Button>
                                 </HashLink>
                             ): ""}
-                            {tienda.politicasDescuentos !== '' ? (
+                            {tienda.politicasDescuentos !== '' && tienda.politicasDescuentos ? (
                                 <HashLink to="/politicas#descuento">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Politicas Descuentos
                                     </Button>
                                 </HashLink>
                             ): ""}
-                            {tienda.politicasDevoluciones !== '' ? (
+                            {tienda.politicasDevolucion !== '' && tienda.politicasDevolucion ? (
                                 <HashLink to="/politicas#devolucion">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                        Politicas de Devolucion
                                     </Button>
                                 </HashLink>
                             ): ""}
-                            {tienda.politicasVentas !== '' ? (
+                            {tienda.politicasVentas !== '' && tienda.politicasVentas ? (
                                 <HashLink to="/politicas#ventas">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Politicas de Ventas
                                     </Button>
                                 </HashLink>
                             ): ""}
-                            {tienda.politicasEnvios !== '' ? (
+                            {tienda.politicasEnvios !== '' &&  tienda.politicasEnvios? (
                                 <HashLink to="/politicas#envios">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
                                         Politica de Envios

@@ -43,7 +43,7 @@ function Politicas() {
     return(
         <Spin spinning={loading} >
             <div className="container">
-                { politicas.politicas !== "" ? (
+                { politicas.politicas && politicas.politicas !== "" ? (
                     <div id="privacidad" className="m-5">
                         <h1 className="text-center mt-4">Politicas de Privacidad</h1>
                         <h3 className="text-center mt-4">
@@ -57,7 +57,7 @@ function Politicas() {
                 )
                 }
                 {
-                  politicas.politicasVentas !== "" ? (
+                  politicas.politicasVentas !== "" && politicas.politicasVentas? (
                     <div id="ventas" className="m-5">
                         <h1 className="text-center mt-4">Politicas de Ventas</h1>
                         <h3 className="text-center mt-4">
@@ -71,7 +71,7 @@ function Politicas() {
                 )  
                 }
                 {
-                  politicas.politicasDescuentos !== "" ? (
+                  politicas.politicasDescuentos !== "" && politicas.politicasDescuentos ? (
                     <div id="descuento" className="m-5">
                         <h1 className="text-center mt-4">Politicas de Descuentos</h1>
                         <h3 className="text-center mt-4">
@@ -85,7 +85,7 @@ function Politicas() {
                 )  
                 }
                 {
-                  politicas.politicasDevolucion !== "" ? (
+                  politicas.politicasDevolucion !== "" && politicas.politicasDevolucion ? (
                     <div id="devolucion" className="m-5">
                         <h1 className="text-center mt-4">Politicas de Devolucion</h1>
                         <h3 className="text-center mt-4">
@@ -99,7 +99,7 @@ function Politicas() {
                 )  
                 }
                 {
-                  politicas.politicasEnvios !== "" ? (
+                  politicas.politicasEnvios !== "" && politicas.politicasEnvios ? (
                     <div id="envios" className="m-5">
                         <h1 className="text-center mt-4">Politicas de Envios</h1>
                         <h3 className="text-center mt-4">
