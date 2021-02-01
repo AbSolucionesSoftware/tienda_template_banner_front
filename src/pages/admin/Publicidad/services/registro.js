@@ -32,6 +32,7 @@ export default function RegistroPublicidad(props) {
 
 	const [ categoriasBD, setCategoriasBD ] = useState([]);
 	const [ temporadasBD, setTemporadasBD ] = useState([]);
+	const [ generosBD, setGenerosBD ] = useState([]);
 	const [ bannerRender, setBannerRender ] = useState({ banner: '', banners: '' });
 	const [ bannerSeleccionado, setBannerSeleccionado ] = useState({ banner: '', banners: '' });
 	const [ datos, setDatos ] = useState({
@@ -161,6 +162,20 @@ export default function RegistroPublicidad(props) {
 				errors(err);
 			});
 	}
+	async function obtenerGeneros() {
+		await clienteAxios
+			.get(`/productos/agrupar/generos`)
+			.then((res) => {
+				let generos = [];
+				res.data.forEach((genero) => {
+					generos.push({ label: genero._id, value: genero._id });
+				});
+				setGenerosBD(generos);
+			})
+			.catch((err) => {
+				errors(err);
+			});
+	}
 
 	const enviarDatos = async () => {
 		if (!datos.tipo) {
@@ -264,7 +279,7 @@ export default function RegistroPublicidad(props) {
 					imagenBanner: banners.imagenBanner ? banners.imagenBanner : '',
 					tipo: banners.tipo.categoria
 						? [ 'categoria', banners.tipo.categoria ]
-						: [ 'temporada', banners.tipo.temporada ],
+						: banners.tipo.temporada ? [ 'temporada', banners.tipo.temporada ] : [ 'genero', banners.tipo.genero ],
 					vincular: banners.vincular,
 					mostrarProductos: banners.mostrarProductos,
 					mostrarTitulo: banners.mostrarTitulo,
@@ -294,9 +309,13 @@ export default function RegistroPublicidad(props) {
 						form.setFieldsValue({
 							tipo: [ 'categoria', banners.tipo.categoria ]
 						});
-					} else {
+					} else if (banners.tipo.temporada) {
 						form.setFieldsValue({
 							tipo: [ 'temporada', banners.tipo.temporada ]
+						});
+					}else {
+						form.setFieldsValue({
+							tipo: [ 'genero', banners.tipo.genero ]
 						});
 					}
 				}
@@ -385,6 +404,7 @@ export default function RegistroPublicidad(props) {
 		() => {
 			obtenerCategorias();
 			obtenerTemporadas();
+			obtenerGeneros();
 			obtenerBannerBD();
 		},
 		[ reload ]
@@ -402,6 +422,12 @@ export default function RegistroPublicidad(props) {
 			label: 'Temporada',
 			name: 'temporada',
 			children: temporadasBD
+		},
+		{
+			value: 'genero',
+			label: 'Género',
+			name: 'genero',
+			children: generosBD
 		}
 	];
 
@@ -704,8 +730,8 @@ export default function RegistroPublicidad(props) {
 												info
 												message={
 													<p>
-														Tamaño recomendado para esta imagen es: <b>alto=560px</b>,{' '}
-														<b>largo=560px</b>
+														Tamaño recomendado para esta imagen es: <b>alto=700px</b>,{' '}
+														<b>largo=470px</b>
 													</p>
 												}
 											/>
