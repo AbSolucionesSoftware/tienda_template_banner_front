@@ -229,6 +229,11 @@ const routes = [
 				exact: true
 			},
 			{
+				path: '/filtros/:temporada/:categoria/:subcategoria/:genero',
+				component: BusquedaCategorias,
+				exact: true
+			},
+			{
 				path: '/perfiles/',
 				component: Perfiles,
 				exact: true

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {  Divider, Layout, Menu } from 'antd';
+import {  Button, Divider, Layout, Menu } from 'antd';
 import { withRouter } from 'react-router-dom';
 import './categorias.scss';
 import './preloading.scss';
@@ -12,17 +12,31 @@ const Categorias = (props) => {
 	const token = localStorage.getItem('token');
 	const [ categorias, setCategorias ] = useState([]);
 	const [ generos, setGeneros ] = useState([{_id: 'Todos'}]);
+	const [ temporadas, setTemporadas ] = useState([]);
 /* 	const [ loading, setLoading ] = useState(false); */
-	// const { loading, setLoading } = useContext(MenuContext);
+	const { reloadFilter } = useContext(MenuContext);
 
-	const [ categoriaSeleccionada, setCategoriaSeleccionada, ] = useState('');
-	const [ subcategoriaSeleccionada, setSubcategoriaSeleccionada, ] = useState('');
-	/* const [ generoSeleccionado, setGeneroSeleccionado ] = useState(''); */
+	const [ categoriaSeleccionada, setCategoriaSeleccionada, ] = useState(null);
+	const [ subcategoriaSeleccionada, setSubcategoriaSeleccionada, ] = useState(null);
+	const [ temporadaSeleccionada, setTemporadaSeleccionada, ] = useState(null);
+	const [ generoSeleccionado, setGeneroSeleccionado ] = useState(null);
 
 	useEffect(() => {
 		obtenerCategorias();
 		obtenerGeneros();
+		obtenerTemporadas();
 	}, []);
+
+	useEffect(() => {
+		limpiarFiltros();
+	}, [ reloadFilter ])
+
+	const limpiarFiltros = () => {
+		setCategoriaSeleccionada(null)
+		setSubcategoriaSeleccionada(null)
+		setTemporadaSeleccionada(null)
+		setGeneroSeleccionado(null)
+	}
 
 	async function obtenerCategorias() {
 		// setLoading(true);
@@ -51,12 +65,22 @@ const Categorias = (props) => {
 			.catch((res) => {
 			});
 	}
+
+	async function obtenerTemporadas() {
+		await clienteAxios
+			.get(`/productos/agrupar/temporadas`)
+			.then((res) => {
+				setTemporadas(res.data);
+			})
+			.catch((err) => {
+			});
+	}
 	
 	if(!generos || !categorias){
 		return null;
 	}
 
-	const categorias_nav = categorias.map((categoria) => {
+	const categorias_nav = categorias.map((categoria, index) => {
 		return (
 			<SubMenu
 				key={categoria.categoria}
@@ -64,9 +88,8 @@ const Categorias = (props) => {
 				className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat"
 				onTitleClick={(e) => {
 					if(e.key === categoria.categoria){
-						props.history.push(`/categorias/${categoria.categoria}`);
+						props.history.push(`/filtros/${temporadaSeleccionada}/${categoria.categoria}/${subcategoriaSeleccionada}/${generoSeleccionado}`);
 						setCategoriaSeleccionada(categoria.categoria);
-						setSubcategoriaSeleccionada();
 					}
 					
 				}}
@@ -78,7 +101,7 @@ const Categorias = (props) => {
 							/* className="nav-font-color-categorias" */
 							key={sub._id}
 							onClick={() => {
-								props.history.push(`/categorias/${categoriaSeleccionada}/${sub._id}`);
+								props.history.push(`/filtros/${temporadaSeleccionada}/${categoriaSeleccionada}/${sub._id}/${generoSeleccionado}`);
 								setSubcategoriaSeleccionada(sub._id);
 							}}
 						>
@@ -91,19 +114,38 @@ const Categorias = (props) => {
 		);
 	});
 
+	const temporadas_nav = temporadas.map((temporada, index) => {
+		return (
+			<Menu.Item
+				/* className="nav-font-color-categorias" */
+				key={index}
+				onClick={() => {
+					props.history.push(`/filtros/${temporada._id}/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${generoSeleccionado}`);
+					setTemporadaSeleccionada(temporada._id);
+				}}
+			>
+				{temporada._id}
+			</Menu.Item>
+		);
+	});
+
 	const categorias_generos = generos.map((generos) => {
 		return (
 			<Menu.Item
 				/* className="nav-font-color-categorias " */
 				key={generos._id}
 				onClick={() => {
-					if(!categoriaSeleccionada && !subcategoriaSeleccionada ){
+					props.history.push(`/filtros/${temporadaSeleccionada}/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${generos._id}`);
+					setGeneroSeleccionado(generos._id)
+					/* if(!categoriaSeleccionada && !subcategoriaSeleccionada ){
 						props.history.push(`/categoria/${generos._id}`)
 					}else if(categoriaSeleccionada && !subcategoriaSeleccionada){
 						props.history.push(`/categoria/${categoriaSeleccionada}/${generos._id}`)
 					}else if(categoriaSeleccionada && subcategoriaSeleccionada){
 						props.history.push(`/categoria/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${generos._id}`)
-					}
+					}else if(categoriaSeleccionada && subcategoriaSeleccionada && temporadaSeleccionada){
+						props.history.push(`/categoria/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${temporadaSeleccionada}/${generos._id}`)
+					} */
 				}}
 				
 			>
@@ -123,6 +165,13 @@ const Categorias = (props) => {
 				triggerSubMenuAction="click"
 			>
 				{categorias_nav}
+				<SubMenu
+					title="Temporadas"
+					className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat"
+
+				>
+				{temporadas_nav}
+			</SubMenu>
 				{generos.length !== 0 ? (
 					<SubMenu title="Género" className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat">
 						{categorias_generos}
