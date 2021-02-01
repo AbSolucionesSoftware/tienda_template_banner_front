@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import clienteAxios from '../../../../config/axios';
-import { Form, Button, Input, Select, Steps, notification, Upload, Spin, Divider, Alert } from 'antd';
+import { Form, Button, Input, Select, Steps, notification, Upload, Spin, Divider, Alert, Radio } from 'antd';
 import { UploadOutlined, PlusOutlined } from '@ant-design/icons';
 import './registrar_producto.scss';
 import { ProductoContext } from '../../contexts/ProductoContext';
@@ -47,7 +47,7 @@ function RegistrarProducto(props) {
 	const [ item, setItem ] = useState();
 	const [ buttonCat, setButtonCat ] = useState(true);
 	const [ categoriasBD, setCategoriasBD ] = useState([]);
-	const [ categoriasDefault, setCategoriasDefault ] = useState([ 'Ropa', 'Calzado' ]);
+	const [ categoriasDefault, setCategoriasDefault ] = useState([]);
 	const [ subcategoriasDefault, setSubcategoriasDefault ] = useState([]);
 	const [ subCategoriasBD, setSubCategoriasBD ] = useState([]);
 	const [ subCategoria, setSubCategoria ] = useState([]);
@@ -119,7 +119,7 @@ function RegistrarProducto(props) {
 				setSubcategoriasDefault([]);
 				setItem('');
 				setSelect('');
-				setCategoriasDefault([ 'Ropa', 'Calzado' ]);
+				setCategoriasDefault();
 				setValueSelect();
 			}
 			setUpload(false);
@@ -184,10 +184,10 @@ function RegistrarProducto(props) {
 	const [ tipoCategoria, setTipoCategoria ] = useState('');
 
 	const onSelect = (value) => {
-		setSelect(value);
-		setValueSelect(value);
-		if (value === 'Calzado' || value === 'Ropa') {
-			setTipoCategoria(value);
+		setSelect(value[1]);
+		setValueSelect(value[1]);
+		if (value[0] === 'Calzado' || value[0] === 'Ropa') {
+			setTipoCategoria(value[0]);
 		} else {
 			setTipoCategoria('Otros');
 		}
@@ -365,12 +365,17 @@ function RegistrarProducto(props) {
 			});
 	}
 
+	const obtenerAtributo = (e) => {
+		setTipoCategoria(e.target.value);
+	};
+
 	const addItemCategoria = () => {
-		setCategoriasDefault([ ...categoriasDefault, item ]);
+		setCategoriasDefault([ ...categoriasDefault, { tipoCategoria, _id: item } ]);
 		setSelect(item);
-		setTipoCategoria('Otros');
+		/* setTipoCategoria('Otros'); */
 		setDisabled(false);
 		setValueSelect(item);
+		form.resetFields();
 	};
 	const addItemSubCategoria = () => {
 		setSubcategoriasDefault([ ...subcategoriasDefault, item ]);
@@ -402,8 +407,8 @@ function RegistrarProducto(props) {
 	};
 
 	/* temporadas */
-	const [ temporada, setTemporada ] = useState();
-	const [ valueSelectTemporada, setValueSelectTemporada ] = useState()
+	const [ temporada, setTemporada ] = useState('');
+	const [ valueSelectTemporada, setValueSelectTemporada ] = useState();
 	const [ temporadaDefault, setTemporadaDefault ] = useState([]);
 
 	const onSelectTemporada = (value) => {
@@ -435,38 +440,59 @@ function RegistrarProducto(props) {
 			content: (
 				<div className="d-flex justify-content-center align-items-center mt-4 mb-2">
 					<div className="text-center">
-						<h2 className="mb-5">Selecciona una categoria para continuar</h2>
+						<h2 className="mb-5">Selecciona una categoria para continuar o agrega una nueva</h2>
+						<Form form={form}>
+							<Form.Item className="my-3">
+								<Form.Item name="categoria">
+									<Input
+										name="categoria"
+										disabled={disabledformProductos}
+										placeholder="Categoria"
+										style={{ width: 300 }}
+										onChange={onCategoriaChange}
+									/>
+								</Form.Item>
+							</Form.Item>
+							<Form.Item className="my-3">
+								<Form.Item name="atributo">
+								<Radio.Group onChange={obtenerAtributo} name="atributo">
+									<Radio.Button value="Calzado">Calzado</Radio.Button>
+									<Radio.Button value="Ropa">Ropa</Radio.Button>
+									<Radio.Button value="Otros">Otros</Radio.Button>
+								</Radio.Group>
+								<Button type="primary" onClick={addItemCategoria}>
+									Añadir
+								</Button>
+								</Form.Item>
+							</Form.Item>
+						</Form>
+
 						<Select
 							disabled={loadingCombo}
 							loading={loadingCombo}
 							value={valueSelect}
 							style={{ width: 300 }}
 							placeholder="Seleciona una categoria"
-							onChange={onSelect}
-							dropdownRender={(menu) => (
-								<div>
-									{menu}
-									<Divider style={{ margin: '4px 0' }} />
-									<div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
-										<Input style={{ flex: 'auto' }} onChange={onCategoriaChange} />
-										<Button disabled={buttonCat} onClick={addItemCategoria}>
-											<PlusOutlined style={{ fontSize: 20 }} /> Nueva
-										</Button>
-									</div>
-								</div>
-							)}
+							onChange={(e) => onSelect(e)}
+							dropdownRender={(menu) => menu}
 						>
-							{categoriasDefault.map((item) => <Option key={item}>{item}</Option>)}
-							{categoriasBD.length === 0 ? (
-								<Option />
-							) : (
+							{categoriasDefault && categoriasDefault.length !== 0 ? (
+								categoriasDefault.map((item) => (
+									<Option key={item} value={[ item.tipoCategoria, item._id ]}>
+										{item._id}
+									</Option>
+								))
+							) : null}
+							{categoriasBD && categoriasBD.length !== 0 ? (
 								categoriasBD.map((item) => {
-									if (item._id === 'Ropa' || item._id === 'Calzado') {
-										return null;
-									} else {
-										return <Option key={item._id}>{item._id}</Option>;
-									}
+									return (
+										<Option key={item._id} value={[ item.tipoCategoria, item._id ]}>
+											{item._id}
+										</Option>
+									);
 								})
+							) : (
+								<Option />
 							)}
 						</Select>
 					</div>
@@ -554,10 +580,7 @@ function RegistrarProducto(props) {
 													{menu}
 													<Divider style={{ margin: '4px 0' }} />
 													<div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
-														<Input
-															style={{ flex: 'auto' }}
-															onChange={onTemporadaChange}
-														/>
+														<Input style={{ flex: 'auto' }} onChange={onTemporadaChange} />
 														<Button disabled={buttonCat} onClick={addItemTemporada}>
 															<PlusOutlined style={{ fontSize: 20 }} /> Nueva
 														</Button>
@@ -582,7 +605,7 @@ function RegistrarProducto(props) {
 								</Form.Item>
 								<Form.Item label="Género" onChange={datosForm}>
 									<Form.Item
-										name="genero"/* 
+										name="genero" /* 
 										rules={[ { required: true, message: 'Este campo es requerido' } ]} */
 										noStyle
 									>
@@ -635,7 +658,13 @@ function RegistrarProducto(props) {
 										noStyle
 										name="precio"
 									>
-										<Input min="1" type="number" disabled={disabledformProductos} name="precio" step=".01" />
+										<Input
+											min="1"
+											type="number"
+											disabled={disabledformProductos}
+											name="precio"
+											step=".01"
+										/>
 									</Form.Item>
 								</Form.Item>
 								<Form.Item label="Color del producto" onChange={datosForm}>
@@ -732,7 +761,7 @@ function RegistrarProducto(props) {
 									</Button>
 								</Form.Item>
 							</Form>
-							{select === 'Ropa' ? (
+							{tipoCategoria === 'Ropa' ? (
 								<div className="d-flex justify-content-center">
 									<ProductoContext.Provider value={[ productoID, disabledform ]}>
 										<RegistrarTalla disabledButtons={setDisabled} />
@@ -741,7 +770,7 @@ function RegistrarProducto(props) {
 							) : (
 								<div />
 							)}
-							{select === 'Calzado' ? (
+							{tipoCategoria === 'Calzado' ? (
 								<div>
 									<ProductoContext.Provider value={[ productoID, disabledform ]}>
 										<RegistrarNumero disabledButtons={setDisabled} />

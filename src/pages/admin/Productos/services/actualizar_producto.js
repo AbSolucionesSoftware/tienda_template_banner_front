@@ -140,7 +140,7 @@ function ActualizarProducto(props) {
 						nombre: res.data.nombre,
 						categoria: res.data.categoria,
 						subCategoria: res.data.subCategoria,
-						temporada: res.data.temporada,
+						temporada: res.data.temporada ? res.data.temporada : '',
 						genero: res.data.genero,
 						precio: res.data.precio,
 						color: res.data.color,
@@ -154,7 +154,7 @@ function ActualizarProducto(props) {
 					setColor(res.data.colorHex);
 					setGenero(res.data.genero);
 					setSubCategoria(res.data.subCategoria);
-					setTemporada(res.data.temporada);
+					setTemporada(res.data.temporada ? res.data.temporada : '');
 				})
 				.catch((err) => {
 					setLoading(false);
@@ -237,7 +237,7 @@ function ActualizarProducto(props) {
 	};
 	const onSubCategoriaChange = (e) => {
 		if (e.target.value.length !== 0) {
-			setItem(e.target.value);
+			setItem(e.target.value.capitalize());
 			setSubCategoria(e.target.value);
 			setButtonCat(false);
 		} else {
@@ -460,12 +460,12 @@ function ActualizarProducto(props) {
 		<Tabs defaultActiveKey="1">
 			<TabPane tab="Actualizar datos del producto" key="1">
 				<Spin size="large" spinning={loading}>
-					{productos.categoria === 'Ropa' ? (
+					{productos.tipoCategoria === 'Ropa' ? (
 						<div className="d-flex justify-content-center">{<ActualizarTalla />}</div>
 					) : (
 						<div />
 					)}
-					{productos.categoria === 'Calzado' ? <div>{<ActualizarNumero />}</div> : <div />}
+					{productos.tipoCategoria === 'Calzado' ? <div>{<ActualizarNumero />}</div> : <div />}
 					<Form {...layout} name="nest-messages" onFinish={subirDatos} onFinishFailed={onError} form={form}>
 						<Form.Item name="codigo" label="Código de barras" onChange={obtenerValores}>
 							<Input name="codigo" placeholder="Campo opcional" />
@@ -479,47 +479,43 @@ function ActualizarProducto(props) {
 								<Input name="nombre" />
 							</Form.Item>
 						</Form.Item>
-						{productos.tipoCategoria === 'Otros' ? (
-							<Form.Item label="Categoria" onChange={obtenerValores}>
-								<Form.Item name="categoria">
-									<Select
-										disabled={loadingCombo}
-										loading={loadingCombo}
-										value={valueSelectCat}
-										style={{ width: 300 }}
-										placeholder="Seleciona una categoria"
-										onChange={onSelect}
-										dropdownRender={(menu) => (
-											<div>
-												{menu}
-												<Divider style={{ margin: '4px 0' }} />
-												<div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
-													<Input style={{ flex: 'auto' }} onChange={onCategoriaChange} />
-													<Button disabled={buttonCat} onClick={addItemCategoria}>
-														<PlusOutlined style={{ fontSize: 20 }} /> Nueva
-													</Button>
-												</div>
+						<Form.Item label="Categoria" onChange={obtenerValores}>
+							<Form.Item name="categoria">
+								<Select
+									disabled={loadingCombo}
+									loading={loadingCombo}
+									value={valueSelectCat}
+									style={{ width: 300 }}
+									placeholder="Seleciona una categoria"
+									onChange={onSelect}
+									dropdownRender={(menu) => (
+										<div>
+											{menu}
+											<Divider style={{ margin: '4px 0' }} />
+											<div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
+												<Input style={{ flex: 'auto' }} onChange={onCategoriaChange} />
+												<Button disabled={buttonCat} onClick={addItemCategoria}>
+													<PlusOutlined style={{ fontSize: 20 }} /> Nueva
+												</Button>
 											</div>
-										)}
-									>
-										{categoriasDefault.map((item) => <Option key={item}>{item}</Option>)}
-										{categoriasBD.length === 0 ? (
-											<Option />
-										) : (
-											categoriasBD.map((item) => {
-												if (item._id === 'Ropa' || item._id === 'Calzado') {
-													return null;
-												} else {
-													return <Option key={item._id}>{item._id}</Option>;
-												}
-											})
-										)}
-									</Select>
-								</Form.Item>
+										</div>
+									)}
+								>
+									{categoriasDefault.map((item) => <Option key={item}>{item}</Option>)}
+									{categoriasBD.length === 0 ? (
+										<Option />
+									) : (
+										categoriasBD.map((item) => {
+											if (item._id === 'Ropa' || item._id === 'Calzado') {
+												return null;
+											} else {
+												return <Option key={item._id}>{item._id}</Option>;
+											}
+										})
+									)}
+								</Select>
 							</Form.Item>
-						) : (
-							<Form.Item className="d-none" />
-						)}
+						</Form.Item>
 						<Form.Item label="Subcategoria" name="categoria" onChange={obtenerValores}>
 							<Form.Item
 								name="subCategoria"
