@@ -168,7 +168,9 @@ export default function RegistroPublicidad(props) {
 			.then((res) => {
 				let generos = [];
 				res.data.forEach((genero) => {
-					generos.push({ label: genero._id, value: genero._id });
+					if(genero._id !== 'Ninguno'){
+						generos.push({ label: genero._id, value: genero._id });
+					}
 				});
 				setGenerosBD(generos);
 			})
