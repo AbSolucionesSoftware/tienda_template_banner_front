@@ -30,9 +30,7 @@ export default function CardSecundaria(props) {
 								)}%OFF
 							</p>
 						</div>
-						<div className="contenedor-titulos-productos-sec titulo-elipsis">
-							<h1 className="titulo-producto">{productos.productoPromocion.nombre}</h1>
-						</div>	
+						
 						<Card
 							bordered={false}
 							cover={
@@ -54,21 +52,18 @@ export default function CardSecundaria(props) {
 							className="margen"
 						>
 							<div className="contenedor-precios-productos">
-								<h2 className="h5 precio-producto rebajado mr-2">
-									${formatoMexico(productos.productoPromocion.precio)}
-								</h2>
-								<h3 className="h5 card-precio-rebaja d-inline mr-1">
-									${formatoMexico(productos.precioPromocion)}
-								</h3>
+								<div >
+									<h2 className="h5 precio-producto rebajado mr-2">
+										${formatoMexico(productos.productoPromocion.precio)}
+									</h2>
+									<h3 className="h5 card-precio-rebaja d-inline mr-1">
+										${formatoMexico(productos.precioPromocion)}
+									</h3>
+								</div>
 								
 							</div>
-							<div className="d-flex flex-row-reverse">
-								<Button
-									size="large"
-									shape="circle"
-									className="color-boton" 
-									icon={<ShoppingCartOutlined style={{fontSize: 25}}/>} 
-								/>
+							<div className="contenedor-titulos-productos-sec">
+								<h1 className="titulo-producto">{productos.productoPromocion.nombre}</h1>
 							</div>
 						</Card>
 					</Card>
@@ -82,7 +77,7 @@ export default function CardSecundaria(props) {
 					<Card
 						hoverable 
 						style={gridStyle} 
-						className="contenedor-card-producto-secundario" 
+						className="contenedor-card-producto-secundario margen" 
 						bordered={false}
 					>
 						{productos.promocion.length !== 0 ? (
@@ -100,9 +95,7 @@ export default function CardSecundaria(props) {
 						) : (
 							<div className="d-none" />
 						)}
-						<div className="contenedor-titulos-productos-sec titulo-elipsis">
-							<h1 className="titulo-producto">{productos.nombre}</h1>
-						</div>	
+							
 						<Card
 							bordered={false}
 							cover={
@@ -137,16 +130,8 @@ export default function CardSecundaria(props) {
 									);
 								})
 							)}
-							<div className="d-flex flex-row-reverse">
-								<Button
-									size="large"
-									shape="circle"
-									className="color-boton" 
-									icon={< ShoppingCartOutlined
-											style={{ fontSize: 25 }}
-										/>
-									} 
-								/>
+							<div className="contenedor-titulos-productos-sec titulo-elipsis">
+								<h1 className="titulo-producto">{productos.nombre}</h1>
 							</div>
 						</Card>
 					</Card>

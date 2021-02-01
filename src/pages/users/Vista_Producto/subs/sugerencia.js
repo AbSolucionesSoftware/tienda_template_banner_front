@@ -251,13 +251,14 @@ const Sugerencia = (props) => {
 			}
 		}
 	}
-
 	return (
 		<Spin spinning={loading}>
 			<div>
 				{
-					dataEstados.todos !== true || dataEstados !== false ? (
-						<Estados_disponibles />
+					dataEstados.todos !== true ? (
+						<div>
+							<Estados_disponibles />
+						</div>
 					):(
 						null
 					)

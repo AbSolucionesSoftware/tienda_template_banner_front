@@ -16,7 +16,6 @@ const BgElement = Element.BgElement;
 
  function Banner_Largo(props) {
     const {banner, imagenLocal } = props;
-    console.log(banner);
 
     /* const handleSelect = (selectedIndex, e) => {
 		setIndex(selectedIndex);

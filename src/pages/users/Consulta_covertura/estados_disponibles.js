@@ -32,7 +32,7 @@ export default function Estados_disponibles() {
   return (
     <div>
       <div className="text-center ">
-      <h3>Tenemos envios a:</h3>
+        <h3>Tenemos envios a:</h3>
         {
           dataEstados.map((estados) => {
             estados.municipios.map((municipio) => {
@@ -42,7 +42,7 @@ export default function Estados_disponibles() {
             if (estados.todos || dataEstados.length === 0) {
               
             }else{
-              return( 
+              return(
                 <Tooltip
                   placement="left"
                   key={estados._id}

@@ -14,12 +14,12 @@
 .titulo-producto{
     width: 100%;
 }
-.titulo-elipsis{
-    // padding: 5px;
-    height: 30px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+// .titulo-elipsis{
+//     // padding: 5px;
+//     height: 0px;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+// }
 /* .descripcion-producto{
     overflow: hidden;
     text-overflow: ellipsis;
@@ -46,13 +46,13 @@
     top: 0;
     left: 0;
 }
-.contenedor-card-producto-secundario:hover .titulo-elipsis{
-    height: 50px;
-    transition-duration: .2s;
-    transition-delay: .3s;
+// .contenedor-card-producto-secundario:hover .titulo-elipsis{
+//     height: 50px;
+//     transition-duration: .2s;
+//     transition-delay: .3s;
     
-    /* transition: ease-out .2s; */
-}
+//     /* transition: ease-out .2s; */
+// }
 .contenedor-imagen-producto-secundario{
     height: 180px; 
     width: 220px;
@@ -83,7 +83,7 @@
     width: 45px;
 }
 .contenedor-titulos-productos-sec > h1 {
-    font-size: 16px;
+    font-size: 14px;
 }
 .contenedor-precios-productos > h2 {
     font-size: 15px;
