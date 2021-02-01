@@ -69,7 +69,7 @@ const InfoTienda = (props) => {
 				) : (
 					<p />
 				)}
-				{tienda.length !== 0 ? (
+				{/* {tienda.length !== 0 ? (
 					tienda.ubicacion.map((ubicacion) => {
 						return (
 							<div key={ubicacion._id}>
@@ -89,7 +89,7 @@ const InfoTienda = (props) => {
 					})
 				) : (
 					<p />
-				)}
+				)} */}
 			</div>
 		</Spin>
 	);

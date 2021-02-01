@@ -22,10 +22,11 @@ function CardsProductos({tipo, orientacion, banner, imagenLocal}) {
     const [ loading, setLoading ] = useState(false);
     
     useEffect(() => {
-        async function obtenerProductos(limit, page) {
+        async function obtenerProductos() {
             setLoading(true);
-            await clienteAxios
-                .get(`/productos/filter?${tipo.categoria ? `categoria=${tipo.categoria}` : `temporada=${tipo.temporada}`}`)
+			await clienteAxios
+			// tipo.categoria ? `categoria=${tipo.categoria}` : `temporada=${tipo.temporada}`
+                .get(`/productos/filter?${tipo.categoria ? `categoria=${tipo.categoria}` : tipo.temporada ? `temporada=${tipo.temporada}` : `genero=${tipo.genero}` }`)
                 .then((res) => {
                     setProductos(res.data.posts);
                     setProductosPaginacion(res.data.posts);

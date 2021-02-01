@@ -10,7 +10,7 @@ function Banner_Doble(props) {
     
     const render = banner.banners.map((banner) => {
         return(
-            <div key={banner._id} className="col-lg-6 mt-4 container-imagenes">
+            <div key={banner._id} className="col-lg-6 container-imagenes">
                 <div className="container-banner-doble">
                     <Link to={`/searching/${banner.tipo.categoria || banner.tipo.temporada}`}>
                         <img
@@ -26,7 +26,7 @@ function Banner_Doble(props) {
     )
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-2">
             <div className="row">
                 {render}
             </div>

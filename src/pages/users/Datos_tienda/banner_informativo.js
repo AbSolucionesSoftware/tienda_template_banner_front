@@ -6,7 +6,7 @@ import './banner.scss'
 
 export default function BannerInformativo() {
     return (
-        <div className="container-fluid container-mini-banner">
+        <div className="container-fluid container-mini-banner mt-5">
             <div className="row">
                 <div className="col-lg-8 card-informativa">
                     <p className="mr-5 mt-2 ">
@@ -18,7 +18,7 @@ export default function BannerInformativo() {
                 <div className="col-lg-4 card-informativa">
                     <Link to="/perfiles">
                         <Button 
-                            className="mt-2 color-boton"
+                            className="mt-1 color-boton"
                             shape="round"
                             size='large'
                             style={{fontSize: 20}}

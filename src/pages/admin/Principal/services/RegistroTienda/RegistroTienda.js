@@ -22,8 +22,8 @@ import PoliticasEnvio from "./politicas_envio";
 import Registro_Politicas from "./registroPoliticas";
 import Cobertura_envio from "./cobertura_envios";
 import aws from "../../../../../config/aws";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function RegistroTienda(props) {
   const { drawnerClose } = props;
@@ -61,12 +61,12 @@ export default function RegistroTienda(props) {
     if (datosNegocio !== undefined) {
       console.log(datosNegocio);
       setImagen(datosNegocio.imagenLogo);
-      if (datosNegocio.ubicacion[0].lat === "undefined") {
-        datosNegocio.ubicacion[0].lat = "";
-      }
-      if (datosNegocio.ubicacion[0].lng === "undefined") {
-        datosNegocio.ubicacion[0].lng = "";
-      }
+      // if (datosNegocio.ubicacion[0].lat === "undefined") {
+      //   datosNegocio.ubicacion[0].lat = "";
+      // }
+      // if (datosNegocio.ubicacion[0].lng === "undefined") {
+      //   datosNegocio.ubicacion[0].lng = "";
+      // }
       if (datosNegocio.linkFace === "undefined") {
         datosNegocio.linkFace = "";
       }
@@ -84,8 +84,8 @@ export default function RegistroTienda(props) {
         colonia: datosNegocio.direccion[0].colonia,
         ciudad: datosNegocio.direccion[0].ciudad,
         estado: datosNegocio.direccion[0].estado,
-        lat: datosNegocio.ubicacion[0].lat,
-        lng: datosNegocio.ubicacion[0].lng,
+        // lat: datosNegocio.ubicacion[0].lat,
+        // lng: datosNegocio.ubicacion[0].lng,
         imagenCorp: datosNegocio.imagenCorp,
         linkFace: datosNegocio.linkFace,
         linkInsta: datosNegocio.linkInsta,
@@ -99,8 +99,8 @@ export default function RegistroTienda(props) {
         colonia: datosNegocio.direccion[0].colonia,
         ciudad: datosNegocio.direccion[0].ciudad,
         estado: datosNegocio.direccion[0].estado,
-        lat: datosNegocio.ubicacion[0].lat,
-        lng: datosNegocio.ubicacion[0].lng,
+        // lat: datosNegocio.ubicacion[0].lat,
+        // lng: datosNegocio.ubicacion[0].lng,
         imagenCorp: datosNegocio.imagenCorp,
         linkFace: datosNegocio.linkFace,
         linkInsta: datosNegocio.linkInsta,
@@ -158,8 +158,8 @@ export default function RegistroTienda(props) {
     formData.append("colonia", datos.colonia);
     formData.append("ciudad", datos.ciudad);
     formData.append("estado", datos.estado);
-    formData.append("lat", datos.lat);
-    formData.append("lng", datos.lng);
+    // formData.append("lat", datos.lat);
+    // formData.append("lng", datos.lng);
     // formData.append("politicas", datos.politicas);
     formData.append("imagenCorp", datos.imagenCorp);
     formData.append("linkFace", datos.linkFace);
@@ -450,7 +450,7 @@ export default function RegistroTienda(props) {
                 </div>
               </div>
 
-              <div className="row d-flex justify-content-center align-items-center">
+              {/* <div className="row d-flex justify-content-center align-items-center">
                 <Divider>Ubicación</Divider>
                 <div className="row justify-content-center">
                   <div className="col-lg-12 text-center">
@@ -509,7 +509,7 @@ export default function RegistroTienda(props) {
                     </Form.Item>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="row">
                 <Divider>Redes sociales</Divider>

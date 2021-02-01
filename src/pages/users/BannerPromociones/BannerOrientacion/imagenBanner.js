@@ -9,7 +9,7 @@ export default function Imagen_Banner(props) {
 
         return(
             <div className="container-imagenes">
-                <Link to={`/searching/${link.categoria || link.temporada}`}>
+                <Link to={`/searching/${link.categoria || link.temporada || link.genero}`}>
                     <div className="container-image">
                     <img
                         className="image-orientancion"
