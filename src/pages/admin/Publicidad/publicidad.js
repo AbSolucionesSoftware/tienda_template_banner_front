@@ -445,14 +445,26 @@ function CollapseBanners({ props, banner, showDeleteConfirm, token, errors, relo
 										<div className="d-flex">
 											<h6 className="mr-2">
 												<b>
-													{res.tipo ? res.tipo.categoria ? 'Categoria: ' : 'Temporada: ' : ''}
+													{res.tipo ? res.tipo.categoria ? (
+														'Categoria: '
+													) : res.tipo.temporada ? (
+														'Temporada: '
+													) : (
+														'Género'
+													) : (
+														''
+													)}
 												</b>
 											</h6>
 											<h6>
 												{res.tipo ? res.tipo.categoria ? (
 													res.tipo.categoria
-												) : (
+												) : res.tipo.temporada ? (
 													res.tipo.temporada
+												) : res.tipo.genero ? (
+													res.tipo.genero
+												) : (
+													''
 												) : (
 													'sin categoria/temporada'
 												)}
