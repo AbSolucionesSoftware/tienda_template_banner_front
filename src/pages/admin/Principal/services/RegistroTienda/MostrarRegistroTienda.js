@@ -39,6 +39,7 @@ function MostrarRegistroTienda(props) {
 	};
 	const drawnerClose = () => {
 		setVisible(false);
+		setReloadInfo(!reloadInfo)
 	};
 
 	const [ current, setCurrent ] = useState(0);

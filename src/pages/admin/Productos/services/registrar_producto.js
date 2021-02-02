@@ -119,7 +119,7 @@ function RegistrarProducto(props) {
 				setSubcategoriasDefault([]);
 				setItem('');
 				setSelect('');
-				setCategoriasDefault();
+				setCategoriasDefault([]);
 				setValueSelect();
 			}
 			setUpload(false);
@@ -128,6 +128,7 @@ function RegistrarProducto(props) {
 			setDisabledFormProductos(false);
 			obtenerCategorias();
 			obtenerTemporadasBD();
+			form.resetFields();
 		},
 		[ reload, form ]
 	);
@@ -443,9 +444,9 @@ function RegistrarProducto(props) {
 						<h2 className="mb-5">Selecciona una categoria para continuar o agrega una nueva</h2>
 						<Form form={form}>
 							<Form.Item className="my-3">
-								<Form.Item name="categoria">
+								<Form.Item name="categorias">
 									<Input
-										name="categoria"
+										name="categorias"
 										disabled={disabledformProductos}
 										placeholder="Categoria"
 										style={{ width: 300 }}
@@ -454,8 +455,8 @@ function RegistrarProducto(props) {
 								</Form.Item>
 							</Form.Item>
 							<Form.Item className="my-3">
-								<Form.Item name="atributo">
-								<Radio.Group onChange={obtenerAtributo} name="atributo">
+								<Form.Item name="atributos">
+								<Radio.Group onChange={obtenerAtributo} name="atributos">
 									<Radio.Button value="Calzado">Calzado</Radio.Button>
 									<Radio.Button value="Ropa">Ropa</Radio.Button>
 									<Radio.Button value="Otros">Otros</Radio.Button>

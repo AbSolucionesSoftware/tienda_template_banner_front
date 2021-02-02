@@ -115,18 +115,21 @@ const Categorias = (props) => {
 	});
 
 	const temporadas_nav = temporadas.map((temporada, index) => {
-		return (
-			<Menu.Item
-				/* className="nav-font-color-categorias" */
-				key={index}
-				onClick={() => {
-					props.history.push(`/filtros/${temporada._id}/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${generoSeleccionado}`);
-					setTemporadaSeleccionada(temporada._id);
-				}}
-			>
-				{temporada._id}
-			</Menu.Item>
-		);
+		if(temporada._id){
+			return (
+				<Menu.Item
+					/* className="nav-font-color-categorias" */
+					key={index}
+					onClick={() => {
+						props.history.push(`/filtros/${temporada._id}/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${generoSeleccionado}`);
+						setTemporadaSeleccionada(temporada._id);
+					}}
+				>
+					{temporada._id}
+				</Menu.Item>
+			);
+		}
+		return
 	});
 
 	const categorias_generos = generos.map((generos) => {
@@ -137,15 +140,6 @@ const Categorias = (props) => {
 				onClick={() => {
 					props.history.push(`/filtros/${temporadaSeleccionada}/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${generos._id}`);
 					setGeneroSeleccionado(generos._id)
-					/* if(!categoriaSeleccionada && !subcategoriaSeleccionada ){
-						props.history.push(`/categoria/${generos._id}`)
-					}else if(categoriaSeleccionada && !subcategoriaSeleccionada){
-						props.history.push(`/categoria/${categoriaSeleccionada}/${generos._id}`)
-					}else if(categoriaSeleccionada && subcategoriaSeleccionada){
-						props.history.push(`/categoria/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${generos._id}`)
-					}else if(categoriaSeleccionada && subcategoriaSeleccionada && temporadaSeleccionada){
-						props.history.push(`/categoria/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${temporadaSeleccionada}/${generos._id}`)
-					} */
 				}}
 				
 			>
