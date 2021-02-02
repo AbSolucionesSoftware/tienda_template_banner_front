@@ -83,7 +83,21 @@
     color: rgb(238, 155, 0);
     width: 45px;
 }
+
+
+.contenedor-informacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.infor-center{
+    justify-content: center;
+    align-items: center;
+}
+
+
 .contenedor-titulos-productos-sec > h1 {
+    margin-top: 10px;
     font-size: 14px;
 }
 .contenedor-precios-sec > h2 {

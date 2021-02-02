@@ -115,21 +115,21 @@ export default function CardSecundaria(props) {
 						>
 							
 							{!productos.promocion.length ? (
-								<div className="row ">
+								<div className="row contenedor-informacion">
 									<div className="col-lg-6">
-										<div className="contenedor-precios-sec">
+										<div className="contenedor-precios-sec infor-center">
 											<h3>${formatoMexico(productos.precio)}</h3>
 										</div>
 									</div>
-									<div className="col-lg-6 contenedor-titulos-productos-sec titulo-elipsis-sec">
+									<div className="col-lg-6 infor-center contenedor-titulos-productos-sec titulo-elipsis-sec">
 										<h1 className="titulo-producto">{productos.nombre}</h1>
 									</div>
 								</div>
 							) : (
 								productos.promocion.map((promo) => {
 									return (
-										<div className="row">
-											<div className="col-lg-6 contenedor-precios-sec" key={promo._id}>
+										<div className="row contenedor-informacion">
+											<div className="col-lg-6 infor-center contenedor-precios-sec" key={promo._id}>
 												<h2 className="h5 precio-producto rebajado-sec mr-2">
 													${formatoMexico(productos.precio)}
 												</h2>
