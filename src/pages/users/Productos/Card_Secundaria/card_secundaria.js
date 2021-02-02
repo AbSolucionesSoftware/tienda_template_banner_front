@@ -4,7 +4,7 @@ import aws from '../../../../config/aws';
 import { Card, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import './productos.scss';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+// import { ShoppingCartOutlined } from '@ant-design/icons';
 import { formatoMexico, agregarPorcentaje } from '../../../../config/reuserFunction';
 
 const gridStyle = { width: '100%', marginBottom: '1.5rem' };
@@ -22,14 +22,14 @@ export default function CardSecundaria(props) {
 						className="contenedor-card-producto-secundario" 
 						bordered={false}
 					>
-						<div className="contenedor-oferta">
+						{/* <div className="contenedor-oferta">
 							<p className="h4 porcentaje-descuento d-inline">
 								{agregarPorcentaje(
 									productos.precioPromocion,
 									productos.productoPromocion.precio
 								)}%OFF
 							</p>
-						</div>
+						</div> */}
 						
 						<Card
 							bordered={false}
@@ -51,16 +51,17 @@ export default function CardSecundaria(props) {
 							}
 							className="margen"
 						>
-							<div className=" row contenedor-precios-productos">
+							<div className=" row contenedor-precios-sec">
 								<div className="col-lg-6">
-									<h2 className="h5 precio-producto rebajado mr-2">
+									<h2 className="h5  rebajado-sec mr-2">
 										${formatoMexico(productos.productoPromocion.precio)}
 									</h2>
+									
 									<h3 className="h5 card-precio-rebaja d-inline mr-1">
 										${formatoMexico(productos.precioPromocion)}
 									</h3>
 								</div>
-								<div className="col-lg-6 contenedor-titulos-productos-sec">
+								<div className="col-lg-6 contenedor-titulos-productos-sec titulo-elipsis-sec">
 									<h1 className="titulo-producto">{productos.productoPromocion.nombre}</h1>
 								</div>
 								
@@ -114,9 +115,11 @@ export default function CardSecundaria(props) {
 						>
 							
 							{!productos.promocion.length ? (
-								<div className="row contenedor-precios-productos">
+								<div className="row ">
 									<div className="col-lg-6">
-										<h3 className="">${formatoMexico(productos.precio)}</h3>
+										<div className="contenedor-precios-sec">
+											<h3>${formatoMexico(productos.precio)}</h3>
+										</div>
 									</div>
 									<div className="col-lg-6 contenedor-titulos-productos-sec titulo-elipsis-sec">
 										<h1 className="titulo-producto">{productos.nombre}</h1>
@@ -126,8 +129,8 @@ export default function CardSecundaria(props) {
 								productos.promocion.map((promo) => {
 									return (
 										<div className="row">
-											<div className="col-lg-6 contenedor-precios-productos" key={promo._id}>
-												<h2 className="h5 precio-producto rebajado mr-2">
+											<div className="col-lg-6 contenedor-precios-sec" key={promo._id}>
+												<h2 className="h5 precio-producto rebajado-sec mr-2">
 													${formatoMexico(productos.precio)}
 												</h2>
 												<h3 className="h5 card-precio-rebaja d-inline mr-1">

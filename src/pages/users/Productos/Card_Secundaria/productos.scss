@@ -16,7 +16,7 @@
 }
 .titulo-elipsis-sec{
     // padding: 5px;
-    height: 20px;
+    height: 60px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -65,8 +65,8 @@
     max-width: 100%;
     max-height: 100%;
 }
-.rebajado{
-    font-size: 15px;
+.rebajado-sec{
+    font-size: 13px;
 }
 .contenedor-oferta{
     position: absolute;
@@ -86,13 +86,13 @@
 .contenedor-titulos-productos-sec > h1 {
     font-size: 14px;
 }
-.contenedor-precios-productos > h2 {
-    font-size: 15px;
+.contenedor-precios-sec > h2 {
+    font-size: 13px;
 }
-.contenedor-precios-productos > h3 {
-    font-size: 15px;
+.contenedor-precios-sec > h3 {
+    font-size: 23px;
 }
-.contenedor-precios-productos > p {
+.contenedor-precios-sec > p {
     font-size: 15px!important;
 }
 @media(max-width: 768px){

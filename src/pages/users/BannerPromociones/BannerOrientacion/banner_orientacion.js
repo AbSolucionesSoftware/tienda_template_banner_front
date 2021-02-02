@@ -9,5 +9,5 @@ export default function Banner_Orientacion({ banner, imagenLocal }) {
 		<CardsProductos key={index} tipo={subBanner.tipo} orientacion={subBanner.orientacion} banner={subBanner} imagenLocal={imagenLocal} />
 	));
 
-	return <div className="mt-2">{render}</div>;
+	return <div className="mt-3">{render}</div>;
 }

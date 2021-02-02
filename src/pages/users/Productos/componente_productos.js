@@ -57,24 +57,15 @@ export default function ComponenteProductos(props) {
 									}}
 								/> */}
 							</div>						
-							<div className="contenedor-precios-productos">
+							<div className="contenedor-precios-productos mt-2">
 								<h2 className="h5 precio-producto rebajado mr-2">
 									${formatoMexico(productos.productoPromocion.precio)}
 								</h2>
 								<h3 className="h5 card-precio-rebaja d-inline mr-1">
 									${formatoMexico(productos.precioPromocion)}
 								</h3>
-								
 							</div>
 						</Card>
-						<div className="d-flex flex-row-reverse">
-							<Button
-								size="large"
-								shape="circle"
-								className="color-boton" 
-								icon={<ShoppingCartOutlined style={{fontSize: 25}}/>} 
-							/>
-						</div>
 					</Card>
 				</Link>
 			</div>
@@ -128,13 +119,13 @@ export default function ComponenteProductos(props) {
 								/> */}
 							</div>
 							{!productos.promocion.length ? (
-								<div className="contenedor-precios-productos">
+								<div className="contenedor-precios-productos mt-2">
 									<h3 className="">${formatoMexico(productos.precio)}</h3>
 								</div>
 							) : (
 								productos.promocion.map((promo) => {
 									return (
-										<div className="contenedor-precios-productos" key={promo._id}>
+										<div className="contenedor-precios-productos mt-2" key={promo._id}>
 											<h2 className="h5 precio-producto rebajado mr-2">
 												${formatoMexico(productos.precio)}
 											</h2>
@@ -146,17 +137,6 @@ export default function ComponenteProductos(props) {
 								})
 							)}
 						</Card>
-						<div className="d-flex flex-row-reverse">
-							<Button
-								size="large"
-								shape="circle"
-								className="color-boton" 
-								icon={< ShoppingCartOutlined
-										style={{ fontSize: 25 }}
-									/>
-								} 
-							/>
-						</div>
 					</Card>
 				</Link>
 			</div>

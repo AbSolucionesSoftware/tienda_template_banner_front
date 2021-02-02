@@ -26,7 +26,7 @@ function Banner_Doble(props) {
     )
 
     return (
-        <div className="container mt-2">
+        <div className="container mt-3">
             <div className="row">
                 {render}
             </div>
