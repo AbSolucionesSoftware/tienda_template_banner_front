@@ -98,7 +98,7 @@ const FooterPage = (props) => {
             return (
                     <Button 
                         type="link"
-                        style={{color: 'black'}}
+                        className="footer-font-color"
                         key={categoria.categoria}
                     >
                         <Link to={(`/categorias/${categoria.categoria}`)}> 
@@ -133,9 +133,9 @@ const FooterPage = (props) => {
                             {telefono !== '' && telefono ? 
                             <div className="row mt-3">
                                 <PhoneOutlined className="mt-1" style={{fontSize: 55, marginLeft: 5}} />
-                                <div className="px-3 mt-2">
+                                <div className=" px-3 mt-2">
                                     <p>¿Tienes preguntas? ¡Contáctanos!:</p> 
-                                    {telefono !== '' ? (<h1 style={{fontSize: 20}}>{telefono} </h1>): ""}
+                                    {telefono !== '' ? (<h1 className="footer-font-color" style={{fontSize: 20}}>{telefono} </h1>): ""}
                                 </div>
                             </div>
                             : ""}

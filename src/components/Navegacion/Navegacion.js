@@ -123,7 +123,7 @@ const Navegacion = (props) => {
 					<div className="top-menu row a3 container-prin">
 						<div className="col-lg-12 container-pages a4">
 							<Menu
-								className="float-right nav-font-pages a5"
+								className="navbar-menu-sesion float-right nav-font-pages a5"
 								/* theme="light" */
 								mode="horizontal"
 								defaultSelectedKeys={[ window.location.pathname ]}
@@ -191,12 +191,12 @@ const Navegacion = (props) => {
 								<div className="col-lg-8 row input-search">
 									<Input
 										onChange={valor}
-										className="input-search border-color-search"
+										className="input-search border-color-search-input"
 									/>
 									
 									<Button
 										onClick={(value) => props.history.push(`/searching/${busqueda}`)}
-										className="boton-search border-color-search"
+										className="boton-search border-color-search-boton"
 									>
 										<SearchOutlined style={{fontSize: 25}}/>
 									</Button>
