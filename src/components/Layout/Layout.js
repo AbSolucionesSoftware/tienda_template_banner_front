@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
-import { MenuProvider } from '../../context/carritoContext';
 import Navegacion from '../../components/Navegacion/Navegacion';
 import Categorias from '../Categorias/Categorias';
 import FooterPage from '../../components/Footer/Footer';
@@ -16,15 +15,13 @@ export default function LayoutBasic(props) {
 			<Layout>
 				<div className="cuerpo bg-layout">
 					<Layout>
-						<MenuProvider>
-							<Navegacion />
-							<Categorias />
-							<Content style={{ height: 'auto' }} className="bg-layout">
-								<div className="site-layout-content flex">
-									<LoadRoutes routes={routes} />
-								</div>
-							</Content>
-						</MenuProvider>
+						<Navegacion />
+						<Categorias />
+						<Content style={{ height: 'auto' }} className="bg-layout">
+							<div className="site-layout-content flex">
+								<LoadRoutes routes={routes} />
+							</div>
+						</Content>
 					</Layout>
 				</div>
 				<Footer className="foot" style={{ margin: 0, padding: 0 }}>

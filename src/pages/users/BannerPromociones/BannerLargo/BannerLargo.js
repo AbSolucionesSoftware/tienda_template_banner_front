@@ -22,6 +22,7 @@ const BgElement = Element.BgElement;
     }; */
     
     const render = banner.banners.map((banner, index) => {
+
         return (
             <div key={index} className="mt-2 cont-principal">
                 {banner.mostrarTitulo !== false ? (

@@ -32,12 +32,13 @@ export default function RegistroPublicidad(props) {
 
 	const [ categoriasBD, setCategoriasBD ] = useState([]);
 	const [ temporadasBD, setTemporadasBD ] = useState([]);
+	const [ generosBD, setGenerosBD ] = useState([]);
 	const [ bannerRender, setBannerRender ] = useState({ banner: '', banners: '' });
 	const [ bannerSeleccionado, setBannerSeleccionado ] = useState({ banner: '', banners: '' });
 	const [ datos, setDatos ] = useState({
 		tipo: '',
 		vincular: false,
-		mostrarProductos: false,
+		mostrarProductos: bannerRender.banner.estilo === 2 ? true : false,
 		mostrarTitulo: false,
 		imagenBanner: '',
 		orientacion: 2
@@ -60,7 +61,7 @@ export default function RegistroPublicidad(props) {
 		setDatos({
 			tipo: '',
 			vincular: false,
-			mostrarProductos: false,
+			mostrarProductos: bannerRender.banner.estilo === 2 ? true : false,
 			mostrarTitulo: false,
 			imagenBanner: '',
 			orientacion: 2
@@ -107,13 +108,8 @@ export default function RegistroPublicidad(props) {
 	};
 
 	const selectTipo = (tipo) => {
-		if (bannerSeleccionado.banner.estilo < 3) {
-			setDatos({ ...datos, tipo: tipo });
-			setDisabledCheck(false);
-		} else {
-			setDatos({ ...datos, tipo: tipo });
-			setDisabledCheck(true);
-		}
+		setDatos({ ...datos, tipo: tipo });
+		setDisabledCheck(false);
 	};
 
 	const obtenerOrientacion = (orientacion) => {
@@ -161,6 +157,22 @@ export default function RegistroPublicidad(props) {
 					temporadas.push({ label: temporada._id, value: temporada._id });
 				});
 				setTemporadasBD(temporadas);
+			})
+			.catch((err) => {
+				errors(err);
+			});
+	}
+	async function obtenerGeneros() {
+		await clienteAxios
+			.get(`/productos/agrupar/generos`)
+			.then((res) => {
+				let generos = [];
+				res.data.forEach((genero) => {
+					if(genero._id !== 'Ninguno'){
+						generos.push({ label: genero._id, value: genero._id });
+					}
+				});
+				setGenerosBD(generos);
 			})
 			.catch((err) => {
 				errors(err);
@@ -222,6 +234,7 @@ export default function RegistroPublicidad(props) {
 								duration: 2
 							});
 							setReload(!reload);
+							limpiarCampos();
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
 							}
@@ -245,6 +258,7 @@ export default function RegistroPublicidad(props) {
 								duration: 2
 							});
 							setReload(!reload);
+							limpiarCampos();
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
 							}
@@ -267,7 +281,7 @@ export default function RegistroPublicidad(props) {
 					imagenBanner: banners.imagenBanner ? banners.imagenBanner : '',
 					tipo: banners.tipo.categoria
 						? [ 'categoria', banners.tipo.categoria ]
-						: [ 'temporada', banners.tipo.temporada ],
+						: banners.tipo.temporada ? [ 'temporada', banners.tipo.temporada ] : [ 'genero', banners.tipo.genero ],
 					vincular: banners.vincular,
 					mostrarProductos: banners.mostrarProductos,
 					mostrarTitulo: banners.mostrarTitulo,
@@ -290,16 +304,20 @@ export default function RegistroPublicidad(props) {
 				if (banners.tipo.length === 0) {
 					form.resetFields([ 'tipo' ]);
 				} else {
-					if (banner.estilo < 3) {
-						setDisabledCheck(false);
-					}
+					
+					setDisabledCheck(false);
+					
 					if (banners.tipo.categoria) {
 						form.setFieldsValue({
 							tipo: [ 'categoria', banners.tipo.categoria ]
 						});
-					} else {
+					} else if (banners.tipo.temporada) {
 						form.setFieldsValue({
 							tipo: [ 'temporada', banners.tipo.temporada ]
+						});
+					}else {
+						form.setFieldsValue({
+							tipo: [ 'genero', banners.tipo.genero ]
 						});
 					}
 				}
@@ -388,6 +406,7 @@ export default function RegistroPublicidad(props) {
 		() => {
 			obtenerCategorias();
 			obtenerTemporadas();
+			obtenerGeneros();
 			obtenerBannerBD();
 		},
 		[ reload ]
@@ -405,6 +424,12 @@ export default function RegistroPublicidad(props) {
 			label: 'Temporada',
 			name: 'temporada',
 			children: temporadasBD
+		},
+		{
+			value: 'genero',
+			label: 'Género',
+			name: 'genero',
+			children: generosBD
 		}
 	];
 
@@ -454,69 +479,48 @@ export default function RegistroPublicidad(props) {
 					</div>
 				) : null}
 				{bannerRender.banner.estilo > 2 ? (
-					<div className="text-center d-flex justify-content-around pb-3 mb-3 border-bottom">
-						{bannerRender.banners.length !== 0 ? (
-							bannerRender.banners.map((res, index) => {
-								return (
-									<Fragment key={index}>
-										<div>
-											<h6>
-												<b>Imagen {index + 1}</b>
-											</h6>
-											<div
-												className=" contenedor-imagen-estilo-registro estilo-hover2"
-												onClick={() => {
-													setDisabledReg3(index + 1);
-													llenarCampos(bannerRender.banner, res);
-												}}
-												style={
-													disabledReg3 === index + 1 ? { border: '1px solid #1890FF' } : null
-												}
-											>
-												<img
-													alt="estilos banners"
-													src={aws + res.imagenBanner}
-													className="imagen-estilo-registro"
-												/>
-											</div>
-										</div>
-										{bannerRender.banners.length === 1 && bannerRender.banner.estilo === 3 ? (
+					<div>
+						<div className="d-flex justify-content-center mb-3">
+							<h4>
+								<b>Selecciona un banner</b>
+							</h4>
+						</div>
+						<div className="text-center d-flex justify-content-around pb-3 mb-3 border-bottom">
+							{bannerRender.banners.length !== 0 ? (
+								bannerRender.banners.map((res, index) => {
+									return (
+										<Fragment key={index}>
 											<div>
 												<h6>
-													<b>Imagen 2</b>
+													<b>Imagen {index + 1}</b>
 												</h6>
 												<div
 													className=" contenedor-imagen-estilo-registro estilo-hover2"
 													onClick={() => {
-														setDisabledReg3(index + 2);
-														limpiarCampos();
-														setBannerSeleccionado({
-															banner: bannerRender.banner,
-															banners: []
-														});
+														setDisabledReg3(index + 1);
+														setDisabledCheck(false);
+														llenarCampos(bannerRender.banner, res);
 													}}
 													style={
-														disabledReg3 === index + 2 ? (
+														disabledReg3 === index + 1 ? (
 															{ border: '1px solid #1890FF' }
 														) : null
 													}
 												>
 													<img
 														alt="estilos banners"
-														src={ImagenEspecial2}
+														src={aws + res.imagenBanner}
 														className="imagen-estilo-registro"
 													/>
 												</div>
 											</div>
-										) : null}
-										{bannerRender.banners.length === 1 && bannerRender.banner.estilo === 4 ? (
-											<Fragment>
+											{bannerRender.banners.length === 1 && bannerRender.banner.estilo === 3 ? (
 												<div>
 													<h6>
 														<b>Imagen 2</b>
 													</h6>
 													<div
-														className="contenedor-imagen-estilo-registro estilo-hover2"
+														className=" contenedor-imagen-estilo-registro estilo-hover2"
 														onClick={() => {
 															setDisabledReg3(index + 2);
 															limpiarCampos();
@@ -524,6 +528,7 @@ export default function RegistroPublicidad(props) {
 																banner: bannerRender.banner,
 																banners: []
 															});
+															setDisabledCheck(false);
 														}}
 														style={
 															disabledReg3 === index + 2 ? (
@@ -538,6 +543,70 @@ export default function RegistroPublicidad(props) {
 														/>
 													</div>
 												</div>
+											) : null}
+											{bannerRender.banners.length === 1 && bannerRender.banner.estilo === 4 ? (
+												<Fragment>
+													<div>
+														<h6>
+															<b>Imagen 2</b>
+														</h6>
+														<div
+															className="contenedor-imagen-estilo-registro estilo-hover2"
+															onClick={() => {
+																setDisabledReg3(index + 2);
+																limpiarCampos();
+																setBannerSeleccionado({
+																	banner: bannerRender.banner,
+																	banners: []
+																});
+																setDisabledCheck(false);
+															}}
+															style={
+																disabledReg3 === index + 2 ? (
+																	{ border: '1px solid #1890FF' }
+																) : null
+															}
+														>
+															<img
+																alt="estilos banners"
+																src={ImagenEspecial2}
+																className="imagen-estilo-registro"
+															/>
+														</div>
+													</div>
+													<div>
+														<h6>
+															<b>Imagen 3</b>
+														</h6>
+														<div
+															className=" contenedor-imagen-estilo-registro estilo-hover2"
+															onClick={() => {
+																setDisabledReg3(index + 3);
+																limpiarCampos();
+																setBannerSeleccionado({
+																	banner: bannerRender.banner,
+																	banners: []
+																});
+																setDisabledCheck(false);
+															}}
+															style={
+																disabledReg3 === index + 3 ? (
+																	{ border: '1px solid #1890FF' }
+																) : null
+															}
+														>
+															<img
+																alt="estilos banners"
+																src={ImagenEspecial3}
+																className="imagen-estilo-registro"
+															/>
+														</div>
+													</div>
+												</Fragment>
+											) : null}
+											{index > 0 &&
+											bannerRender.banners.length === 2 &&
+											bannerRender.banner.estilo === 4 ? (
 												<div>
 													<h6>
 														<b>Imagen 3</b>
@@ -551,6 +620,7 @@ export default function RegistroPublicidad(props) {
 																banner: bannerRender.banner,
 																banners: []
 															});
+															setDisabledCheck(false);
 														}}
 														style={
 															disabledReg3 === index + 3 ? (
@@ -565,81 +635,51 @@ export default function RegistroPublicidad(props) {
 														/>
 													</div>
 												</div>
-											</Fragment>
-										) : null}
-										{index > 0 &&
-										bannerRender.banners.length === 2 &&
-										bannerRender.banner.estilo === 4 ? (
-											<div>
-												<h6>
-													<b>Imagen 3</b>
-												</h6>
-												<div
-													className=" contenedor-imagen-estilo-registro estilo-hover2"
-													onClick={() => {
-														setDisabledReg3(index + 3);
-														limpiarCampos();
-														setBannerSeleccionado({
-															banner: bannerRender.banner,
-															banners: []
-														});
-													}}
-													style={
-														disabledReg3 === index + 3 ? (
-															{ border: '1px solid #1890FF' }
-														) : null
-													}
-												>
-													<img
-														alt="estilos banners"
-														src={ImagenEspecial3}
-														className="imagen-estilo-registro"
-													/>
-												</div>
-											</div>
-										) : null}
-									</Fragment>
-								);
-							})
-						) : (
-							elementos.map((res, index) => {
-								return (
-									<div
-										key={index}
-										className=" contenedor-imagen-estilo-registro estilo-hover2"
-										onClick={() => {
-											setDisabledReg3(index + 1);
-										}}
-										style={disabledReg3 === index + 1 ? { border: '1px solid #1890FF' } : null}
-									>
-										<h6 className=" position-absolute">
-											<b>Imagen {index + 1}</b>
-										</h6>
-										<img
-											alt="estilos banners"
-											src={
-												index + 1 === 1 ? (
-													ImagenEspecial1
-												) : index + 1 === 2 ? (
-													ImagenEspecial2
-												) : (
-													ImagenEspecial3
-												)
-											}
-											className="imagen-estilo-registro"
-										/>
-									</div>
-								);
-							})
-						)}
+											) : null}
+										</Fragment>
+									);
+								})
+							) : (
+								elementos.map((res, index) => {
+									return (
+										<div
+											key={index}
+											className=" contenedor-imagen-estilo-registro estilo-hover2"
+											onClick={() => {
+												setDisabledReg3(index + 1);
+												setDisabledCheck(false);
+											}}
+											style={disabledReg3 === index + 1 ? { border: '1px solid #1890FF' } : null}
+										>
+											<h6 className=" position-absolute">
+												<b>Imagen {index + 1}</b>
+											</h6>
+											<img
+												alt="estilos banners"
+												src={
+													index + 1 === 1 ? (
+														ImagenEspecial1
+													) : index + 1 === 2 ? (
+														ImagenEspecial2
+													) : (
+														ImagenEspecial3
+													)
+												}
+												className="imagen-estilo-registro"
+											/>
+										</div>
+									);
+								})
+							)}
+						</div>
 					</div>
 				) : null}
 				<div className="d-flex justify-content-center">
 					<div className="">
 						<Form form={form} hideRequiredMark onFinish={enviarDatos} id="MyForm">
-							<div className="row">
+							<div className="row ">
 								<div className="col-lg-6">
-									<Form.Item label="Tipo" labelCol={{ span: 3 }}>
+									<Form.Item label="Tipo de producto" labelCol={{ span: 8 }}>
 										<Form.Item name="tipo">
 											<Cascader
 												options={options}
@@ -692,8 +732,8 @@ export default function RegistroPublicidad(props) {
 												info
 												message={
 													<p>
-														Tamaño recomendado para esta imagen es: <b>alto=560px</b>,{' '}
-														<b>largo=560px</b>
+														Tamaño recomendado para esta imagen es: <b>alto=700px</b>,{' '}
+														<b>largo=470px</b>
 													</p>
 												}
 											/>
@@ -710,7 +750,7 @@ export default function RegistroPublicidad(props) {
 										)}
 									</Form.Item>
 								</div>
-								<div className="col-lg-6 d-flex align-items-center">
+								<div className="col-lg-5">
 									<div>
 										<div className="my-4">
 											<Checkbox
@@ -719,15 +759,31 @@ export default function RegistroPublicidad(props) {
 												onChange={obtenerChecks}
 												disabled={disabledCheck}
 											>
-												Vincular Categoria
+												Vincular banner
 											</Checkbox>
 										</div>
 										<div className="my-4">
 											<Checkbox
 												name="mostrarProductos"
-												checked={datos.mostrarProductos}
+												checked={
+													datos.mostrarProductos ? (
+														datos.mostrarProductos
+													) : bannerRender.banner.estilo === 2 ? (
+														true
+													) : (
+														datos.mostrarProductos
+													)
+												}
 												onChange={obtenerChecks}
-												disabled={disabledCheck}
+												disabled={
+													disabledCheck ? (
+														disabledCheck
+													) : bannerRender.banner.estilo === 2 ? (
+														true
+													) : (
+														bannerRender.banner.estilo > 2 ? true : disabledCheck
+													)
+												}
 											>
 												Mostrar Productos
 											</Checkbox>
@@ -737,11 +793,43 @@ export default function RegistroPublicidad(props) {
 												name="mostrarTitulo"
 												checked={datos.mostrarTitulo}
 												onChange={obtenerChecks}
-												disabled={disabledCheck}
+												disabled={disabledCheck ? disabledCheck : bannerRender.banner.estilo > 2 ? true : disabledCheck}
 											>
 												Mostrar Titulo
 											</Checkbox>
 										</div>
+									</div>
+									<div className="d-flex justify-content-around">
+										<Button
+											type="primary"
+											size="large"
+											ghost
+											onClick={() => props.history.push('/admin/publicidad')}
+										>
+											Cerrar
+										</Button>
+										<Button
+											type="primary"
+											ghost
+											size="large"
+											onClick={() => publicarBanner(!bannerRender.banner.publicado)}
+											style={
+												bannerRender.banner.publicado ? (
+													{ color: '#5cb85c', borderColor: '#5cb85c' }
+												) : null
+											}
+										>
+											{bannerRender.banner.publicado ? 'Publicado' : 'Publicar'}
+										</Button>
+										<Button
+											htmlType="submit"
+											type="primary"
+											disabled={disabled}
+											size="large"
+											form="MyForm"
+										>
+											Guardar
+										</Button>
 									</div>
 								</div>
 							</div>
@@ -752,31 +840,8 @@ export default function RegistroPublicidad(props) {
 				<Modal forceRender visible={openPreview} title={previewTitle} footer={null} onCancel={handleCancel}>
 					<img alt="example" style={{ width: '100%' }} src={previewImage} />
 				</Modal>
-				<PreviewBanner
-					datos={datos}
-					estilo={bannerRender.banner.estilo}
-					previewImage={previewImage}
-				/>
+				<PreviewBanner datos={datos} estilo={bannerRender.banner.estilo} previewImage={previewImage} />
 			</Spin>
-			<div className="float-button">
-				<Space>
-					<Button type="primary" size="large" ghost onClick={() => props.history.push('/admin/publicidad')}>
-						Cerrar
-					</Button>
-					<Button
-						type="primary"
-						ghost
-						size="large"
-						onClick={() => publicarBanner(!bannerRender.banner.publicado)}
-						style={bannerRender.banner.publicado ? { color: '#5cb85c', borderColor: '#5cb85c' } : null}
-					>
-						{bannerRender.banner.publicado ? 'Publicado' : 'Publicar'}
-					</Button>
-					<Button htmlType="submit" type="primary" disabled={disabled} size="large" form="MyForm">
-						Guardar
-					</Button>
-				</Space>
-			</div>
 		</div>
 	);
 }
