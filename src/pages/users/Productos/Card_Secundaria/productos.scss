@@ -14,12 +14,12 @@
 .titulo-producto{
     width: 100%;
 }
-// .titulo-elipsis{
-//     // padding: 5px;
-//     height: 0px;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-// }
+.titulo-elipsis-sec{
+    // padding: 5px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /* .descripcion-producto{
     overflow: hidden;
     text-overflow: ellipsis;
@@ -34,6 +34,7 @@
 }
 .contenedor-card-producto-secundario{
     // border-right: 1px solid #e0e0e0;
+    // height: 240px;
     cursor: pointer;
     padding-bottom: 0px!important;
 }
@@ -89,7 +90,7 @@
     font-size: 15px;
 }
 .contenedor-precios-productos > h3 {
-    font-size: 22px;
+    font-size: 15px;
 }
 .contenedor-precios-productos > p {
     font-size: 15px!important;

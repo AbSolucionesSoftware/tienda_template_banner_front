@@ -51,8 +51,8 @@ export default function CardSecundaria(props) {
 							}
 							className="margen"
 						>
-							<div className="contenedor-precios-productos">
-								<div >
+							<div className=" row contenedor-precios-productos">
+								<div className="col-lg-6">
 									<h2 className="h5 precio-producto rebajado mr-2">
 										${formatoMexico(productos.productoPromocion.precio)}
 									</h2>
@@ -60,11 +60,12 @@ export default function CardSecundaria(props) {
 										${formatoMexico(productos.precioPromocion)}
 									</h3>
 								</div>
+								<div className="col-lg-6 contenedor-titulos-productos-sec">
+									<h1 className="titulo-producto">{productos.productoPromocion.nombre}</h1>
+								</div>
 								
 							</div>
-							<div className="contenedor-titulos-productos-sec">
-								<h1 className="titulo-producto">{productos.productoPromocion.nombre}</h1>
-							</div>
+							
 						</Card>
 					</Card>
 				</Link>
@@ -113,26 +114,35 @@ export default function CardSecundaria(props) {
 						>
 							
 							{!productos.promocion.length ? (
-								<div className="contenedor-precios-productos">
-									<h3 className="">${formatoMexico(productos.precio)}</h3>
+								<div className="row contenedor-precios-productos">
+									<div className="col-lg-6">
+										<h3 className="">${formatoMexico(productos.precio)}</h3>
+									</div>
+									<div className="col-lg-6 contenedor-titulos-productos-sec titulo-elipsis-sec">
+										<h1 className="titulo-producto">{productos.nombre}</h1>
+									</div>
 								</div>
 							) : (
 								productos.promocion.map((promo) => {
 									return (
-										<div className="contenedor-precios-productos" key={promo._id}>
-											<h2 className="h5 precio-producto rebajado mr-2">
-												${formatoMexico(productos.precio)}
-											</h2>
-											<h3 className="h5 card-precio-rebaja d-inline mr-1">
-												${formatoMexico(promo.precioPromocion)}
-											</h3>
+										<div className="row">
+											<div className="col-lg-6 contenedor-precios-productos" key={promo._id}>
+												<h2 className="h5 precio-producto rebajado mr-2">
+													${formatoMexico(productos.precio)}
+												</h2>
+												<h3 className="h5 card-precio-rebaja d-inline mr-1">
+													${formatoMexico(promo.precioPromocion)}
+												</h3>
+											</div>
+											<div className="col-lg-6 contenedor-titulos-productos-sec titulo-elipsis-sec">
+												<h1 className="titulo-producto">{productos.nombre}</h1>
+											</div>
 										</div>
+										
 									);
 								})
 							)}
-							<div className="contenedor-titulos-productos-sec titulo-elipsis">
-								<h1 className="titulo-producto">{productos.nombre}</h1>
-							</div>
+							
 						</Card>
 					</Card>
 				</Link>

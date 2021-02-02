@@ -86,7 +86,7 @@ export default function ComponenteProductos(props) {
 					<Card
 						hoverable 
 						style={gridStyle} 
-						className="contenedor-card-producto-principal" 
+						className="contenedor-card-producto-principal margen" 
 						bordered={false}
 					>
 						{productos.promocion.length !== 0 ? (

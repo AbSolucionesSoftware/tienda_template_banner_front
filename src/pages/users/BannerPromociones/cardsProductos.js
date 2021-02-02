@@ -5,16 +5,15 @@ import Spin from '../../../components/Spin';
 
 import '../Productos/productos.scss';
 import CardSecundaria from '../Productos/Card_Secundaria/card_secundaria';
-import Imagen_Banner from './BannerOrientacion/imagenBanner';
-
-import TweenOne from 'rc-tween-one';
+import Imagen_Banner from './BannerOrientacion/imagenBanner'
 
 // import Pagination from '../../../components/Pagination/pagination';
 // import queryString from 'query-string';
 // import ComponentProductos from '../Productos/componente_productos';
 /* const gridStyle = { width: '100%', padding: 0, marginBottom: '1.5rem' }; */
 
-export default function CardsProductos({ tipo, orientacion, banner, imagenLocal }) {
+
+function CardsProductos({tipo, orientacion, banner, imagenLocal}) {
 	//const { location, history } = props.propiedades;
 	//const { page = 1 } = queryString.parse(location.search);
 	const [ productosPaginacion, setProductosPaginacion ] = useState([]);
@@ -50,80 +49,30 @@ export default function CardsProductos({ tipo, orientacion, banner, imagenLocal 
                 });
         }
 
-	useEffect(
-		() => {
-			async function obtenerProductos(limit, page) {
-				setLoading(true);
-				await clienteAxios
-					.get(
-						`/productos/filter?${tipo.categoria
-							? `categoria=${tipo.categoria}`
-							: `temporada=${tipo.temporada}`}`
-					)
-					.then((res) => {
-						setProductos(res.data.posts);
-						setProductosPaginacion(res.data.posts);
-						setLoading(false);
-					})
-					.catch((err) => {
-						if (err.response) {
-							notification.error({
-								message: 'Error',
-								description: err.response.data.message,
-								duration: 2
-							});
-						} else {
-							notification.error({
-								message: 'Error de conexion',
-								description: 'Al parecer no se a podido conectar al servidor.',
-								duration: 2
-							});
-						}
-					});
-			}
+       obtenerProductos()
+    }, [tipo])
 
-			obtenerProductos();
-		},
-		[ tipo ]
-	);
 
 	const render = productos.map((productos, index) => {
-		if (orientacion > 0) {
-			if (orientacion === 1 && index === 0) {
-				return (
-					<Imagen_Banner
-						key={index}
-						imagen={banner.imagenBanner}
-						link={banner.tipo}
-						imagenLocal={imagenLocal}
-					/>
-				);
-			} else if (orientacion === 2 && index === 2) {
-				return (
-					<Imagen_Banner
-						key={index}
-						imagen={banner.imagenBanner}
-						link={banner.tipo}
-						imagenLocal={imagenLocal}
-					/>
-				);
-			} else if (orientacion === 3 && index === 4) {
-				return (
-					<Imagen_Banner
-						key={index}
-						imagen={banner.imagenBanner}
-						link={banner.tipo}
-						imagenLocal={imagenLocal}
-					/>
-				);
-			} else if (index <= 4) {
-				return <CardSecundaria key={index} productos={productos} />;
+		if(orientacion > 0){
+			if(orientacion === 1 && index === 0 ){
+				return <Imagen_Banner key={index} imagen={banner.imagenBanner} link={banner.tipo} imagenLocal={imagenLocal} />
+			}else if(orientacion === 2 && index === 2){
+				return <Imagen_Banner key={index} imagen={banner.imagenBanner}	link={banner.tipo} imagenLocal={imagenLocal}/>
+			}else if(orientacion === 3 && index === 4){
+				return <Imagen_Banner key={index} imagen={banner.imagenBanner} link={banner.tipo} imagenLocal={imagenLocal}/>
+			}else if(index <= 4){
+				return <CardSecundaria key={index} productos={productos} imagenLocal={imagenLocal} />
 			}
-		} else {
-			if (index <= 5) {
-				return <CardSecundaria key={index} productos={productos} />;
+		}else{
+			if(index <= 5){
+				return (
+					<CardSecundaria key={index} productos={productos} />
+				)
 			}
 		}
+		
+
 	});
 	// const render = productos.map((productos, index) => {
 	// 	if(orientacion > 0){
@@ -143,23 +92,17 @@ export default function CardsProductos({ tipo, orientacion, banner, imagenLocal 
 	// 			)
 	// 		}
 	// 	}
+		
 
 	// });
 
 	return (
 		<Spin spinning={loading}>
 			{/* <div className="principal-productos"><p>NUESTROS PRODUCTOS</p></div> */}
-
-			{banner.mostrarTitulo !== false && orientacion  ? (
-				<TweenOne key="demo" animation={{ y: 30, opacity: 0, type: 'from', delay: 800 }}>
-					<h1 className="mt-5 tit-banner">{banner.tipo.categoria || banner.tipo.temporada}</h1>
-				</TweenOne>
-			) : (
-				''
-			)}
 			<div className="mt-2 d-flex justify-content-center align-items-center">
 				<div className="justify-content-center align-items-center">
 					<div style={{ maxWidth: '95vw' }} className="row d-flex justify-content-center align-items-center">
+
 						{productos.length ? (
 							render
 						) : (
@@ -180,4 +123,4 @@ export default function CardsProductos({ tipo, orientacion, banner, imagenLocal 
 	);
 }
 
-// export default (CardsProductos);
+export default CardsProductos;
