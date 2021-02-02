@@ -46,6 +46,8 @@ export default function RegistroPublicidad(props) {
 	const [ disabledCheck, setDisabledCheck ] = useState(true);
 	const [ disabledReg3, setDisabledReg3 ] = useState(0);
 
+	const [ saveAndPublish, setSaveAndPublish ] = useState(false);
+
 	/* UPLOAD ANTD */
 	const [ openPreview, setOpenPreview ] = useState(false);
 	const [ previewImage, setPreviewImage ] = useState('');
@@ -238,6 +240,11 @@ export default function RegistroPublicidad(props) {
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
 							}
+							if(saveAndPublish){
+								publicarBanner(true);
+							}else{
+								publicarBanner(false);
+							}
 						})
 						.catch((err) => {
 							setLoading(false);
@@ -261,6 +268,11 @@ export default function RegistroPublicidad(props) {
 							limpiarCampos();
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
+							}
+							if(saveAndPublish){
+								publicarBanner();
+							}else{
+								publicarBanner(false);
 							}
 						})
 						.catch((err) => {
@@ -798,9 +810,13 @@ export default function RegistroPublicidad(props) {
 												Mostrar Titulo
 											</Checkbox>
 										</div>
+										<div className="my-4">
+											<h4>{bannerRender.banner.publicado ? 'Banner publicado' : 'Banner no publicado'}</h4>
+										</div>
 									</div>
-									<div className="d-flex justify-content-around">
+									<div className="d-lg-flex d-block justify-content-around">
 										<Button
+											className="m-2"
 											type="primary"
 											size="large"
 											ghost
@@ -808,7 +824,8 @@ export default function RegistroPublicidad(props) {
 										>
 											Cerrar
 										</Button>
-										<Button
+										{/* <Button
+											className="m-2"
 											type="primary"
 											ghost
 											size="large"
@@ -820,15 +837,27 @@ export default function RegistroPublicidad(props) {
 											}
 										>
 											{bannerRender.banner.publicado ? 'Publicado' : 'Publicar'}
-										</Button>
+										</Button> */}
 										<Button
+											className="m-2"
 											htmlType="submit"
 											type="primary"
 											disabled={disabled}
 											size="large"
 											form="MyForm"
 										>
-											Guardar
+											Guardar sin publicar
+										</Button>
+										<Button
+											className="m-2"
+											htmlType="submit"
+											type="primary"
+											disabled={disabled}
+											size="large"
+											form="MyForm"
+											onClick={() => setSaveAndPublish(true)}
+										>
+											Guardar y publicar
 										</Button>
 									</div>
 								</div>
