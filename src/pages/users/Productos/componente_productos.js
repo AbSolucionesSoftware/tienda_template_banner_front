@@ -19,7 +19,7 @@ export default function ComponenteProductos(props) {
 					<Card
 						hoverable 
 						style={gridStyle} 
-						className="contenedor-card-producto-principal" 
+						className="contenedor-card-producto-principal " 
 						bordered={false}
 					>
 						<div className="contenedor-oferta">
@@ -48,6 +48,7 @@ export default function ComponenteProductos(props) {
 									</div>
 								</div>
 							}
+							className="margen"
 						>
 							<div className="contenedor-titulos-productos titulo-elipsis">
 								<h1 className="titulo-producto">{productos.productoPromocion.nombre}</h1>
@@ -57,7 +58,7 @@ export default function ComponenteProductos(props) {
 									}}
 								/> */}
 							</div>						
-							<div className="contenedor-precios-productos mt-2">
+							<div className="contenedor-precios-productos mt-2 margen">
 								<h2 className="h5 precio-producto rebajado mr-2">
 									${formatoMexico(productos.productoPromocion.precio)}
 								</h2>
@@ -77,7 +78,7 @@ export default function ComponenteProductos(props) {
 					<Card
 						hoverable 
 						style={gridStyle} 
-						className="contenedor-card-producto-principal margen" 
+						className="contenedor-card-producto-principal " 
 						bordered={false}
 					>
 						{productos.promocion.length !== 0 ? (
@@ -109,6 +110,7 @@ export default function ComponenteProductos(props) {
 									</div>
 								</div>
 							}
+							className="margen-b"
 						>
 							<div className="contenedor-titulos-productos titulo-elipsis">
 								<h1 className="titulo-producto">{productos.nombre}</h1>
@@ -125,7 +127,7 @@ export default function ComponenteProductos(props) {
 							) : (
 								productos.promocion.map((promo) => {
 									return (
-										<div className="contenedor-precios-productos mt-2" key={promo._id}>
+										<div className="contenedor-precios-productos mt-2 " key={promo._id}>
 											<h2 className="h5 precio-producto rebajado mr-2">
 												${formatoMexico(productos.precio)}
 											</h2>

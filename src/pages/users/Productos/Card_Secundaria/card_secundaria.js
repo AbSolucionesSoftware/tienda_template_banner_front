@@ -1,7 +1,7 @@
 import React from 'react';
 import aws from '../../../../config/aws';
 // import DOMPurify from 'dompurify';
-import { Card, Button } from 'antd';
+import { Card, Tooltip } from 'antd';
 import { Link } from 'react-router-dom';
 import './productos.scss';
 // import { ShoppingCartOutlined } from '@ant-design/icons';
@@ -79,7 +79,7 @@ export default function CardSecundaria(props) {
 					<Card
 						hoverable 
 						style={gridStyle} 
-						className="contenedor-card-producto-secundario margen" 
+						className="contenedor-card-producto-secundario margen-b" 
 						bordered={false}
 					>
 						{productos.promocion.length !== 0 ? (
@@ -111,34 +111,42 @@ export default function CardSecundaria(props) {
 									</div>
 								</div>
 							}
-							className="margen"
+							className="margen-dentro"
 						>
 							
 							{!productos.promocion.length ? (
 								<div className="row contenedor-informacion">
-									<div className="col-lg-6">
-										<div className="contenedor-precios-sec infor-center">
-											<h3>${formatoMexico(productos.precio)}</h3>
+									<div className="col-lg-7  margen-precios-promo">
+										<div className="contenedor-precios-sec infor-center margen-precios">
+											<Tooltip placement="top" title={formatoMexico(productos.precio)}>
+												<h3>${formatoMexico(productos.precio)}</h3>
+											</Tooltip>
 										</div>
 									</div>
-									<div className="col-lg-6 infor-center contenedor-titulos-productos-sec titulo-elipsis-sec">
-										<h1 className="titulo-producto">{productos.nombre}</h1>
+									<div className="col-lg-5 infor-center contenedor-titulos-productos-sec titulo-elipsis-sec">
+										<Tooltip placement="top" title={productos.nombre}>
+											<h1 className=" titulo-producto">{productos.nombre}</h1>
+										</Tooltip>
 									</div>
 								</div>
 							) : (
 								productos.promocion.map((promo) => {
 									return (
 										<div className="row contenedor-informacion">
-											<div className="col-lg-6 infor-center contenedor-precios-sec" key={promo._id}>
+											<div className=" col-lg-6 infor-center contenedor-precios-sec margen-precios-promo" key={promo._id}>
 												<h2 className="h5 precio-producto rebajado-sec mr-2">
 													${formatoMexico(productos.precio)}
 												</h2>
-												<h3 className="h5 card-precio-rebaja d-inline mr-1">
-													${formatoMexico(promo.precioPromocion)}
-												</h3>
+												<Tooltip placement="top" title={formatoMexico(promo.precioPromocion)}>
+													<h3 className="h5 card-precio-rebaja d-inline mr-1">
+														${formatoMexico(promo.precioPromocion)}
+													</h3>
+												</Tooltip>
 											</div>
-											<div className="col-lg-6 contenedor-titulos-productos-sec titulo-elipsis-sec">
-												<h1 className="titulo-producto">{productos.nombre}</h1>
+											<div className="col-lg-6 contenedor-titulos-productos-sec titulo-elipsis-sec ">
+												<Tooltip placement="top" title={productos.nombre}>
+													<h1 className=" titulo-producto">{productos.nombre}</h1>
+												</Tooltip>
 											</div>
 										</div>
 										
