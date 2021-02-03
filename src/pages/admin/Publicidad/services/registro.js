@@ -59,6 +59,7 @@ export default function RegistroPublicidad(props) {
 
 	const limpiarCampos = () => {
 		setDisabledCheck(true);
+		setDisabledReg3(0);
 		setFileList([]);
 		setDatos({
 			tipo: '',
@@ -373,19 +374,19 @@ export default function RegistroPublicidad(props) {
 	};
 
 	const publicarBanner = async (publicado) => {
-		if (bannerRender.banner.estilo === 3 && bannerRender.banners.length < 2) {
+		if (bannerRender.banner.estilo === 3 && bannerRender.banners.length < 2 && publicado) {
 			notification.info({
 				message: 'No has terminado de registrar este banner',
 				duration: 2
 			});
 			return;
-		} else if (bannerRender.banner.estilo === 4 && bannerRender.banners.length < 3) {
+		} else if (bannerRender.banner.estilo === 4 && bannerRender.banners.length < 3 && publicado) {
 			notification.info({
 				message: 'No has terminado de registrar este banner',
 				duration: 2
 			});
 			return;
-		} else if (bannerRender.banners.length === 0) {
+		} else if (bannerRender.banners.length === 0 && publicado) {
 			notification.info({
 				message: 'No has terminado de registrar este banner',
 				duration: 2
@@ -403,10 +404,12 @@ export default function RegistroPublicidad(props) {
 				}
 			)
 			.then((res) => {
-				notification.success({
-					message: res.data.message,
-					duration: 2
-				});
+				if(publicado){
+					notification.success({
+						message: res.data.message,
+						duration: 2
+					});
+				}
 				setReload(!reload);
 			})
 			.catch((err) => {
