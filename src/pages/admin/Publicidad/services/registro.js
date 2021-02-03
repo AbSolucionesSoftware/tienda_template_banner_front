@@ -59,7 +59,6 @@ export default function RegistroPublicidad(props) {
 
 	const limpiarCampos = () => {
 		setDisabledCheck(true);
-		setDisabledReg3(0);
 		setFileList([]);
 		setDatos({
 			tipo: '',
@@ -238,6 +237,7 @@ export default function RegistroPublicidad(props) {
 							});
 							setReload(!reload);
 							limpiarCampos();
+							setDisabledReg3(0);
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
 							}
@@ -267,6 +267,7 @@ export default function RegistroPublicidad(props) {
 							});
 							setReload(!reload);
 							limpiarCampos();
+							setDisabledReg3(0);
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
 							}
