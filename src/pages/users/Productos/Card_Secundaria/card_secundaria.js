@@ -89,8 +89,6 @@ export default function CardSecundaria(props) {
 										<p className="h4 porcentaje-descuento d-inline">
 											{agregarPorcentaje(promo.precioPromocion, productos.precio)}% OFF
 										</p>
-										{/* <h5 className="shadow">OFERTA</h5> */}
-										{/* <p>-{agregarPorcentaje(promo.precioPromocion, productos.precio)}%</p> */}
 									</div>
 								);
 							})

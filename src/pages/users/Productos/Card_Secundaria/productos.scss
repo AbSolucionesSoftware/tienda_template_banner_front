@@ -12,6 +12,7 @@
     max-width: 100%;
 }
 .titulo-producto{
+   
     width: 100%!important;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -116,7 +117,7 @@
     font-size: 15px!important;
 }
 .contenedor-precios-sec{
-    padding: 9%;
+    // padding: 9%;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -132,8 +133,8 @@
         min-width: 10px;
     }
     .titulo-producto{
+        padding-left: 9%!important;
         width: 100%!important;
-        // height: 70px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -148,7 +149,6 @@
         justify-content: center;
         align-items: center;
     }
-    
 }
 .card-precio-rebaja{
     color: #33FF35;
