@@ -12,14 +12,14 @@ function Banner_Doble(props) {
         console.log(banner);
         return(
             <div key={banner._id} className="col-lg-6 container-imagenes">
-                <div className="container-banner-doble">
+                <div className="container-banner-doble mt-3">
                         <img
                             onClick={() =>
                                 {if (banner.vincular !== false) {
                                     props.history.push(`/searching/${ banner.tipo.categoria || banner.tipo.temporada || banner.tipo.genero }`);
                                 }
                             }}
-                            className="imagen-doble" 
+                            className="imagen-doble " 
                             src={imagenLocal ? banner.imagenBanner : aws + banner.imagenBanner}
                             alt="Imgen publicitaria"
                         />

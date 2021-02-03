@@ -237,6 +237,7 @@ export default function RegistroPublicidad(props) {
 							});
 							setReload(!reload);
 							limpiarCampos();
+							setDisabledReg3(0);
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
 							}
@@ -266,6 +267,7 @@ export default function RegistroPublicidad(props) {
 							});
 							setReload(!reload);
 							limpiarCampos();
+							setDisabledReg3(0);
 							if (bannerSeleccionado.banner.estilo < 3) {
 								props.history.push('/admin/publicidad');
 							}
@@ -373,19 +375,19 @@ export default function RegistroPublicidad(props) {
 	};
 
 	const publicarBanner = async (publicado) => {
-		if (bannerRender.banner.estilo === 3 && bannerRender.banners.length < 2) {
+		if (bannerRender.banner.estilo === 3 && bannerRender.banners.length < 2 && publicado) {
 			notification.info({
 				message: 'No has terminado de registrar este banner',
 				duration: 2
 			});
 			return;
-		} else if (bannerRender.banner.estilo === 4 && bannerRender.banners.length < 3) {
+		} else if (bannerRender.banner.estilo === 4 && bannerRender.banners.length < 3 && publicado) {
 			notification.info({
 				message: 'No has terminado de registrar este banner',
 				duration: 2
 			});
 			return;
-		} else if (bannerRender.banners.length === 0) {
+		} else if (bannerRender.banners.length === 0 && publicado) {
 			notification.info({
 				message: 'No has terminado de registrar este banner',
 				duration: 2
@@ -403,10 +405,12 @@ export default function RegistroPublicidad(props) {
 				}
 			)
 			.then((res) => {
-				notification.success({
-					message: res.data.message,
-					duration: 2
-				});
+				if(publicado){
+					notification.success({
+						message: res.data.message,
+						duration: 2
+					});
+				}
 				setReload(!reload);
 			})
 			.catch((err) => {
@@ -724,8 +728,8 @@ export default function RegistroPublicidad(props) {
 												info
 												message={
 													<p>
-														Tamaño recomendado para esta imagen es: <b>alto=580px</b>,{' '}
-														<b>largo=1519px</b>
+														Tamaño recomendado para esta imagen es: <b>alto=190px</b>,{' '}
+														<b>largo=1125px</b>
 													</p>
 												}
 											/>
