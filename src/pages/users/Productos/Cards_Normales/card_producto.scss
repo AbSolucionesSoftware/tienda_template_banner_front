@@ -1,7 +1,7 @@
 .principal-productos{
-    color: rgb(255, 255, 255);
+    color: white;
     text-align: center;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(48, 48, 48);
     padding: 15px;
     font-size: 25px;
     letter-spacing: 20px;
@@ -15,7 +15,6 @@
     width: 100%;
 }
 .titulo-elipsis{
-    padding: 5px;
     height: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -29,11 +28,10 @@
 .ant-col{
     width: 300px;
 }
-.size-col{
-    min-width: 190px;
+.size-col-prin{
+    min-width: 270px;
 }
 .contenedor-card-producto-principal{
-    // border-right: 1px solid #e0e0e0;
     cursor: pointer;
 }
 .contenedor-imagen-oferta{
@@ -45,15 +43,14 @@
     top: 0;
     left: 0;
 }
-
 .contenedor-card-producto-principal:hover .titulo-elipsis{
-    height: 70px;
+    height: 100px;
     transition-duration: .2s;
-    transition-delay: .3s;
+    transition-delay: .4s;
     /* transition: ease-out .2s; */
 }
 .contenedor-imagen-producto-principal{
-    height: 230px; 
+    height: 250px; 
     width: 200px;
     display: flex;
     justify-content: center;
@@ -82,16 +79,23 @@
     width: 45px;
 }
 .contenedor-titulos-productos > h1 {
+    padding-left: 10%;
     font-size: 18px;
 }
 .contenedor-precios-productos > h2 {
+    padding-left: 10%;
     font-size: 15px;
 }
 .contenedor-precios-productos > h3 {
+    padding-left: 10%;
     font-size: 22px;
 }
 .contenedor-precios-productos > p {
+    padding-left: 10%;
     font-size: 15px!important;
+}
+.description{
+    padding-left: 10%;
 }
 @media(max-width: 768px){
     .titulo-elipsis{
@@ -108,10 +112,3 @@
         min-width: 170px;
     }
 }
-.card-precio-rebaja{
-    color:red;
-}
-.margen > .ant-card-body{
-    padding: 0px!important;
-}
-

@@ -12,7 +12,7 @@
     max-width: 100%;
 }
 .titulo-producto{
-   
+    height: 40px;
     width: 100%!important;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -39,7 +39,8 @@
 }
 .contenedor-card-producto-secundario{
     // border-right: 1px solid #e0e0e0;
-    // height: 240px;
+    height: 260px;
+    border-radius: 13px;
     cursor: pointer;
     padding-bottom: 0px!important;
 }
@@ -133,6 +134,7 @@
         min-width: 10px;
     }
     .titulo-producto{
+        height: 15px;
         padding-left: 9%!important;
         width: 100%!important;
         overflow: hidden;
@@ -148,6 +150,12 @@
     .infor-center{
         justify-content: center;
         align-items: center;
+    }
+    .contenedor-card-producto-secundario{
+        height: 275px;
+        border-radius: 13px;
+        cursor: pointer;
+        padding-bottom: 0px!important;
     }
 }
 .card-precio-rebaja{

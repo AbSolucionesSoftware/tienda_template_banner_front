@@ -5,7 +5,7 @@ import Pagination from '../../../components/Pagination/pagination';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 import './ofertas.scss';
-import ComponenteProductos from '../Productos/componente_productos';
+import Card_Producto from '../Productos/Cards_Normales/card_producto'
 import Spin from '../../../components/Spin';
 
 function Ofertas(props) {
@@ -39,7 +39,7 @@ function Ofertas(props) {
 	}
 
 	const render = productos.map((productos) => (
-		<ComponenteProductos key={productos._id} productos={productos} />
+		< Card_Producto key={productos._id} productos={productos} />
 	));
 
 	if (!productos) {

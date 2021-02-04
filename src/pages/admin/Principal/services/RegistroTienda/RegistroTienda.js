@@ -619,7 +619,7 @@ export default function RegistroTienda(props) {
       ),
     },
     {
-      title: "Politicas de Empresa",
+      title: "Políticas de Empresa",
       content: (
         <div>
           <Registro_Politicas
@@ -630,7 +630,7 @@ export default function RegistroTienda(props) {
       ),
     },
     {
-      title: "Costos de Envio",
+      title: "Costos de Envió",
       content: (
         <div>
           <PoliticasEnvio
@@ -641,7 +641,7 @@ export default function RegistroTienda(props) {
       ),
     },
     {
-      title: "Covertura de envio",
+      title: "Covertura de envió",
       content: (
         <div>
           <Cobertura_envio />

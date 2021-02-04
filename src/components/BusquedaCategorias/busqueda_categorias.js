@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
 import clienteAxios from '../../config/axios';
 import { notification, Row, Breadcrumb, Button } from 'antd';
-import ComponenteProductos from '../../pages/users/Productos/componente_productos';
+import Card_Producto from '../../pages/users/Productos/Cards_Normales/card_producto'
 import Spin from '../Spin';
 import './busqueda_categorias.scss';
 import { MenuContext } from '../../context/carritoContext';
@@ -16,6 +16,7 @@ function BusquedaCategorias(props) {
 	const [ resultado, setResultado ] = useState([]);
 	const { reloadFilter, setReloadFilter } = useContext(MenuContext);
 	const [ todosProductos, setTodosProductos ] = useState(false);
+
 
 	const obtenerFiltrosDivididos = async (categoria, subcategoria, temporada, genero) => {
 		let cat = categoria;
@@ -35,6 +36,8 @@ function BusquedaCategorias(props) {
 		if(temporada === 'null'){
 			temp = '';
 		}
+
+		
 
 		setLoading(true);
 		await clienteAxios
@@ -93,6 +96,12 @@ function BusquedaCategorias(props) {
 		setTodosProductos(true);
 	}
 
+	useEffect(() => {
+		return () => {
+			limpiarFiltros();
+		}
+	}, [])
+
 	useEffect(
 		() => {
 			obtenerFiltrosDivididos(categoria, subcategoria, temporada, genero);
@@ -100,7 +109,7 @@ function BusquedaCategorias(props) {
 		[ props ]
 	);
 
-	const result = resultado.map((productos) => <ComponenteProductos key={productos._id} productos={productos} />);
+	const result = resultado.map((productos) => <Card_Producto key={productos._id} productos={productos} />);
 
 	return (
 		<Fragment>

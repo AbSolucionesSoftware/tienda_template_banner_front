@@ -101,7 +101,7 @@ const FooterPage = (props) => {
                         className="footer-font-color"
                         key={categoria.categoria}
                     >
-                        <Link to={(`/categorias/${categoria.categoria}`)}> 
+                        <Link to={(`/filtros/null/${categoria.categoria}/null/null`)}> 
                             {categoria.categoria}
                         </Link>
                     </Button>
@@ -181,7 +181,7 @@ const FooterPage = (props) => {
                         <div className="col-lg-6 mt-lg-4 d-none d-lg-block">
                             <p style={{fontWeight: "bold"}}>Encuéntralo más rápido</p>
                             <div style={{columnCount: 2}}>
-                                <div className="col-lg-12 mt-lg-2 d-flex">
+                                <div >
                                     {categorias_foot}
                                 </div>
                             </div>
@@ -206,28 +206,28 @@ const FooterPage = (props) => {
                             {tienda.politicasDescuentos !== '' && tienda.politicasDescuentos ? (
                                 <HashLink to="/politicas#descuento">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
-                                        Politicas Descuentos
+                                        Políticas de Descuento
                                     </Button>
                                 </HashLink>
                             ): ""}
                             {tienda.politicasDevolucion !== '' && tienda.politicasDevolucion ? (
                                 <HashLink to="/politicas#devolucion">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
-                                       Politicas de Devolucion
+                                        Políticas de Devolución
                                     </Button>
                                 </HashLink>
                             ): ""}
                             {tienda.politicasVentas !== '' && tienda.politicasVentas ? (
                                 <HashLink to="/politicas#ventas">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
-                                        Politicas de Ventas
+                                        Políticas de Ventas
                                     </Button>
                                 </HashLink>
                             ): ""}
                             {tienda.politicasEnvios !== '' &&  tienda.politicasEnvios? (
                                 <HashLink to="/politicas#envios">
                                     <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
-                                        Politica de Envios
+                                        Políticas de Envíos
                                     </Button>
                                 </HashLink>
                             ): ""}

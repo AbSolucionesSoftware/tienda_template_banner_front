@@ -239,7 +239,7 @@ export default function Registro_Politicas(props) {
 
 				{/* TERCER PANEL */}
 				<div className="row">
-					<Divider>Información de Políticas de Envios</Divider>
+					<Divider>Información de Políticas de Envíos</Divider>
 					<div className="col-12">
 					<Form.Item className="m-2" valuePropName="Editor">
 						<Form.Item
@@ -299,7 +299,7 @@ export default function Registro_Politicas(props) {
 				
 				{/* QUINTO PANEL */}
 				<div className="row">
-					<Divider>Información de Políticas de Devolucion</Divider>
+					<Divider>Información de Políticas de Devolución</Divider>
 					<div className="col-12">
 					<Form.Item className="m-2" valuePropName="Editor">
 						<Form.Item

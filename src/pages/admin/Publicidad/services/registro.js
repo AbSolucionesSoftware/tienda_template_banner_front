@@ -729,7 +729,7 @@ export default function RegistroPublicidad(props) {
 												message={
 													<p>
 														Tamaño recomendado para esta imagen es: <b>alto=190px</b>,{' '}
-														<b>largo=1125px</b>
+														<b>largo=1400px</b>
 													</p>
 												}
 											/>
@@ -738,8 +738,8 @@ export default function RegistroPublicidad(props) {
 												info
 												message={
 													<p>
-														Tamaño recomendado para esta imagen es: <b>alto=240px</b>,{' '}
-														<b>largo=400px</b>
+														Tamaño recomendado para esta imagen es: <b>alto=260px</b>,{' '}
+														<b>largo=430px</b>
 													</p>
 												}
 											/>

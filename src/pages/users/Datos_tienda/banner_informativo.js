@@ -18,10 +18,10 @@ export default function BannerInformativo() {
                 <div className="col-lg-4 card-informativa">
                     <Link to="/perfiles">
                         <Button 
-                            className="mt-1 color-boton"
+                            className=" color-boton"
                             shape="round"
                             size='large'
-                            style={{fontSize: 20}}
+                            style={{fontSize: 18}}
                         >
                             Registrarse
                         </Button>

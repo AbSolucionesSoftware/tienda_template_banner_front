@@ -9,7 +9,7 @@ function Banner_Triple(props) {
 
     const render = banner.banners.map((banner) => {
         return(
-            <div key={banner._id} className="col-lg-4 container-imagenes">
+            <div key={banner._id} className="col-lg-4 container-imagenes mt-4">
                 <div className="container-banner-triple">
                         <img
                             onClick={() =>

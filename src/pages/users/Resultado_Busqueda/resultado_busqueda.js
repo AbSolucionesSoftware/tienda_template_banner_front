@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import clienteAxios from '../../../config/axios';
 import { notification, Result, Row } from 'antd';
-import ComponenteProductos from '../Productos/componente_productos';
+import Card_Producto from '../Productos/Cards_Normales/card_producto';
 import Spin from '../../../components/Spin';
 
 function ResultadoBusqueda(props) {
@@ -42,7 +42,7 @@ function ResultadoBusqueda(props) {
 		[ url ]
 	);
 
-	const render = productos.map((productos) => <ComponenteProductos key={productos._id} productos={productos} />);
+	const render = productos.map((productos) => <Card_Producto key={productos._id} productos={productos} />);
 
 	if (!productos) {
 		return (

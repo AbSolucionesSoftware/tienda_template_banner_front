@@ -64,9 +64,7 @@ export default function CardSecundaria(props) {
 								<div className="col-lg-6 contenedor-titulos-productos-sec titulo-elipsis-sec">
 									<h1 className="titulo-producto">{productos.productoPromocion.nombre}</h1>
 								</div>
-								
 							</div>
-							
 						</Card>
 					</Card>
 				</Link>

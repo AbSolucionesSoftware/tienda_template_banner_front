@@ -24,10 +24,10 @@ const BgElement = Element.BgElement;
     const render = banner.banners.map((banner, index) => {
 
         return (
-            <div key={index} className="mt-3 cont-principal">
+            <div key={index} className="mt-4 cont-principal">
                 {banner.mostrarTitulo !== false ? (
                     <TweenOne key="demo" animation={{ y: 30, opacity: 0, type: 'from', delay: 800 }}>
-                        <h1 className="mt-2 tit-banner">{banner.tipo.categoria || banner.tipo.temporada }</h1>
+                        <h1 className=" tit-banner">{banner.tipo.categoria || banner.tipo.temporada }</h1>
                     </TweenOne>
                  ) : ""}
 
