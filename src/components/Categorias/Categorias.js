@@ -85,7 +85,7 @@ const Categorias = (props) => {
 			<SubMenu
 				key={categoria.categoria}
 				title={categoria.categoria}
-				className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat"
+				className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat font-foot"
 				onTitleClick={(e) => {
 					if(e.key === categoria.categoria){
 						props.history.push(`/filtros/${temporadaSeleccionada}/${categoria.categoria}/${subcategoriaSeleccionada}/${generoSeleccionado}`);
@@ -98,7 +98,7 @@ const Categorias = (props) => {
 				{categoria.subcCategoria.map((sub) => {
 					return (
 						<Menu.Item
-							/* className="nav-font-color-categorias" */
+							className="font-foot"
 							key={sub._id}
 							onClick={() => {
 								props.history.push(`/filtros/${temporadaSeleccionada}/${categoriaSeleccionada}/${sub._id}/${generoSeleccionado}`);
@@ -118,7 +118,7 @@ const Categorias = (props) => {
 		if(temporada._id){
 			return (
 				<Menu.Item
-					/* className="nav-font-color-categorias" */
+					className="nav-font-color-categorias font-foot"
 					key={index}
 					onClick={() => {
 						props.history.push(`/filtros/${temporada._id}/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${generoSeleccionado}`);
@@ -135,7 +135,7 @@ const Categorias = (props) => {
 	const categorias_generos = generos.map((generos) => {
 		return (
 			<Menu.Item
-				/* className="nav-font-color-categorias " */
+				className="font-foot"
 				key={generos._id}
 				onClick={() => {
 					props.history.push(`/filtros/${temporadaSeleccionada}/${categoriaSeleccionada}/${subcategoriaSeleccionada}/${generos._id}`);
@@ -152,7 +152,7 @@ const Categorias = (props) => {
 		<Layout className="container-subcategorias-nav d-lg-inline size-layout-cat">
 			{/* <Spin className="ml-5 d-inline spin-nav-categorias" spinning={loading} /> */}
 			<Menu
-				className="categorias-navbar d-inline size-menu-cat"
+				className="categorias-navbar d-inline size-menu-cat font-foot"
 				theme="light"
 				mode="horizontal"
 				defaultSelectedKeys={[ window.location.pathname ]}
@@ -161,13 +161,13 @@ const Categorias = (props) => {
 				{categorias_nav}
 				<SubMenu
 					title="Temporadas"
-					className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat"
+					className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat font-foot"
 
 				>
 				{temporadas_nav}
 			</SubMenu>
 				{generos.length !== 0 ? (
-					<SubMenu title="Género" className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat">
+					<SubMenu title="Género" className="submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat font-foot">
 						{categorias_generos}
 					
 

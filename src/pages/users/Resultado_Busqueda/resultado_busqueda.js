@@ -54,7 +54,7 @@ function ResultadoBusqueda(props) {
 
 	return (
 		<Spin spinning={loading}>
-			<h3 className="ml-5 mt-4 mb-4">
+			<h3 className="ml-5 mt-4 mb-4 font-prin">
 				{productos.length} resultados de la busqueda "{url}"
 			</h3>
 			<div className="d-flex justify-content-center align-items-center">

@@ -12,7 +12,7 @@ function Banner_Doble(props) {
         console.log(banner);
         return(
             <div key={banner._id} className="col-lg-6 container-imagenes">
-                <div className="container-banner-doble mt-4">
+                <div className="container-banner-doble mt-2">
                         <img
                             onClick={() =>
                                 {if (banner.vincular !== false) {

@@ -8,6 +8,14 @@
 //     font-weight: bold;
 //     width: 100%;
 // }
+.cont-div-card{
+    padding-bottom: 0px!important;
+    margin-bottom: 0px!important;
+}
+.card-div-sec{
+    padding-bottom: 0px!important;
+    margin-bottom: 0px!important;
+}
 .banner-producto{
     max-width: 100%;
 }
@@ -18,10 +26,6 @@
     text-overflow: ellipsis;
 }
 .titulo-elipsis-sec{
-    padding-left: 0px!important;
-    padding-right: 8%;
-    padding-top: 0px!important;
-    padding-bottom: 0px!important;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -33,8 +37,12 @@
 
 .ant-col{
     width: 300px;
+    margin-bottom: 0px!important;
+
 }
 .size-col{
+    padding-bottom: 0px!important;
+    padding-top: 25px;
     min-width: 190px;
 }
 .contenedor-card-producto-secundario{
@@ -106,23 +114,17 @@
 .contenedor-titulos-productos-sec > h1 {
     // margin-top: 10px;
     padding-right: 7%;
-    font-size: 14px;
 }
-.contenedor-precios-sec > h2 {
-    font-size: 13px;
-}
-.contenedor-precios-sec > h3 {
-    font-size: 18px;
-}
-.contenedor-precios-sec > p {
-    font-size: 15px!important;
-}
+
 .contenedor-precios-sec{
     // padding: 9%;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 @media(max-width: 768px){
+    .contenedor-precios-sec{
+        width: 135px;
+    }
     .contenedor-imagen-producto-principal{
         height: 20px; 
         width: 100px;
@@ -134,7 +136,7 @@
         min-width: 10px;
     }
     .titulo-producto{
-        height: 15px;
+        height: 19px;
         padding-left: 9%!important;
         width: 100%!important;
         overflow: hidden;
@@ -170,12 +172,17 @@
 .margen-precios{
     padding-left: 6%!important;
     padding-right: 0px!important;
+    padding-bottom: 0px!important;
+
 }
 .margen-precios-promo{
     padding-left: 2%!important;
     padding-right: 0px!important;
     padding-top: 0px!important;
     padding-bottom: 0px!important;
+}
+.margen-b{
+    margin-bottom: 0px!important;
 }
 .margen-b > .ant-card-body{
     padding-bottom: 0px!important;

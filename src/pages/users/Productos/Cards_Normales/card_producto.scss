@@ -2,8 +2,8 @@
     color: white;
     text-align: center;
     background-color: rgb(48, 48, 48);
-    padding: 15px;
-    font-size: 25px;
+    // padding: 15px;
+    // font-size: 25px;
     letter-spacing: 20px;
     font-weight: bold;
     width: 100%;
@@ -15,7 +15,7 @@
     width: 100%;
 }
 .titulo-elipsis{
-    height: 25px;
+    height: 35px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -39,10 +39,6 @@
     justify-content: center;
     align-items: center;
 }
-.contenedor-oferta{
-    top: 0;
-    left: 0;
-}
 .contenedor-card-producto-principal:hover .titulo-elipsis{
     height: 100px;
     transition-duration: .2s;
@@ -60,39 +56,26 @@
     max-width: 100%;
     max-height: 100%;
 }
-.rebajado{
-    font-size: 15px;
-}
-.contenedor-oferta{
-    position: absolute;
-}
-.contenedor-oferta > h5{
-    background-color: rgb(255, 210, 62);
-    color: rgb(255, 0, 0);
-    width: 85px;
-    margin: 0;
-}
-.contenedor-oferta > p{
-    font-weight: bold;
-    font-size: 18px;
-    color: rgb(238, 155, 0);
-    width: 45px;
-}
-.contenedor-titulos-productos > h1 {
+// .rebajado{
+//     font-size: 15px;
+// }
+.contenedor-titulos-productos > p {
+    padding-top: 5%;
     padding-left: 10%;
-    font-size: 18px;
+    // font-size: 18px;
 }
 .contenedor-precios-productos > h2 {
     padding-left: 10%;
-    font-size: 15px;
+    // font-size: 15px;
 }
 .contenedor-precios-productos > h3 {
+    padding-top: 5%;
     padding-left: 10%;
-    font-size: 22px;
+    // font-size: 22px;
 }
 .contenedor-precios-productos > p {
     padding-left: 10%;
-    font-size: 15px!important;
+    // font-size: 15px!important;
 }
 .description{
     padding-left: 10%;
@@ -111,4 +94,36 @@
     .size-col{
         min-width: 170px;
     }
+    .contenedor-titulos-productos > p {
+        height: 30px;
+    }
+}
+
+//CARD DE PRODUCTOS DEL FRENTE
+
+.frente-bajo > .ant-card-body{
+    border-bottom-left-radius: 13px!important;
+    border-bottom-right-radius: 13px!important;
+}
+.frente{
+    border-radius: 13px!important;
+}
+.oferta-frente{
+    top: 15px;
+    left: 15px;
+}
+.oferta-frente{
+    position: absolute;
+}
+.oferta-frente > h5{
+    background-color: rgb(255, 210, 62);
+    color: rgb(255, 0, 0);
+    width: 85px;
+    margin: 0;
+}
+.oferta-frente > p{
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(238, 155, 0);
+    width: 45px;
 }

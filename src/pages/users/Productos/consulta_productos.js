@@ -68,7 +68,7 @@ function ConsultaProductos(props) {
 		<Spin spinning={loading}>
 			<div className="contenedor-home-background">
 				<div className="row float-left">
-					<h4 className="mb-0 text-center font-weight-bold">¡Conoce nuestros productos!</h4>
+					<p className="font-prin mb-0 text-center">¡Conoce nuestros productos!</p>
 				</div>
 			</div>
 			<div className="d-flex justify-content-center align-items-center">

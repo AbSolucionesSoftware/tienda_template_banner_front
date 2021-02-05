@@ -16,7 +16,6 @@ import '../../scss/variables.scss'
 const { Footer } = Layout;
 
 
-const Style = {fontSize:15};
 
 const token = localStorage.getItem('token');
 	var decoded = Jwt(token);
@@ -101,7 +100,7 @@ const FooterPage = (props) => {
                         className="footer-font-color"
                         key={categoria.categoria}
                     >
-                        <Link to={(`/filtros/null/${categoria.categoria}/null/null`)}> 
+                        <Link className="font-foot" to={(`/filtros/null/${categoria.categoria}/null/null`)}> 
                             {categoria.categoria}
                         </Link>
                     </Button>
@@ -133,14 +132,14 @@ const FooterPage = (props) => {
                             {telefono !== '' && telefono ? 
                             <div className="row mt-3">
                                 <PhoneOutlined className="mt-1" style={{fontSize: 55, marginLeft: 5}} />
-                                <div className=" px-3 mt-2">
-                                    <p>¿Tienes preguntas? ¡Contáctanos!:</p> 
+                                <div className="px-3 mt-2">
+                                    <p className="font-foot">¿Tienes preguntas? ¡Contáctanos!:</p> 
                                     {telefono !== '' ? (<h1 className="footer-font-color" style={{fontSize: 20}}>{telefono} </h1>): ""}
                                 </div>
                             </div>
                             : ""}
 
-                            <div className="mt-3">
+                            <div className="mt-3 font-foot">
 
                                 {accion ? (<p style={{fontWeight: "bold"}}>Datos de contacto:</p>):""}
                                 {direccion.calle_numero !== '' && direccion.calle_numero ? (
@@ -179,7 +178,7 @@ const FooterPage = (props) => {
                             </div>
                         </div>
                         <div className="col-lg-6 mt-lg-4 d-none d-lg-block">
-                            <p style={{fontWeight: "bold"}}>Encuéntralo más rápido</p>
+                            <p className="font-foot" style={{fontWeight: "bold"}}>Encuéntralo más rápido</p>
                             <div style={{columnCount: 2}}>
                                 <div >
                                     {categorias_foot}
@@ -187,10 +186,10 @@ const FooterPage = (props) => {
                             </div>
                         </div>
                         <div className="col-lg-2 mt-4 d-none d-lg-block" style={{columnCount: 1}}>
-                           <p style={{fontWeight: "bold"}}>Atención al cliente</p>
+                           <p className="font-foot" style={{fontWeight: "bold"}}>Atención al cliente</p>
                            {imagenCorp !== '' ? (
                                 <Link  to="/quienes_somos" >
-                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><UserOutlined className="footer-font-color"/>
+                                    <Button className="footer-font-color font-foot" id="is" type="link" ><UserOutlined className="footer-font-color"/>
                                         Conócenos
                                     </Button>
                                 </Link>
@@ -198,35 +197,35 @@ const FooterPage = (props) => {
 
                             {tienda.politicas !== '' && tienda.politicas ? (
                                 <HashLink to="/politicas#privacidad">
-                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                    <Button className="footer-font-color font-foot" id="is" type="link" ><KeyOutlined className="footer-font-color"/>
                                         Aviso de Privacidad
                                     </Button>
                                 </HashLink>
                             ): ""}
                             {tienda.politicasDescuentos !== '' && tienda.politicasDescuentos ? (
                                 <HashLink to="/politicas#descuento">
-                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                    <Button className="footer-font-color font-foot" id="is" type="link" ><KeyOutlined className="footer-font-color"/>
                                         Políticas de Descuento
                                     </Button>
                                 </HashLink>
                             ): ""}
                             {tienda.politicasDevolucion !== '' && tienda.politicasDevolucion ? (
                                 <HashLink to="/politicas#devolucion">
-                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                    <Button className="footer-font-color font-foot" id="is" type="link" ><KeyOutlined className="footer-font-color"/>
                                         Políticas de Devolución
                                     </Button>
                                 </HashLink>
                             ): ""}
                             {tienda.politicasVentas !== '' && tienda.politicasVentas ? (
                                 <HashLink to="/politicas#ventas">
-                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                    <Button className="footer-font-color font-foot" id="is" type="link" ><KeyOutlined className="footer-font-color"/>
                                         Políticas de Ventas
                                     </Button>
                                 </HashLink>
                             ): ""}
                             {tienda.politicasEnvios !== '' &&  tienda.politicasEnvios? (
                                 <HashLink to="/politicas#envios">
-                                    <Button className="footer-font-color" id="is" type="link" style={Style} ><KeyOutlined className="footer-font-color"/>
+                                    <Button className="footer-font-color font-foot" id="is" type="link" ><KeyOutlined className="footer-font-color"/>
                                         Políticas de Envíos
                                     </Button>
                                 </HashLink>
@@ -235,14 +234,14 @@ const FooterPage = (props) => {
 
                             {token && decoded['rol'] === false ? (
                             <Link  to="/perfiles">
-                                <Button className="footer-font-color" id="is" type="link" style={Style} ><SettingOutlined className="footer-font-color"/>
+                                <Button className="footer-font-color font-foot" id="is" type="link" ><SettingOutlined className="footer-font-color"/>
                                     Mi cuenta
                                 </Button>
                             </Link>
                             ) : 
                             (
                             <Link  to="/entrar">
-                                <Button className="footer-font-color" id="is" type="link" style={Style} ><SettingOutlined className="footer-font-color"/>
+                                <Button className="footer-font-color font-foot" id="is" type="link" ><SettingOutlined className="footer-font-color"/>
                                     Mi cuenta
                                 </Button>
                             </Link>

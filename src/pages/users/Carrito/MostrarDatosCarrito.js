@@ -127,7 +127,7 @@ function MostrarDatosProductos(props) {
 	return (
 		<Spin spinning={loading}>
 			<div className="mt-5">
-				<h1 className="principal navbar-menu-general">Bievenido a tu carrito {cliente.nombre}</h1>
+				<h1 className="principal navbar-menu-general font-carrito">Bievenido a tu carrito {cliente.nombre}</h1>
 				<List
 					itemLayout="horizontal"
 					size="large"
@@ -138,15 +138,15 @@ function MostrarDatosProductos(props) {
 					<div className="col-lg-5 d-flex justify-content-center align-items-center">
 						<div>
 							<div>
-								<p style={{ fontSize: 24, display: 'inline' }}>Cantidad de productos: </p>
-								<p style={{ fontSize: 24, display: 'inline', fontWeight: 'bold' }}>
+								<p className="font-sec-car" style={{display: 'inline' }}>Cantidad de productos: </p>
+								<p className="font-sec-car" style={{ display: 'inline', fontWeight: 'bold' }}>
 									{' '}
 									{nuevoCarrito.length}
 								</p>
 							</div>
 							<div>
-								<p style={{ fontSize: 24, display: 'inline' }}>Total: </p>
-								<p style={{ fontSize: 24, display: 'inline', fontWeight: 'bold' }}>
+								<p  className="font-sec-car" style={{ display: 'inline' }}>Total: </p>
+								<p  className="font-sec-car" style={{ display: 'inline', fontWeight: 'bold' }}>
 									{' '}
 									${total !== 0 ? formatoMexico(total) : 0}
 								</p>
@@ -157,7 +157,7 @@ function MostrarDatosProductos(props) {
 						<Space>
 						<Button
 							size="large"
-							className="color-boton color-font-boton"
+							className="color-boton color-font-boton font-des-car"
 							style={{ width: 250, textAlign: 'center' }}
 							onClick={() => crearPedido()}
 						>
@@ -165,7 +165,7 @@ function MostrarDatosProductos(props) {
 						</Button>
 						<Button
 							size="large"
-							className="color-boton color-font-boton"
+							className="color-boton color-font-boton font-des-car"
 							style={{ width: 250, textAlign: 'center' }}
 							onClick={() => apartarCarrito()}
 						>

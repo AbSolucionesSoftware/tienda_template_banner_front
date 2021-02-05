@@ -7,7 +7,7 @@ export default function Imagen_Banner(props) {
     
     const {imagen, link, imagenLocal, vincular } = props;
         return(
-            <div className="container-imagenes mb-4">
+            <div className="container-imagenes">
                 <div className="container-image">
                     <img
                         onClick={() =>

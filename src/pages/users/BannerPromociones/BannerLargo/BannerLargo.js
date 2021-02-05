@@ -27,7 +27,7 @@ const BgElement = Element.BgElement;
             <div key={index} className="mt-4 cont-principal">
                 {banner.mostrarTitulo !== false ? (
                     <TweenOne key="demo" animation={{ y: 30, opacity: 0, type: 'from', delay: 800 }}>
-                        <h1 className=" tit-banner">{banner.tipo.categoria || banner.tipo.temporada }</h1>
+                        <h1 className="tit-banner font-prin">{banner.tipo.categoria || banner.tipo.temporada }</h1>
                     </TweenOne>
                  ) : ""}
 
@@ -62,8 +62,10 @@ const BgElement = Element.BgElement;
                     {banner.mostrarProductos !== false ? (
                             <div className="mx-auto div-cards">
                                 <CardsProductos className="mx-auto" tipo={banner.tipo} />
-                                <div className="d-flex justify-content-center">
-                                    <Link to={`/searching/${banner.tipo.categoria || banner.tipo.temporada || banner.tipo.genero}`} style={{ fontSize: 18 }}>
+                                <div className="d-flex justify-content-center ">
+                                    <Link
+                                        className="font-secun"
+                                        to={`/searching/${banner.tipo.categoria || banner.tipo.temporada || banner.tipo.genero}`} >
                                         Ver todos los productos
                                     </Link>
                                 </div>

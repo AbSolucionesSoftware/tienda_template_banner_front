@@ -115,11 +115,11 @@ function BusquedaCategorias(props) {
 		<Fragment>
 			<Spin spinning={loading}>
 				<div className="my-4 mx-3">
-					<h3 className="d-inline mr-3">{resultado.length} resultados en: </h3>
+					<h3 className="d-inline mr-3 font-prin">{resultado.length} resultados en: </h3>
 					{todosProductos ? (
-						<h3  className="d-inline">Todos los productos</h3>
+						<h3  className="d-inline font-prin">Todos los productos</h3>
 					): (
-						<Breadcrumb separator=">" className="d-inline">
+						<Breadcrumb separator=">" className="d-inline font-prin">
 							<Breadcrumb.Item className="bread-font">{categoria !== 'null' ? categoria : null}</Breadcrumb.Item>
 							<Breadcrumb.Item className="bread-font">{subcategoria !== 'null' ? subcategoria : null}</Breadcrumb.Item>
 							<Breadcrumb.Item className="bread-font">{temporada !== 'null' ? temporada : null}</Breadcrumb.Item>

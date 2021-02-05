@@ -45,10 +45,10 @@ function Politicas() {
             <div className="container">
                 { politicas.politicas && politicas.politicas !== "" ? (
                     <div id="privacidad" className="m-5">
-                        <h1 className="text-center mt-4">Politicas de Privacidad</h1>
-                        <h3 className="text-center mt-4">
+                        <p className="font-prin text-center mt-4">Politicas de Privacidad</p>
+                        <p className="font-secun text-center mt-4">
                             Para poder brindarte una mayor experiencia de compra, te invitamos a leer nuestras politicas de privacidad.
-                        </h3>
+                        </p>
                         
                         <div style={{lineHeight: "35px"}} dangerouslySetInnerHTML={{__html: politicas.politicas}} className='mt-5 px-4 ' />
                     </div>  
@@ -59,10 +59,10 @@ function Politicas() {
                 {
                   politicas.politicasVentas !== "" && politicas.politicasVentas? (
                     <div id="ventas" className="m-5">
-                        <h1 className="text-center mt-4">Politicas de Ventas</h1>
-                        <h3 className="text-center mt-4">
+                        <p className="font-prin text-center mt-4">Politicas de Ventas</p>
+                        <p className="font-secun text-center mt-4">
                             Para poder brindarte una mayor experiencia de compra, te invitamos a leer nuestras politicas de  Ventas
-                        </h3>
+                        </p>
                         
                         <div style={{lineHeight: "35px"}} dangerouslySetInnerHTML={{__html: politicas.politicasVentas}} className='mt-5 px-4 ' />
                     </div>  
@@ -73,10 +73,10 @@ function Politicas() {
                 {
                   politicas.politicasDescuentos !== "" && politicas.politicasDescuentos ? (
                     <div id="descuento" className="m-5">
-                        <h1 className="text-center mt-4">Politicas de Descuentos</h1>
-                        <h3 className="text-center mt-4">
+                        <p className="font-prin text-center mt-4">Politicas de Descuentos</p>
+                        <p className="font-secun text-center mt-4">
                             Para poder brindarte una mayor experiencia de compra, te invitamos a leer nuestras politicas de  Descuentos
-                        </h3>
+                        </p>
                         
                         <div  style={{lineHeight: "35px"}} dangerouslySetInnerHTML={{__html: politicas.politicasDescuentos}} className='mt-5 px-4 ' />
                     </div>  
@@ -87,10 +87,10 @@ function Politicas() {
                 {
                   politicas.politicasDevolucion !== "" && politicas.politicasDevolucion ? (
                     <div id="devolucion" className="m-5">
-                        <h1 className="text-center mt-4">Politicas de Devolucion</h1>
-                        <h3 className="text-center mt-4">
+                        <p className="font-prin text-center mt-4">Politicas de Devolucion</p>
+                        <p className="font-secun text-center mt-4">
                             Para poder brindarte una mayor experiencia de compra, te invitamos a leer nuestras politicas de  Devolucion
-                        </h3>
+                        </p>
                         
                         <div style={{lineHeight: "35px"}} dangerouslySetInnerHTML={{__html: politicas.politicasDevolucion}} className='mt-5 px-4 ' />
                     </div>  
@@ -101,10 +101,10 @@ function Politicas() {
                 {
                   politicas.politicasEnvios !== "" && politicas.politicasEnvios ? (
                     <div id="envios" className="m-5">
-                        <h1 className="text-center mt-4">Politicas de Envios</h1>
-                        <h3 className="text-center mt-4">
+                        <p className="font-prin text-center mt-4">Politicas de Envios</p>
+                        <p className="font-secun text-center mt-4">
                             Para poder brindarte una mayor experiencia de compra, te invitamos a leer nuestras politicas de  Envios
-                        </h3>
+                        </p>
                         
                         <div style={{lineHeight: "35px"}} dangerouslySetInnerHTML={{__html: politicas.politicasEnvios}} className='mt-5 px-4 ' />
                     </div>  

@@ -8,19 +8,19 @@ import { formatoMexico, agregarPorcentaje } from '../../../../config/reuserFunct
 
 const gridStyle = { width: '100%', padding: 0, marginBottom: '1.5rem' };
 
-export default function Card_Producto(props) {
+export default function Card_Producto_Frente(props) {
 	const { productos } = props;
 
 	if (productos.precioPromocion) {
 		return (
 			<div key={productos._id} className="size-col-prin col-lg-2 col-6">
 				<Link to={`/vista_producto/${productos.productoPromocion._id}`}>
-					<Card.Grid hoverable style={gridStyle} className="border contenedor-card-producto-principal">
+					<Card.Grid hoverable style={gridStyle} className="contenedor-card-producto-principal">
 						<Card
 							className="contenedor-card-body"
 							cover={
 								<div className="contenedor-imagen-oferta">
-									<div className="oferta-frente">
+									<div className="contenedor-oferta">
 										<h5 className="shadow">OFERTA</h5>
 									</div>
 									<div className="contenedor-imagen-producto-principal">
@@ -34,22 +34,21 @@ export default function Card_Producto(props) {
 							}
 						>
 							<div className="contenedor-titulos-productos titulo-elipsis">
-								<p className="font-secun titulo-producto">{productos.productoPromocion.nombre}</p>
+								<h1 className="titulo-producto">{productos.productoPromocion.nombre}</h1>
 								<div
-									className="font-peque description"
 									dangerouslySetInnerHTML={{
 										__html: DOMPurify.sanitize(productos.productoPromocion.descripcion)
 									}}
 								/>
 							</div>
 							<div className="contenedor-precios-productos">
-								<h2 className="font-peque precio-producto rebajado mr-2">
+								<h2 className="h5 precio-producto  mr-2">
 									${formatoMexico(productos.productoPromocion.precio)}
 								</h2>
-								<h3 className="font-prin precio-rebaja d-inline mr-1">
+								<h3 className="h5 precio-rebaja d-inline mr-1">
 									${formatoMexico(productos.precioPromocion)}
 								</h3>
-								<p className="font-peque porcentaje-descuento d-inline">
+								<p className="h4 porcentaje-descuento d-inline">
 									{agregarPorcentaje(
 										productos.precioPromocion,
 										productos.productoPromocion.precio
@@ -65,11 +64,11 @@ export default function Card_Producto(props) {
 		return (
 			<div key={productos._id} className="size-col-prin col-lg-2 col-6">
 				<Link to={`/vista_producto/${productos._id}`}>
-					<Card.Grid hoverable style={gridStyle} className="border contenedor-card-producto-principal">
+					<Card.Grid hoverable style={gridStyle} className="border frente contenedor-card-producto-principal">
 						<Card
-							className="contenedor-card-body"
+							className="frente-bajo frente contenedor-card-body"
 							cover={
-								<div className="contenedor-imagen-oferta">
+								<div className=" contenedor-imagen-oferta">
 									{productos.promocion.length !== 0 ? (
 										productos.promocion.map((promo) => {
 											return (
@@ -93,7 +92,7 @@ export default function Card_Producto(props) {
 								</div>
 							}
 						>
-							<div className=" contenedor-titulos-productos titulo-elipsis">
+							<div className="frente contenedor-titulos-productos titulo-elipsis">
 								<p className="font-secun titulo-producto">{productos.nombre}</p>
 								<div
 									className="font-peque description "
@@ -103,13 +102,13 @@ export default function Card_Producto(props) {
 								/>
 							</div>
 							{!productos.promocion.length ? (
-								<div className="contenedor-precios-productos">
+								<div className="frente contenedor-precios-productos">
 									<h3 className="font-prin precio-rebaja">${formatoMexico(productos.precio)}</h3>
 								</div>
 							) : (
 								productos.promocion.map((promo) => {
 									return (
-										<div className="contenedor-precios-productos" key={promo._id}>
+										<div className="frente contenedor-precios-productos" key={promo._id}>
 											<h2 className="font-peque precio-producto  mr-2">
 												${formatoMexico(productos.precio)}
 											</h2>

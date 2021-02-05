@@ -123,7 +123,7 @@ const Navegacion = (props) => {
 					<div className="top-menu row a3 container-prin">
 						<div className="col-lg-12 container-pages a4">
 							<Menu
-								className="navbar-menu-sesion float-right nav-font-pages a5"
+								className="navbar-menu-sesion float-right nav-font-pages a5 font-foot"
 								/* theme="light" */
 								mode="horizontal"
 								defaultSelectedKeys={[ window.location.pathname ]}
@@ -216,7 +216,7 @@ const Navegacion = (props) => {
 								{!decoded || decoded.rol === true ? (
 									<Menu.Item key="" className="d-none" />
 								) : (
-									<Menu.Item className="nav-font-color-sesion a6" key="/pedidos">
+									<Menu.Item className="nav-font-color-sesion a6 font-foot" key="/pedidos">
 										<div className="centrar-nav" >Mis compras</div>
 										<Link to="/pedidos" />
 									</Menu.Item>
@@ -248,12 +248,12 @@ const Navegacion = (props) => {
 											)
 										}
 									>
-										<Menu.Item key="" className="nav-font-color-sesion">
+										<Menu.Item key="" className="nav-font-color-sesion font-foot">
 											<SettingOutlined />Mi cuenta<Link to="/perfiles" />
 										</Menu.Item>
 										<Menu.Item>
 											<div
-												className="text-danger centrar-nav"
+												className="text-danger centrar-nav font-foot"
 												onClick={() => {
 													localStorage.removeItem('token');
 													firebase.auth().signOut();
@@ -281,12 +281,12 @@ const Navegacion = (props) => {
 											)
 										}
 									>
-										<Menu.Item key="" className=" a6">
+										<Menu.Item key="" className="font-foot a6">
 											<SettingOutlined />Panel de administrador<Link to="/admin" />
 										</Menu.Item>
 										<Menu.Item key="" className=" a6">
 											<div
-												className="text-danger centrar-nav"
+												className="text-danger centrar-nav font-foot"
 												onClick={() => {
 													localStorage.removeItem('token');
 													firebase.auth().signOut();

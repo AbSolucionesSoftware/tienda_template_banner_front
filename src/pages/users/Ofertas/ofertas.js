@@ -54,7 +54,7 @@ function Ofertas(props) {
 		<Spin spinning={loading}>
 			<div className="contenedor-home-background">
 				<div className="row contenedor-home-banner">
-					<h4 className="mb-0 text-center">¡Encuentra ofertas todos los días!</h4>
+					<p className="font-prin mb-0 text-center">¡Encuentra ofertas todos los días!</p>
 				</div>
 			</div>
 			<div className="d-flex justify-content-center align-items-center">
