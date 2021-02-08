@@ -62,13 +62,13 @@ export default function Card_Producto_Frente(props) {
 		);
 	} else {
 		return (
-			<div key={productos._id} className="size-col-prin col-lg-2 col-6">
+			<div key={productos._id} className="size-col-frente col-lg-2 col-6">
 				<Link to={`/vista_producto/${productos._id}`}>
 					<Card.Grid hoverable style={gridStyle} className="border frente contenedor-card-producto-principal">
 						<Card
 							className="frente-bajo frente contenedor-card-body"
 							cover={
-								<div className=" contenedor-imagen-oferta">
+								<div className="contenedor-imagen-oferta ">
 									{productos.promocion.length !== 0 ? (
 										productos.promocion.map((promo) => {
 											return (
@@ -82,7 +82,7 @@ export default function Card_Producto_Frente(props) {
 										<div className="d-none" />
 									)}
 
-									<div className="contenedor-imagen-producto-principal">
+									<div className="contenedor-imagen-producto-principal ">
 										<img
 											className="imagen-producto-principal"
 											alt="producto"

@@ -29,6 +29,9 @@
     width: 300px;
 }
 .size-col-prin{
+    min-width: 240px;
+}
+.size-col-frente{
     min-width: 270px;
 }
 .contenedor-card-producto-principal{
@@ -65,12 +68,12 @@
     // font-size: 18px;
 }
 .contenedor-precios-productos > h2 {
-    padding-left: 10%;
+    padding-left: 8%;
     // font-size: 15px;
 }
 .contenedor-precios-productos > h3 {
     padding-top: 5%;
-    padding-left: 10%;
+    padding-left: 8%;
     // font-size: 22px;
 }
 .contenedor-precios-productos > p {
@@ -126,4 +129,10 @@
     font-size: 18px;
     color: rgb(238, 155, 0);
     width: 45px;
+}
+@media(max-width: 1440px){
+    .size-col-frente{
+        min-width: 255px;
+        padding: 6px!important;
+    }
 }

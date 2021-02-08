@@ -63,7 +63,7 @@ export default function Card_Producto(props) {
 		);
 	} else {
 		return (
-			<div key={productos._id} className="size-col-prin col-lg-2 col-6">
+			<div key={productos._id} className="size-col-prin col-lg-2 col-6 centrar">
 				<Link to={`/vista_producto/${productos._id}`}>
 					<Card.Grid hoverable style={gridStyle} className="border contenedor-card-producto-principal">
 						<Card
