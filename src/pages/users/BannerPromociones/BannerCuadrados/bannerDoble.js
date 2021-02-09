@@ -9,7 +9,6 @@ function Banner_Doble(props) {
     const { banner, imagenLocal } = props;
     
     const render = banner.banners.map((banner) => {
-        console.log(banner);
         return(
             <div key={banner._id} className="col-lg-6 container-imagenes">
                 <div className="container-banner-doble mt-2">

@@ -69,7 +69,7 @@ const InfoTienda = (props) => {
 				) : (
 					<p />
 				)}
-				{tienda.diasHorariosEmpresas !== "" ? (
+				{tienda.diasHorariosEmpresas !== '' && tienda.diasHorariosEmpresas !== "undefined" ? (
 					<div className="container">
 						<p className="font-descrip">
 							<span className="font-weight-bold">Horarios de Atención:</span>

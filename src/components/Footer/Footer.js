@@ -177,7 +177,7 @@ const FooterPage = (props) => {
                                 </div>
                             </div>
                         </div>
-                        {tienda.diasHorariosEmpresas !== "" ? (
+                        {tienda.diasHorariosEmpresas !== '' && tienda.diasHorariosEmpresas !== "undefined" ? (
                             <div className="col-lg-3 mt-4">
                                 <div className="container">
                                     <p className="font-foot">

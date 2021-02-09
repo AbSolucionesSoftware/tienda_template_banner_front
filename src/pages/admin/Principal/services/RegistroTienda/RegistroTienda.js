@@ -606,8 +606,8 @@ export default function RegistroTienda(props) {
                 <div className="col-12">
                   <Form.Item className="m-2">
                     <Form.Item
-                      /* rules={[ { required: true, message: 'Imagen corporativa es obligatoria' } ]}
-									noStyle */
+                      rules={[ { required: true, message: 'Imagen corporativa es obligatoria' } ]}
+									    noStyle 
                       name="imagenCorp"
                     >
                       <Editor
