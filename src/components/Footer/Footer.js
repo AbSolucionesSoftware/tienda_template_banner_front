@@ -116,7 +116,7 @@ const FooterPage = (props) => {
              <Footer className="bg-footer" >
                 <div end="xs" id="foot">  
                     <div className="row footer-font-color">
-                        <div className="col-lg-4  d-sm-text-center">
+                        <div className="col-lg-3  d-sm-text-center">
                             {tienda.imagenLogo !== '' && tienda.imagenLogo ?
                             <div className="contenedor-logo">
                                 <div className="logos"> 
@@ -177,7 +177,19 @@ const FooterPage = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-6 mt-lg-4 d-none d-lg-block">
+                        {tienda.diasHorariosEmpresas !== "" ? (
+                            <div className="col-lg-3 mt-4">
+                                <div className="container">
+                                    <p className="font-foot">
+                                        <span className="font-weight-bold">Horarios de Atención:</span>
+                                        <p dangerouslySetInnerHTML={{__html: tienda.diasHorariosEmpresas}}/>
+                                    </p>
+                                </div>
+                            </div>
+                        ) : (
+                            null
+                        )}
+                        <div className="col-lg-4 mt-lg-4 d-none d-lg-block">
                             <p className="font-foot" style={{fontWeight: "bold"}}>Encuéntralo más rápido</p>
                             <div style={{columnCount: 2}}>
                                 <div >

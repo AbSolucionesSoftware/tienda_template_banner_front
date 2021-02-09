@@ -34,7 +34,6 @@ export default function Registro_Politicas(props) {
 			.then((res) => {
 				setLoading(false);
 				setDatosNegocio(res.data[0]);
-				console.log(res.data[0]);
 			})
 			.catch((err) => {
 				setLoading(false);

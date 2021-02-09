@@ -69,6 +69,17 @@ const InfoTienda = (props) => {
 				) : (
 					<p />
 				)}
+				{tienda.diasHorariosEmpresas !== "" ? (
+					<div className="container">
+						<p className="font-descrip">
+							<span className="font-weight-bold">Horarios de Atención:</span>
+							<p dangerouslySetInnerHTML={{__html: tienda.diasHorariosEmpresas}}/>
+						</p>
+					</div>
+				) : (
+					<p />
+				)}
+
 				{/* {tienda.length !== 0 ? (
 					tienda.ubicacion.map((ubicacion) => {
 						return (

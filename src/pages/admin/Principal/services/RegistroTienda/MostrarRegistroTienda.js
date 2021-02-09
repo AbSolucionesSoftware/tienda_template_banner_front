@@ -324,6 +324,7 @@ function MostrarRegistroTienda(props) {
 							</span>
 						</p>
 					</div>
+					
 					<div className="col-lg-4 col-sm-12 shadow">
 						<p className="m-2 h5 font-weight-bold">Redes sociales:</p>
 						{face !== '' ? (
@@ -348,6 +349,22 @@ function MostrarRegistroTienda(props) {
 						) : (
 							''
 						)}
+					</div>
+				</div>
+				<div className="row justify-content-around mt-3">
+					<div className="col-lg-4 col-sm-12 shadow ">
+						<p className="h5 font-weight-bold">
+							Horarios de Atención:<span className="h5">
+								{' '}
+								{action === false ? 'Hoararios de Atención:' : 
+									<div 
+										style={{lineHeight: "35px"}} 
+										dangerouslySetInnerHTML={{__html: datosNegocio.diasHorariosEmpresas}} 
+										className='mt-1 px-4 ' 
+									/>
+								}
+							</span>
+						</p>
 					</div>
 				</div>
 

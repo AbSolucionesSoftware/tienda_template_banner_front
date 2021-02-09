@@ -59,7 +59,6 @@ export default function RegistroTienda(props) {
 
   useEffect(() => {
     if (datosNegocio !== undefined) {
-      console.log(datosNegocio);
       setImagen(datosNegocio.imagenLogo);
       // if (datosNegocio.ubicacion[0].lat === "undefined") {
       //   datosNegocio.ubicacion[0].lat = "";
@@ -87,6 +86,7 @@ export default function RegistroTienda(props) {
         // lat: datosNegocio.ubicacion[0].lat,
         // lng: datosNegocio.ubicacion[0].lng,
         imagenCorp: datosNegocio.imagenCorp,
+        diasHorariosEmpresas: datosNegocio.diasHorariosEmpresas,
         linkFace: datosNegocio.linkFace,
         linkInsta: datosNegocio.linkInsta,
         linkTweeter: datosNegocio.linkTweeter,
@@ -102,6 +102,7 @@ export default function RegistroTienda(props) {
         // lat: datosNegocio.ubicacion[0].lat,
         // lng: datosNegocio.ubicacion[0].lng,
         imagenCorp: datosNegocio.imagenCorp,
+        diasHorariosEmpresas: datosNegocio.diasHorariosEmpresas,
         linkFace: datosNegocio.linkFace,
         linkInsta: datosNegocio.linkInsta,
         linkTweeter: datosNegocio.linkTweeter,
@@ -113,6 +114,7 @@ export default function RegistroTienda(props) {
     }
   }, [datosNegocio]);
 
+
   // const capturarPoliticasEditor = (content, editor) => {
   //   setDatos({ ...datos, politicas: content });
   // };
@@ -120,6 +122,14 @@ export default function RegistroTienda(props) {
   const capturarImagenCorpEditor = (content, editor) => {
     setDatos({ ...datos, imagenCorp: content });
   };
+
+  const capturarHorariosDias = (content, editor) => {
+    setDatos({ ...datos, diasHorariosEmpresas: content });
+  };
+
+  // console.log(capturarHorariosDias);
+  // console.log(datosNegocio.diasHorariosEmpresas);
+
 
   const propss = {
     listType: "picture",
@@ -162,6 +172,7 @@ export default function RegistroTienda(props) {
     // formData.append("lng", datos.lng);
     // formData.append("politicas", datos.politicas);
     formData.append("imagenCorp", datos.imagenCorp);
+    formData.append("diasHorariosEmpresas", datos.diasHorariosEmpresas);
     formData.append("linkFace", datos.linkFace);
     formData.append("linkInsta", datos.linkInsta);
     formData.append("linkTweeter", datos.linkTweeter);
@@ -563,6 +574,32 @@ export default function RegistroTienda(props) {
                 </div>
               </div>
 
+              <div className="row">
+                <Divider>Horarios y Días Laborales</Divider>
+                <div className="col-12">
+                  <Form.Item className="m-2">
+                    <Form.Item
+                      name="diasHorariosEmpresas"
+                    >
+                      <Editor
+                        disabled={false}
+                        init={{
+                          height: 250,
+                          menubar: true,
+                          plugins: [
+                            "advlist autolink lists link image charmap print preview anchor",
+                            "searchreplace visualblocks code fullscreen",
+                            "insertdatetime media table paste code help wordcount",
+                          ],
+                          toolbar:
+                            "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+                        }}
+                        onEditorChange={capturarHorariosDias}
+                      />
+                    </Form.Item>
+                  </Form.Item>
+                </div>
+              </div>
               
               <div className="row">
                 <Divider>Imagen corporativa</Divider>
