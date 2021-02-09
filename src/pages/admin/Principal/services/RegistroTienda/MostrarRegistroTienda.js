@@ -356,7 +356,7 @@ function MostrarRegistroTienda(props) {
 						<p className="h5 font-weight-bold">
 							Horarios de Atención:<span className="h5">
 								{' '}
-								{action === false ? 'Hoararios de Atención:' : 
+								{action === false ? 'Horarios de Atención:' : 
 									<div 
 										style={{lineHeight: "35px"}} 
 										dangerouslySetInnerHTML={{__html: datosNegocio.diasHorariosEmpresas}} 
